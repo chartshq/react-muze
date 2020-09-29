@@ -5,9 +5,10 @@ The project is a react library over muze, examples directory is a create-react-a
 ### Installation
 
 - yarn install
-- yarn build(for prod build)
-- yarn watch-build(for dev build with HMR support)
+- yarn setup
 
 Open the examples directory
 
-- Run yarn start
+- yarn install
+- yarn link @chartshq/react-muze
+- yarn start
