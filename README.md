@@ -6,6 +6,7 @@ The project is a react library over muze, examples directory is a create-react-a
 
 - yarn install
 - yarn setup
+- yarn watch-build(for hot module reloading)
 
 Open the examples directory
 
