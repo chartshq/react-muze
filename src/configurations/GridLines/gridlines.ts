@@ -43,9 +43,9 @@ class GridLines {
   }
 
   create(value?: GridLinesInterface) {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new GridLinesBase(refinedValues || this));
+    return removeUndefinedValues(new GridLinesBase(this));
   }
 }
 

@@ -46,9 +46,9 @@ class Behaviours {
   }
 
   create(value?: BehavioursInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new SideEffectsBase(refinedValues || this));
+    return removeUndefinedValues(new SideEffectsBase(this));
   }
 }
 

@@ -111,9 +111,9 @@ class TickLayerEncoding {
   }
 
   create(value?: TickEncodingInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new TickBaseEncoding(refinedValues || this));
+    return removeUndefinedValues(new TickBaseEncoding(this));
   }
 }
 

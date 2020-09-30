@@ -27,9 +27,9 @@ class Shape {
   }
 
   create(value?: FieldRangeInterface): FieldRangeInterface {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new RetinalEncodingBase(refinedValues || this));
+    return removeUndefinedValues(new RetinalEncodingBase(this));
   }
 }
 

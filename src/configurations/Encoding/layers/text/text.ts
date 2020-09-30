@@ -75,9 +75,9 @@ class TextLayerEncoding {
   }
 
   create(value?: TextEncodingInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new TextBaseEncoding(refinedValues || this));
+    return removeUndefinedValues(new TextBaseEncoding(this));
   }
 }
 

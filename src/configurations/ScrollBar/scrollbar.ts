@@ -44,9 +44,9 @@ class ScrollBar {
   }
 
   create(value?: ScrollBarInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new ScrollBarBase(refinedValues || this));
+    return removeUndefinedValues(new ScrollBarBase(this));
   }
 }
 

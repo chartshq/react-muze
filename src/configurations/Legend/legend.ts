@@ -102,9 +102,9 @@ class Legend {
   }
 
   create(value?: LegendInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new LegendBase(refinedValues || this));
+    return removeUndefinedValues(new LegendBase(this));
   }
 }
 

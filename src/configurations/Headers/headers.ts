@@ -28,12 +28,7 @@ class Headers {
     return new Headers({ content: null });
   }
 
-  text(content: StringOrMissing): Headers {
-    this._content = content;
-    return this;
-  }
-
-  html(content: Function): Headers {
+  content(content: StringOrMissing): Headers {
     this._content = content;
     return this;
   }
@@ -59,9 +54,9 @@ class Headers {
   }
 
   create(value?: HeadersConfig): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new HeadersBase(refinedValues || this));
+    return removeUndefinedValues(new HeadersBase(this));
   }
 }
 

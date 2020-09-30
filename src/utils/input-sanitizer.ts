@@ -1,13 +1,20 @@
-function inputSanitizer(value: any) {
+function inputSanitizer(value: any, context: any) {
+    // if (value) {
+    //   const keysArr = Object.keys(value).map((key) => `_${key}`);
+    //   const newVal = Object.entries(value).map((val, i) => {
+    //       val[0] = keysArr[i];
+    //       return val;
+    //   });
+    //   return Object.fromEntries(newVal);
+    // }
+    // return null;
     if (value) {
-      const keysArr = Object.keys(value).map((key) => `_${key}`);
-      const newVal = Object.entries(value).map((val, i) => {
-          val[0] = keysArr[i];
-          return val;
+      Object.keys(value).forEach(val => {
+        if (context[val]) {
+          context[val](value[val]);
+        }
       });
-      return Object.fromEntries(newVal);
     }
-    return null;
 }
 
 /**

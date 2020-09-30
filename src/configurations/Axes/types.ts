@@ -3,7 +3,7 @@ type NumberOrMissing = number | null | undefined;
 type BoolOrMissing = boolean | null | undefined;
 
 export interface AxesInterface {
-  name: StringOrMissing;
+  name?: StringOrMissing;
   show?: BoolOrMissing;
   showAxisName?: BoolOrMissing;
   axisNamePadding?: NumberOrMissing;

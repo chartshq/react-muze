@@ -28,7 +28,7 @@ class Title extends React.Component {
 
   render() {
     const title = Headers.config()
-      .html(html`<i>I am</i> title`)
+      .content(html`<i>I am</i> title`)
       .position(POSITION.TOP)
       .align(ALIGNMENT.RIGHT)
       .create();

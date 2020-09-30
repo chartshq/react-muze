@@ -66,9 +66,9 @@ class LineLayerEncoding {
   }
 
   create(value?: LineEncodingInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new LineBaseEncoding(refinedValues || this));
+    return removeUndefinedValues(new LineBaseEncoding(this));
   }
 }
 

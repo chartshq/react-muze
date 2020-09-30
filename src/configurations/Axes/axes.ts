@@ -92,10 +92,13 @@ class Axes {
     return this;
   }
 
-  create(value?: AxesInterface): any {
-    const refinedValues = inputSanitizer(value);
+  create(value: AxesInterface = {}): any {
+    // Object.keys(value).forEach(val => {
+    //   this[val as keyof AxesInterface](value[val as keyof AxesInterface] as never);
+    // });
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new AxesBase(refinedValues || this));
+    return removeUndefinedValues(new AxesBase(this));
   }
 }
 

@@ -78,9 +78,9 @@ class BarLayerEncoding {
   }
 
   create(value?: BarEncodingInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new BarBaseEncoding(refinedValues || this));
+    return removeUndefinedValues(new BarBaseEncoding(this));
   }
 }
 

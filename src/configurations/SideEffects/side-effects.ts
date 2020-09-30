@@ -29,7 +29,6 @@ class SideEffects {
     SideEffects.effect = effect;
   }
 
-
   for(_for: SideEffectsInterface['_for']): SideEffects {
     this._for = _for;
     return this;
@@ -46,9 +45,9 @@ class SideEffects {
   }
 
   create(value?: SideEffectsInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new SideEffectsBase(refinedValues || this));
+    return removeUndefinedValues(new SideEffectsBase(this));
   }
 }
 

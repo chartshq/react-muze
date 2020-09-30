@@ -84,9 +84,9 @@ class ArcLayerEncoding {
   }
 
   create(value?: ArcEncodingInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new ArcBaseEncoding(refinedValues || this));
+    return removeUndefinedValues(new ArcBaseEncoding(this));
   }
 }
 

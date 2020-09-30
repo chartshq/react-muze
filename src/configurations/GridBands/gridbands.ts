@@ -27,8 +27,9 @@ class GridBands {
   }
 
   create(value?: GridBandsInterface): any {
-    const refinedValues = inputSanitizer(value);
-    return removeUndefinedValues(new GridBandsBase(refinedValues || this));
+    inputSanitizer(value, this);
+
+    return removeUndefinedValues(new GridBandsBase(this));
   }
 }
 

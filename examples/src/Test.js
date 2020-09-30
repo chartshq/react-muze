@@ -215,16 +215,16 @@ class Test extends React.Component {
             field: 'Cylinders',
             // range: ['magenta', 'green', 'crimson', 'silver'],
         });
-        console.log(color);
         const size = Size.config().field('Revenue (Millions)').create();
         const shape = Shape.config().field('Year').create();
         const title = Headers.config()
-            .text('Text title')
-            .html(html`<i>I am</i> title`)
+            .content('Text title')
+            .content(html`<i>I am</i> title`)
             .position(POSITION.TOP)
             .create();
         const subtitle = Headers.config().create({
-            content: html`<i>This</i> is a chart <u>subtitle</u>`,
+            // content: html`<i>This</i> is a chart <u>subtitle</u>`,
+            content: 'subtitle this is',
             position: POSITION.BOTTOM,
             align: ALIGNMENT.RIGHT,
         });
@@ -273,8 +273,15 @@ class Test extends React.Component {
         //     showAxisName: true,
         //     tickFormat: (val) => `#${val}`,
         // }
-        const xAxis = Axes.config().showAxisName(true).tickFormat((val) => `$${val}`).name('asdashdahsdh ajsdhsa').create();
-
+        // const xAxis = Axes.config().showAxisName(true).tickFormat((val) => `$${val}`).name('asdashdahsdh ajsdhsa').create();
+        const xAxis = Axes.config().create(
+            {
+                name: 'something canvas',
+                showAxisName: true,
+                tickFormat: (val) => `#${val}`,
+            }
+        );
+        console.log(xAxis);
         // const xAxis2 = Axes.config().create({
         //     name: 'something canvas',
         //     showAxisName: false,
@@ -388,7 +395,6 @@ ${i ? '' : `<h3 style="background-color:#EAEAEA">Country: ${originVal}</h3>`}
 
                 let tooltipContent = '';
                 tooltipData.forEach((dataArray, i) => {
-                    console.log(dataArray);
                     const originVal = dataArray[dataStore.getFieldIndex('Origin')];
                     const milesVal = dataArray[dataStore.getFieldIndex('Miles_per_Gallon')];
 

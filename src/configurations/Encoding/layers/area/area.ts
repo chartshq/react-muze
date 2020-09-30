@@ -66,9 +66,9 @@ class AreaLayerEncoding {
   }
 
   create(value?: AreaEncodingInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new AreaBaseEncoding(refinedValues || this));
+    return removeUndefinedValues(new AreaBaseEncoding(this));
   }
 }
 

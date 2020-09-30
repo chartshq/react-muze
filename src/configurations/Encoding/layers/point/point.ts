@@ -120,9 +120,9 @@ class PointLayerEncoding {
   }
 
   create(value?: PointEncodingInterface): any {
-    const refinedValues = inputSanitizer(value);
+    inputSanitizer(value, this);
 
-    return removeUndefinedValues(new PointBaseEncoding(refinedValues || this));
+    return removeUndefinedValues(new PointBaseEncoding(this));
   }
 }
 
