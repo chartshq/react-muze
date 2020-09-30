@@ -6,10 +6,8 @@ class RetinalEncodingBase {
   range?: stringArrOrNull;
 
   constructor(builder: any) {
-    const { isClass, _field, field, _range, range } = builder;
-
-    this.field = isClass ? _field : field;
-    this.range = isClass ? _range : range;
+    this.field = builder._field;
+    this.range = builder._range;
   }
 }
 

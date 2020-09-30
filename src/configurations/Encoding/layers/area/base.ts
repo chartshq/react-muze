@@ -9,18 +9,18 @@ class AreaBaseEncoding {
   fillOpacity?: AreaEncodingBaseInterface['fillOpacity'];
 
   constructor(builder: any) {
-    this.color = builder.isClass ? builder._color : builder.color;
+    this.color = builder._color;
     this.x = {
-      field: builder.isClass ? builder._x : builder.x
+      field: builder._x
     };
     this.y = {
-      field: builder.isClass ? builder._y : builder.y
+      field: builder._y
     };
     this.y0 = {
-      field: builder.isClass ? builder._y0 : builder.y0
+      field: builder._y0
     };
-    this.strokeOpacity = builder.isClass ? builder._strokeOpacity : builder.strokeOpacity;
-    this.fillOpacity = builder.isClass ? builder._fillOpacity : builder.fillOpacity;
+    this.strokeOpacity = builder._strokeOpacity;
+    this.fillOpacity = builder._fillOpacity;
   }
 }
 

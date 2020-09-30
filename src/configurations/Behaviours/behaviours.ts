@@ -1,9 +1,8 @@
 import { BehavioursInterface } from './types';
 import { SideEffectsBase } from './base';
+import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class Behaviours {
-  isClass: boolean;
-
   _for: BehavioursInterface['_for'];
 
   _on: BehavioursInterface['_on'];
@@ -17,7 +16,6 @@ class Behaviours {
     _on,
     _dissociateFrom
   }: BehavioursInterface) {
-    this.isClass = true;
     this._for = _for;
     this._on = _on;
     this._dissociateFrom = _dissociateFrom;
@@ -48,13 +46,9 @@ class Behaviours {
   }
 
   create(value?: BehavioursInterface): any {
-    const result: any = value ? new SideEffectsBase(value) : new SideEffectsBase(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new SideEffectsBase(refinedValues || this));
   }
 }
 

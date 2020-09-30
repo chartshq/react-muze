@@ -1,15 +1,13 @@
 import { RetinalEncodingBase } from '../base';
 import { FieldRangeInterface } from '../types';
+import { inputSanitizer, removeUndefinedValues } from '../../../utils/input-sanitizer';
 
 class Size {
-  isClass: boolean;
-
   _field: FieldRangeInterface['field'];
 
   _range: FieldRangeInterface['range'];
 
   constructor({ field = null, range }: FieldRangeInterface) {
-    this.isClass = true;
     this._field = field;
     this._range = range;
   }
@@ -29,14 +27,9 @@ class Size {
   }
 
   create(value?: FieldRangeInterface): FieldRangeInterface {
-    const result: any = value ? new RetinalEncodingBase(value) : new RetinalEncodingBase(this);
+    const refinedValues = inputSanitizer(value);
 
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    return removeUndefinedValues(new RetinalEncodingBase(refinedValues || this));
   }
 }
 

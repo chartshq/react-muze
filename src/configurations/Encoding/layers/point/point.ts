@@ -1,9 +1,8 @@
 import { PointBaseEncoding } from './base';
 import { PointEncodingInterface } from './types';
+import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
 
 class PointLayerEncoding {
-  isClass: boolean;
-  
   _size?: PointEncodingInterface['size'];
 
   _color?: PointEncodingInterface['color'];
@@ -42,7 +41,6 @@ class PointLayerEncoding {
     strokePosition,
     interaction
   }: PointEncodingInterface) {
-    this.isClass = true;
     this._size = size;
     this._color = color;
     this._stroke = stroke;
@@ -122,13 +120,9 @@ class PointLayerEncoding {
   }
 
   create(value?: PointEncodingInterface): any {
-    const result: any = value ? new PointBaseEncoding(value) : new PointBaseEncoding(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new PointBaseEncoding(refinedValues || this));
   }
 }
 

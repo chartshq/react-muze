@@ -33,6 +33,15 @@ class Title extends React.Component {
       .align(ALIGNMENT.RIGHT)
       .create();
 
+    // console.log('title', title);
+
+    // const title = Headers.config()
+    //   .create({
+    //     content: html`<i>I am</i> title`,
+    //     position: POSITION.BOTTOM,
+    //     align: ALIGNMENT.RIGHT
+    //   });
+
     const { carsDm } = this.state;
 
     return (

@@ -8,9 +8,9 @@ class SideEffectsBase {
   dissociateBehaviour: BehavioursInterface['_dissociateFrom'];
 
   constructor(builder: any) {
-    this.for = builder.isClass ? builder._for : builder.for;
-    this.on = builder.isClass ? builder._on : builder.on;
-    this.dissociateBehaviour = builder.isClass ? builder._dissociateFrom : builder.dissociateFrom;
+    this.for = builder._for;
+    this.on = builder._on;
+    this.dissociateBehaviour = builder._dissociateFrom;
   }
 }
 

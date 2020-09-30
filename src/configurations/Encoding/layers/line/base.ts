@@ -9,16 +9,16 @@ class LineBaseEncoding {
   strokeWidth?: LineEncodingBaseInterface['strokeWidth'];
 
   constructor(builder: any) {
-    this.color = builder.isClass ? builder._color : builder.color;
+    this.color = builder._color;
     this.x = {
-      field: builder.isClass ? builder._x : builder.x
+      field: builder._x
     };
     this.y = {
-      field: builder.isClass ? builder._y : builder.y
+      field: builder._y
     };
-    this.strokeOpacity = builder.isClass ? builder._strokeOpacity : builder.strokeOpacity;
-    this.fillOpacity = builder.isClass ? builder._fillOpacity : builder.fillOpacity;
-    this.strokeWidth = builder.isClass ? builder._strokeWidth : builder.strokeWidth;
+    this.strokeOpacity = builder._strokeOpacity;
+    this.fillOpacity = builder._fillOpacity;
+    this.strokeWidth = builder._strokeWidth;
   }
 }
 

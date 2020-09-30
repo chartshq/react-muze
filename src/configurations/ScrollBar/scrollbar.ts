@@ -1,10 +1,9 @@
 import { ScrollBarInterface } from './types';
 import { ScrollBarBase } from './base';
 import { SCROLL_VERTICAL, SCROLL_HORIZONTAL } from './constants';
+import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class ScrollBar {
-  isClass: boolean;
-
   _verticalAlign?: ScrollBarInterface['verticalAlign'];
 
   _horizontalAlign?: ScrollBarInterface['horizontalAlign'];
@@ -14,7 +13,6 @@ class ScrollBar {
   _speed?: ScrollBarInterface['speed'];
 
   constructor({ verticalAlign = SCROLL_VERTICAL.RIGHT, horizontalAlign = SCROLL_HORIZONTAL.BOTTOM, thickness = 10, speed = 2 }: ScrollBarInterface) {
-    this.isClass = true;
     this._verticalAlign = verticalAlign;
     this._horizontalAlign = horizontalAlign;
     this._thickness = thickness;
@@ -46,13 +44,9 @@ class ScrollBar {
   }
 
   create(value?: ScrollBarInterface): any {
-    const result: any = value ? new ScrollBarBase(value) : new ScrollBarBase(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new ScrollBarBase(refinedValues || this));
   }
 }
 

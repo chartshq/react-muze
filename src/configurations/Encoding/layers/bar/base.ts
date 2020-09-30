@@ -11,22 +11,22 @@ class BarBaseEncoding {
   strokePosition?: BarEncodingBaseInterface['strokePosition'];
 
   constructor(builder: any) {
-    this.color = builder.isClass ? builder._color : builder.color;
+    this.color = builder._color;
     this.x = {
-      field: builder.isClass ? builder._x : builder.x
+      field: builder._x
     };
     this.y = {
-      field: builder.isClass ? builder._y : builder.y
+      field: builder._y
     };
     this.x0 = {
-      field: builder.isClass ? builder._x0 : builder.x0
+      field: builder._x0
     };
     this.y0 = {
-      field: builder.isClass ? builder._y0 : builder.y0
+      field: builder._y0
     };
-    this.stroke = builder.isClass ? builder._stroke : builder.stroke;
-    this.strokeWidth = builder.isClass ? builder._strokeWidth : builder.strokeWidth;
-    this.strokePosition = builder.isClass ? builder._strokePosition : builder.strokePosition;
+    this.stroke = builder._stroke;
+    this.strokeWidth = builder._strokeWidth;
+    this.strokePosition = builder._strokePosition;
   }
 }
 

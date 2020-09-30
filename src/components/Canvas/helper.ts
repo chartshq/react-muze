@@ -230,7 +230,8 @@ export const createChart = (
       showHeaders,
       interaction: {
         ...intoMuze(tooltips),
-      }
+      },
+      border
     };
 
     // had to do it like this because muze was throwing
@@ -238,9 +239,6 @@ export const createChart = (
     // error: `Cannot convert undefined or null`
     if (sort) {
       config.sort = sort;
-    }
-    if (border) {
-      config.border = border.intoMuzeInput();
     }
 
     CanvasBuilder.config(canvas)

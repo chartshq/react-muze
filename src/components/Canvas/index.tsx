@@ -1,11 +1,11 @@
 /* eslint-disable react/no-did-update-set-state */
-import React from 'react';
-import { Context } from '../../utils/muze-context';
-import { CanvasProvider } from '../../utils/canvas-context';
-import './style.scss';
-import { createChart } from './helper';
-import { ChartConfig, CanvasState } from './interfaces';
-import { LayerProps } from '../Layer/interfaces';
+import React from "react";
+import { Context } from "../../utils/context/muze-context";
+import { CanvasProvider } from "../../utils/context/canvas-context";
+import "./style.scss";
+import { createChart } from "./helper";
+import { ChartConfig, CanvasState } from "./interfaces";
+import { LayerProps } from "../Layer/interfaces";
 
 export default class Canvas extends React.Component<ChartConfig, CanvasState> {
   mountRef: React.RefObject<HTMLInputElement>;
@@ -24,7 +24,7 @@ export default class Canvas extends React.Component<ChartConfig, CanvasState> {
     this.setState({ canvas: env.canvas() });
   }
 
-  componentDidUpdate(prevProps: ChartConfig, prevState: CanvasState): void {
+  componentDidUpdate(): void {
     const { data } = this.context;
     const mountPoint = this.mountRef.current;
 
@@ -42,7 +42,9 @@ export default class Canvas extends React.Component<ChartConfig, CanvasState> {
   render(): JSX.Element {
     const { className, children } = this.props;
     const { layerConfig } = this.state;
-    const computedClassName = className ? `muze-chart ${className}`: 'muze-chart';
+    const computedClassName = className
+      ? `muze-chart ${className}`
+      : "muze-chart";
 
     return (
       <CanvasProvider
@@ -51,8 +53,8 @@ export default class Canvas extends React.Component<ChartConfig, CanvasState> {
           layerConfig,
         }}
       >
-          {children}
-          <div ref={this.mountRef} className={computedClassName} />
+        {children}
+        <div ref={this.mountRef} className={computedClassName} />
       </CanvasProvider>
     );
   }

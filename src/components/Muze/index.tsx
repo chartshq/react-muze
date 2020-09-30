@@ -1,15 +1,15 @@
-import React from 'react';
-import muze from '@chartshq/muze';
-import '@chartshq/muze/dist/muze.css';
-import { MuzeProvider } from '../../utils/muze-context';
-import './style.scss';
-import { MuzeProps, MuzeState } from './interfaces';
-import { SideEffects, Behaviours } from '../../configurations';
+import React from "react";
+import muze from "@chartshq/muze";
+import "@chartshq/muze/dist/muze.css";
+import { MuzeProvider } from "../../utils/context/muze-context";
+import "./style.scss";
+import { MuzeProps, MuzeState } from "./interfaces";
+import { SideEffects, Behaviours } from "../../configurations";
 
 export default class Muze extends React.Component<MuzeProps, MuzeState> {
   public static defaultProps = {
     sideEffects: {},
-    behaviours: {}
+    behaviours: {},
   };
 
   constructor(props: MuzeProps) {
@@ -17,7 +17,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     this.state = {
       env: null,
       interactiveCharts: {},
-      allCharts: {}
+      allCharts: {},
     };
   }
 
@@ -31,27 +31,34 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
   componentDidUpdate() {
     const { interactiveCharts, allCharts } = this.state;
     const { sideEffects, behaviours } = this.props;
-    const canvases = Object.values(interactiveCharts).length ? Object.values(interactiveCharts) : Object.values(allCharts);
+    const canvases = Object.values(interactiveCharts).length
+      ? Object.values(interactiveCharts)
+      : Object.values(allCharts);
     let sideEffectsMap = {};
     let physicalBehaviouralMap = {};
 
-    sideEffectsMap = (sideEffects.on || []).reduce((acc: any, elem: string, i: number) => {
-      acc[elem] = sideEffects.for[i];
-      return acc;
-    }, {});
+    sideEffectsMap = (sideEffects.on || []).reduce(
+      (acc: any, elem: string, i: number) => {
+        acc[elem] = sideEffects.for[i];
+        return acc;
+      },
+      {}
+    );
 
-    physicalBehaviouralMap = (behaviours.on || []).reduce((acc: any, elem: string, i: number) => {
-      acc[elem] = {
-        behaviours: behaviours.for[i]
-      };
-      return acc;
-    }, {});
+    physicalBehaviouralMap = (behaviours.on || []).reduce(
+      (acc: any, elem: string, i: number) => {
+        acc[elem] = {
+          behaviours: behaviours.for[i],
+        };
+        return acc;
+      },
+      {}
+    );
 
     const registeredSideEffect = SideEffects.effect;
     const registeredBehaviour = Behaviours.effect;
 
-    const actionModel = muze.ActionModel
-      .for(...canvases)
+    const actionModel = muze.ActionModel.for(...canvases)
       .enableCrossInteractivity()
       .mapSideEffects(sideEffectsMap)
       .registerPhysicalBehaviouralMap(physicalBehaviouralMap);
@@ -72,29 +79,29 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
 
   addCrossInteraction = (canvas: muze.Canvas): void => {
     const { interactiveCharts } = this.state;
-    
+
     if (!interactiveCharts[canvas.alias()]) {
       this.setState({
         interactiveCharts: {
           ...this.state.interactiveCharts,
-          [canvas.alias()]: canvas
-        }
+          [canvas.alias()]: canvas,
+        },
       });
     }
-  }
+  };
 
   addChildChart = (canvas: muze.Canvas): void => {
     const { allCharts } = this.state;
-    
+
     if (!allCharts[canvas.alias()]) {
       this.setState({
         allCharts: {
           ...this.state.allCharts,
-          [canvas.alias()]: canvas
-        }
+          [canvas.alias()]: canvas,
+        },
       });
     }
-  }
+  };
 
   render(): JSX.Element | null {
     const { env } = this.state;
@@ -116,7 +123,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       onDrawn,
       onBeforeRemove,
       onRemoved,
-      crossInteractive
+      crossInteractive,
     } = this.props;
 
     return (
@@ -143,7 +150,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
               onAnimationEnd,
               crossInteractive,
               addCrossInteraction: this.addCrossInteraction,
-              addChildChart: this.addChildChart
+              addChildChart: this.addChildChart,
             }}
           >
             {children}

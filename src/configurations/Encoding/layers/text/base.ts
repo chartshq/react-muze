@@ -16,13 +16,13 @@ class TextBaseEncoding {
   alignmentBaseline?: TextEncodingInterface['alignmentBaseline'];
 
   constructor(builder: any) {
-    this.color = builder.isClass ? builder._color : builder.color;
-    this.size = builder.isClass ? builder._size : builder.size;
-    this.radius = builder.isClass ? builder._radius : builder.radius;
-    this.angle = builder.isClass ? builder._angle : builder.angle;
-    this.text = builder.isClass ? builder._text : builder.text;
-    this.rotation = builder.isClass ? builder._rotation : builder.rotation;
-    this.alignmentBaseline = builder.isClass ? builder._alignmentBaseline : builder.alignmentBaseline;
+    this.color = builder._color;
+    this.size = builder._size;
+    this.radius = builder._radius;
+    this.angle = builder._angle;
+    this.text = builder._text;
+    this.rotation = builder._rotation;
+    this.alignmentBaseline = builder._alignmentBaseline;
   }
 }
 

@@ -18,14 +18,14 @@ class ArcBaseEncoding {
   size?: ArcEncodingInterface['size'];
 
   constructor(builder: any) {
-    this.strokeWidth = builder.isClass ? builder._strokeWidth : builder.strokeWidth;
-    this.strokeLinejoin = builder.isClass ? builder._strokeLinejoin : builder.strokeLinejoin;
-    this.angle = builder.isClass ? builder._angle : builder.angle;
-    this.radius = builder.isClass ? builder._radius : builder.radius;
-    this.opacity = builder.isClass ? builder._opacity : builder.opacity;
-    this.color = builder.isClass ? builder._color : builder.color;
-    this.shape = builder.isClass ? builder._shape : builder.shape;
-    this.size = builder.isClass ? builder._size : builder.size;
+    this.strokeWidth = builder._strokeWidth;
+    this.strokeLinejoin = builder._strokeLinejoin;
+    this.angle = builder._angle;
+    this.radius = builder._radius;
+    this.opacity = builder._opacity;
+    this.color = builder._color;
+    this.shape = builder._shape;
+    this.size = builder._size;
   }
 }
 

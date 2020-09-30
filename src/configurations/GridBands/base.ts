@@ -11,10 +11,10 @@ class GridBandsBase {
   
   constructor(builder: any) {
     this.x = {
-      show: builder.isClass ? builder.showHorizontalGridBand : builder.showHorizontal
+      show: builder._showHorizontal
     };
     this.y = {
-      show: builder.isClass ? builder.showVerticalGridBand : builder.showVertical
+      show: builder._showVertical
     };
   }
 }

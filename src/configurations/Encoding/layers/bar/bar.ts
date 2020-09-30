@@ -1,9 +1,8 @@
 import { BarBaseEncoding } from './base';
 import { BarEncodingInterface } from './types';
+import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
 
 class BarLayerEncoding {
-  isClass: boolean;
-
   _color: BarEncodingInterface['color'];
 
   _x: BarEncodingInterface['x'];
@@ -27,7 +26,6 @@ class BarLayerEncoding {
     x0,
     y0
   }: BarEncodingInterface) {
-    this.isClass = true;
     this._color = color;
     this._x = x;
     this._y = y;
@@ -80,13 +78,9 @@ class BarLayerEncoding {
   }
 
   create(value?: BarEncodingInterface): any {
-    const result: any = value ? new BarBaseEncoding(value) : new BarBaseEncoding(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new BarBaseEncoding(refinedValues || this));
   }
 }
 

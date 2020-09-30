@@ -4,41 +4,42 @@ import {
   BORDER_STYLE,
   MuzeBorderRegionInterface,
 } from "./types";
+import { BorderBase } from "./base";
+import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class Border {
-  _width: Number = 1;
-  _style: BORDER_STYLE = BORDER_STYLE.SOLID;
-  _color: String = "#000000";
-
-  _rowsPositions: MuzeBorderRegionInterface | null = null;
-  _columnsPositions: MuzeBorderRegionInterface | null = null;
-  _valuesPositions: MuzeBorderRegionInterface | null = null;
+  _width?: BorderInterface["width"]
+  _style?: BorderInterface["style"]
+  _color?: BorderInterface["color"]
+  _showRowBorders?: BorderInterface["showRowBorders"]
+  _showColBorders?: BorderInterface["showColBorders"]
+  _showValueBorders?: BorderInterface["showValueBorders"]
 
   constructor({ showRowBorders, showColBorders, showValueBorders, width, style, color }: BorderInterface) {
     if (width) this._width = width;
     if (style) this._style = style;
     if (color) this._color = color;
-    if (showRowBorders) this._rowsPositions = showRowBorders;
-    if (showColBorders) this._columnsPositions = showColBorders;
-    if (showValueBorders) this._valuesPositions = showValueBorders;
+    if (showRowBorders) this._showColBorders = showRowBorders;
+    if (showColBorders) this._showValueBorders = showColBorders;
+    if (showValueBorders) this._showRowBorders = showValueBorders;
   }
 
   static config(): Border {
     return new Border({});
   }
 
-  onRows(region: MuzeBorderRegionInterface): Border {
-    this._rowsPositions = region;
+  showRowBorders(region: MuzeBorderRegionInterface): Border {
+    this._showRowBorders = region;
     return this;
   }
 
-  onColumns(region: MuzeBorderRegionInterface): Border {
-    this._columnsPositions = region;
+  showColBorders(region: MuzeBorderRegionInterface): Border {
+    this._showColBorders = region;
     return this;
   }
 
-  onValues(region: MuzeBorderRegionInterface): Border {
-    this._valuesPositions = region;
+  showValueBorders(region: MuzeBorderRegionInterface): Border {
+    this._showValueBorders = region;
     return this;
   }
 
@@ -57,43 +58,9 @@ class Border {
     return this;
   }
 
-  create(vals?: BorderInterface): Border {
-    if (!vals) {
-      return this;
-    }
-
-    const { showRowBorders, showColBorders, showValueBorders, width, style, color } = vals;
-
-    if (width) this._width = width;
-    if (style) this._style = style;
-    if (color) this._color = color;
-    if (showRowBorders) this._rowsPositions = showRowBorders;
-    if (showColBorders) this._columnsPositions = showColBorders;
-    if (showValueBorders) this._valuesPositions = showValueBorders;
-
-    return this;
-  }
-
-  intoMuzeInput(): MuzeBorderInputInterface {
-    let muzeInput: MuzeBorderInputInterface = {};
-
-    if (this._width) muzeInput.width = this._width;
-    if (this._style) muzeInput.style = this._style;
-    if (this._color) muzeInput.color = this._color;
-
-    if (this._rowsPositions) {
-      muzeInput.showRowBorders = this._rowsPositions;
-    }
-
-    if (this._columnsPositions) {
-      muzeInput.showColBorders = this._columnsPositions;
-    }
-
-    if (this._valuesPositions) {
-      muzeInput.showValueBorders = this._valuesPositions;
-    }
-
-    return muzeInput;
+  create(value?: BorderInterface): Border {
+    const refinedValues = inputSanitizer(value);
+    return removeUndefinedValues(new BorderBase(refinedValues || this));
   }
 }
 

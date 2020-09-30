@@ -1,9 +1,8 @@
 import { TickBaseEncoding } from './base';
 import { TickEncodingInterface } from './types';
+import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
 
 class TickLayerEncoding {
-  isClass: boolean;
-
   _color: TickEncodingInterface['color'];
 
   _x: TickEncodingInterface['x'];
@@ -39,7 +38,6 @@ class TickLayerEncoding {
     strokeOpacity,
     fillOpacity
   }: TickEncodingInterface) {
-    this.isClass = true;
     this._color = color;
     this._x = x;
     this._y = y;
@@ -113,13 +111,9 @@ class TickLayerEncoding {
   }
 
   create(value?: TickEncodingInterface): any {
-    const result: any = value ? new TickBaseEncoding(value) : new TickBaseEncoding(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new TickBaseEncoding(refinedValues || this));
   }
 }
 

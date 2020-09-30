@@ -1,9 +1,8 @@
 import { AreaBaseEncoding } from './base';
 import { AreaEncodingInterface } from './types';
+import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
 
 class AreaLayerEncoding {
-  isClass: boolean;
-
   _color: AreaEncodingInterface['color'];
 
   _x: AreaEncodingInterface['x'];
@@ -24,7 +23,6 @@ class AreaLayerEncoding {
     strokeOpacity,
     fillOpacity
   }: AreaEncodingInterface) {
-    this.isClass = true;
     this._color = color;
     this._x = x;
     this._y = y;
@@ -68,13 +66,9 @@ class AreaLayerEncoding {
   }
 
   create(value?: AreaEncodingInterface): any {
-    const result: any = value ? new AreaBaseEncoding(value) : new AreaBaseEncoding(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new AreaBaseEncoding(refinedValues || this));
   }
 }
 

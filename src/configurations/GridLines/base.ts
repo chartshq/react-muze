@@ -14,13 +14,13 @@ class GridLinesBase {
   };
 
   constructor(builder: any) {
-    this.color = builder.isClass ? builder.gridLineColor : builder.color;
-    this.show = builder.isClass ? builder.showGridLine : builder.show;
+    this.color = builder._color;
+    this.show = builder._show;
     this.x = {
-      show: builder.isClass ? builder.showHorizontalGridLine : builder.showHorizontal
+      show: builder._showHorizontal
     };
     this.y = {
-      show: builder.isClass ? builder.showVerticalGridLine : builder.showVertical
+      show: builder._showVertical
     };
   }
 }
