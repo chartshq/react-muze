@@ -1,41 +1,44 @@
 import {
   BorderInterface,
   MuzeBorderInputInterface,
-  MuzeBorderPositionsInterface,
-  BORDER_POSITION,
   BORDER_STYLE,
-  // SHOW_BORDER_ON,
+  MuzeBorderRegionInterface,
 } from "./types";
 
 class Border {
-  _positions: MuzeBorderPositionsInterface | null = null;
   _width: Number = 1;
   _style: BORDER_STYLE = BORDER_STYLE.SOLID;
   _color: String = "#000000";
 
-  constructor({ positions, width, style, color }: BorderInterface) {
-    if (positions) this._positions = positions;
+  _rowsPositions: MuzeBorderRegionInterface | null = null;
+  _columnsPositions: MuzeBorderRegionInterface | null = null;
+  _valuesPositions: MuzeBorderRegionInterface | null = null;
+
+  constructor({ rows, columns, values, width, style, color }: BorderInterface) {
     if (width) this._width = width;
     if (style) this._style = style;
     if (color) this._color = color;
+    if (rows) this._rowsPositions = rows;
+    if (columns) this._columnsPositions = columns;
+    if (values) this._valuesPositions = values;
   }
 
   static config(): Border {
     return new Border({});
   }
 
-  position(position?: BORDER_POSITION): Border {
-    if (this._positions === null) {
-      this._positions = {
-        [BORDER_POSITION.TOP]: false,
-        [BORDER_POSITION.BOTTOM]: false,
-        [BORDER_POSITION.RIGHT]: false,
-        [BORDER_POSITION.LEFT]: false,
-      };
-    }
+  onRows(region: MuzeBorderRegionInterface): Border {
+    this._rowsPositions = region;
+    return this;
+  }
 
-    if (position) this._positions[position] = true;
+  onColumns(region: MuzeBorderRegionInterface): Border {
+    this._columnsPositions = region;
+    return this;
+  }
 
+  onValues(region: MuzeBorderRegionInterface): Border {
+    this._valuesPositions = region;
     return this;
   }
 
@@ -54,17 +57,19 @@ class Border {
     return this;
   }
 
-  create(values?: BorderInterface): Border {
-    if (!values) {
+  create(vals?: BorderInterface): Border {
+    if (!vals) {
       return this;
     }
 
-    const { positions, width, style, color } = values;
+    const { rows, columns, values, width, style, color } = vals;
 
-    if (positions) this._positions = positions;
     if (width) this._width = width;
     if (style) this._style = style;
     if (color) this._color = color;
+    if (rows) this._rowsPositions = rows;
+    if (columns) this._columnsPositions = columns;
+    if (values) this._valuesPositions = values;
 
     return this;
   }
@@ -76,11 +81,19 @@ class Border {
     if (this._style) muzeInput.style = this._style;
     if (this._color) muzeInput.color = this._color;
 
-    if (this._positions) {
-      muzeInput.showColBorders = this._positions;
-      muzeInput.showValueBorders = this._positions;
-      muzeInput.showRowBorders = this._positions;
+    if (this._rowsPositions) {
+      muzeInput.showRowBorders = this._rowsPositions;
     }
+
+    if (this._columnsPositions) {
+      muzeInput.showColBorders = this._columnsPositions;
+    }
+
+    if (this._valuesPositions) {
+      muzeInput.showValueBorders = this._valuesPositions;
+    }
+
+    console.log("muzeInput", muzeInput)
 
     return muzeInput;
   }
