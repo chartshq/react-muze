@@ -1,9 +1,9 @@
 import { BORDER_POSITION, BORDER_STYLE } from "../../constants/muze/border";
 
 export interface BorderInterface {
-  rows?: MuzeBorderRegionInterface;
-  columns?: MuzeBorderRegionInterface;
-  values?: MuzeBorderRegionInterface;
+  showRowBorders?: MuzeBorderRegionInterface;
+  showColBorders?: MuzeBorderRegionInterface;
+  showValueBorders?: MuzeBorderRegionInterface;
   width?: Number;
   style?: BORDER_STYLE;
   color?: String;

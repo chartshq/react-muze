@@ -14,13 +14,13 @@ class Border {
   _columnsPositions: MuzeBorderRegionInterface | null = null;
   _valuesPositions: MuzeBorderRegionInterface | null = null;
 
-  constructor({ rows, columns, values, width, style, color }: BorderInterface) {
+  constructor({ showRowBorders, showColBorders, showValueBorders, width, style, color }: BorderInterface) {
     if (width) this._width = width;
     if (style) this._style = style;
     if (color) this._color = color;
-    if (rows) this._rowsPositions = rows;
-    if (columns) this._columnsPositions = columns;
-    if (values) this._valuesPositions = values;
+    if (showRowBorders) this._rowsPositions = showRowBorders;
+    if (showColBorders) this._columnsPositions = showColBorders;
+    if (showValueBorders) this._valuesPositions = showValueBorders;
   }
 
   static config(): Border {
@@ -62,14 +62,14 @@ class Border {
       return this;
     }
 
-    const { rows, columns, values, width, style, color } = vals;
+    const { showRowBorders, showColBorders, showValueBorders, width, style, color } = vals;
 
     if (width) this._width = width;
     if (style) this._style = style;
     if (color) this._color = color;
-    if (rows) this._rowsPositions = rows;
-    if (columns) this._columnsPositions = columns;
-    if (values) this._valuesPositions = values;
+    if (showRowBorders) this._rowsPositions = showRowBorders;
+    if (showColBorders) this._columnsPositions = showColBorders;
+    if (showValueBorders) this._valuesPositions = showValueBorders;
 
     return this;
   }
