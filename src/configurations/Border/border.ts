@@ -93,8 +93,6 @@ class Border {
       muzeInput.showValueBorders = this._valuesPositions;
     }
 
-    console.log("muzeInput", muzeInput)
-
     return muzeInput;
   }
 }
