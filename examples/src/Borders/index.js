@@ -60,13 +60,9 @@ class Simple extends React.Component {
           <Muze data={carsDm}>
             <Muze data={carsDm}>
               <Canvas
-                rows={["Maker", "Cylinders"]}
-                columns={[
-                  ["Acceleration", "Horsepower"],
-                  ["Acceleration", "Horsepower"],
-                ]}
+                columns={["Maker"]}
+                rows={["Acceleration"]}
                 color="Origin"
-                showHeaders={true}
                 border={border}
               />
             </Muze>
