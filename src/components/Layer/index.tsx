@@ -12,7 +12,7 @@ class Layer extends React.Component<LayerProps> {
   }
 
   componentDidMount() {
-    const { setLayerConfig } = this.context;
+    const { setLayerConfig, layerConfig } = this.context;
     const config = Object.keys(this.props).reduce((acc: any, prop: string, index: number) => {
       if ((this.props as any)[prop] !== undefined) {
         if (prop === 'transformType') {

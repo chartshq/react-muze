@@ -1,4 +1,4 @@
-export enum CanvasLifecycleEvents {
+export enum CANVAS_LIFECYCLE_EVENTS {
   INITIALIZED = 'canvas.initialized',
   BEFORE_UPDATE = 'canvas.beforeupdate',
   UPDATED = 'canvas.updated',

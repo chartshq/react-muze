@@ -10,7 +10,7 @@ class Behaviours {
 
   _dissociateFrom: BehavioursInterface['_dissociateFrom'];
   
-  effect: BehavioursInterface['_effect'];
+  static effect: any;
 
   constructor({
     _for,
@@ -27,10 +27,10 @@ class Behaviours {
     return new Behaviours({});
   }
 
-  register(effect: any): Behaviours {
-    this.effect = effect;
-    return this;
+  static register(effect: any) {
+    Behaviours.effect = effect;
   }
+
 
   for(_for: BehavioursInterface['_for']): Behaviours {
     this._for = _for;

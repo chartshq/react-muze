@@ -5,7 +5,4 @@ export type numberArrOrNull = number[] | null;
 export interface FieldRangeInterface {
   field: stringOrNull;
   range?: string[] | number[];
-  stops?: number;
-  isClass?: boolean;
-  isStep?: boolean;
 }

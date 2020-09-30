@@ -6,18 +6,12 @@ class Color {
 
   _range?: FieldRangeInterface['range'];
 
-  _stops?: FieldRangeInterface['stops'];
+  isClass: boolean;
 
-  isClass: FieldRangeInterface['isClass'];
-
-  _step: FieldRangeInterface['isStep'];
-
-  constructor({ field, range, stops }: FieldRangeInterface) {
+  constructor({ field, range }: FieldRangeInterface) {
     this.isClass = true;
     this._field = field;
     this._range = range;
-    this._stops = stops;
-    this._step = false;
   }
 
   static config(): Color {
@@ -31,16 +25,6 @@ class Color {
 
   range(value: string[] | number[]): Color {
     this._range = value;
-    return this;
-  }
-
-  stops(value: number): Color {
-    this._stops = value;
-    return this;
-  }
-
-  step(isStep: boolean): Color {
-    this._step = isStep;
     return this;
   }
 

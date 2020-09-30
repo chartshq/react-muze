@@ -1,4 +1,5 @@
 import { Tooltip } from "../../configurations/Tooltip";
+import { Border } from "../../configurations/Border";
 import { AxesInterface } from '../../configurations/Axes/types';
 import { LegendInterface } from '../../configurations/Legend/types';
 import { ScrollBarInterface } from '../../configurations/ScrollBar/types';
@@ -6,6 +7,7 @@ import { GridBandsInterface } from '../../configurations/GridBands/types';
 import { GridLinesInterface } from '../../configurations/GridLines/types';
 import { FieldRangeInterface } from "../../configurations/RetinalEncoding/types";
 import { HeadersConfig } from "../../configurations/Headers/types";
+import { MuzeConstants } from "../../constants";
 
 interface RetinalEncoding {
   field: string | null;
@@ -24,8 +26,6 @@ export interface ChartConfig {
   operation?: Function;
   title?: string | HeadersConfig | undefined;
   subtitle?: string | HeadersConfig | undefined;
-  // title?: any;
-  // subtitle?: any
   xAxis?: AxesInterface;
   yAxis?: AxesInterface;
   colorLegend?: LegendInterface;
@@ -48,6 +48,8 @@ export interface ChartConfig {
   tooltips?: Array<Tooltip>;
   crossInteractive?: boolean;
   sideEffects?: any;
+  sort?: Map<string, MuzeConstants.SORT_ORDER>;
+  border: Border
 }
 
 export interface SanitizedConfig {
@@ -63,8 +65,6 @@ export interface SanitizedConfig {
   operation?: Function;
   title?: HeadersConfig | undefined;
   subtitle?: HeadersConfig | undefined;
-  // title?: any;
-  // subtitle?: any
   xAxis?: AxesInterface;
   yAxis?: AxesInterface;
   gridLines?: GridLinesInterface;
@@ -84,6 +84,8 @@ export interface SanitizedConfig {
   tooltips?: Tooltip[];
   crossInteractive: boolean;
   canvasSideEffects: any;
+  sort?: Map<string, MuzeConstants.SORT_ORDER>;
+  border: Border
 }
 
 export interface CanvasState {

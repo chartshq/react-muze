@@ -2,8 +2,6 @@ import { ChartConfig, SanitizedConfig, CanvasState } from './interfaces';
 import { CanvasBuilder } from '../../helpers/CanvasBuilder';
 import { intoMuze } from '../../configurations/Tooltip';
 
-import { HeadersConfig } from "../../configurations/Headers/types";
-
 import muze from "@chartshq/muze";
 import { FieldRangeInterface } from '../../configurations/RetinalEncoding/types';
 
@@ -67,8 +65,6 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     detail = (null as unknown) as string[],
     width = 600,
     height = 400,
-    // title,
-    // subtitle,
     colorLegend: canvasColorLegend = null,
     sizeLegend: canvasSizeLegend = null,
     shapeLegend: canvasShapeLegend = null,
@@ -90,7 +86,9 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     onAnimationEnd = context.onAnimationEnd,
     tooltips = [],
     crossInteractive: canvasCrossInteractive = false,
-    sideEffects = {}
+    sideEffects = {},
+    sort,
+    border
   } = config;
 
   let { title, subtitle } = config;
@@ -129,7 +127,6 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     return acc;
   }, {});
 
-
   return {
     data: canvasData,
     rows,
@@ -164,7 +161,9 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     onAnimationEnd,
     tooltips,
     crossInteractive: canvasCrossInteractive,
-    canvasSideEffects: sideEffectsMap
+    canvasSideEffects: sideEffectsMap,
+    sort,
+    border
   };
 };
 
@@ -206,7 +205,9 @@ export const createChart = (
     onAnimationEnd,
     tooltips,
     crossInteractive,
-    canvasSideEffects
+    canvasSideEffects,
+    sort,
+    border
   } = configSanitizer(props, context);
 
   const html = muze.Operators.html;
@@ -216,6 +217,31 @@ export const createChart = (
     context.addChildChart(canvas);
     //Add canvas entry in parent only if crossInteractive prop is passed to canvas
     crossInteractive && context.addCrossInteraction(canvas);
+
+    const config: any = {
+      axes: {
+        x: xAxis,
+        y: yAxis,
+      },
+      legend,
+      gridLines,
+      gridBands,
+      scrollBar,
+      showHeaders,
+      interaction: {
+        ...intoMuze(tooltips),
+      }
+    };
+
+    // had to do it like this because muze was throwing
+    // an error on `config = { ...config, sort: sort }`
+    // error: `Cannot convert undefined or null`
+    if (sort) {
+      config.sort = sort;
+    }
+    if (border) {
+      config.border = border.intoMuzeInput();
+    }
 
     CanvasBuilder.config(canvas)
       .data(data)
@@ -230,20 +256,7 @@ export const createChart = (
       .title(title)
       .subtitle(subtitle)
       .layers(layerConfig)
-      .config({
-        axes: {
-          x: xAxis,
-          y: yAxis,
-        },
-        legend,
-        gridLines,
-        gridBands,
-        scrollBar,
-        showHeaders,
-        interaction: {
-          ...intoMuze(tooltips),
-        }
-      })
+      .config(config)
       .mount(mountPoint)
       .onInitialized(onInitialized)
       .onBeforeUpdate(onBeforeUpdate)

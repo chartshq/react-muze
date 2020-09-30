@@ -1,4 +1,5 @@
 import * as DataModelConstants from './datamodel';
+import * as MuzeConstants from "./muze";
 import {
   LEGEND_POSITION,
   POSITION,
@@ -8,7 +9,7 @@ import {
   TOOLTIP_TYPE
 } from "../configurations";
 
-export { DataModelConstants };
+export { DataModelConstants, MuzeConstants };
 export {
   LEGEND_POSITION,
   POSITION,

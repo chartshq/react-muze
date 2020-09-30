@@ -1,6 +1,6 @@
 import { CanvasBuilderInterface } from './types';
 import { CanvasBase } from './base';
-import { CanvasLifecycleEvents } from '../../constants/muze/lifecycle-events';
+import { MuzeConstants } from '../../constants';
 
 import { HeadersConfig } from "../../configurations/Headers/types";
 
@@ -267,14 +267,14 @@ class CanvasBuilder {
       .mount(mount);
 
     [
-      [CanvasLifecycleEvents.INITIALIZED, onInitialized],
-      [CanvasLifecycleEvents.BEFORE_UPDATE, onBeforeUpdate],
-      [CanvasLifecycleEvents.UPDATED, onUpdated],
-      [CanvasLifecycleEvents.BEFORE_DRAW, onBeforeDraw],
-      [CanvasLifecycleEvents.DRAWN, onDrawn],
-      [CanvasLifecycleEvents.BEFORE_REMOVE, onBeforeRemove],
-      [CanvasLifecycleEvents.REMOVED, onRemoved],
-      [CanvasLifecycleEvents.ANIMATION_END, onAnimationEnd]
+      [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.INITIALIZED, onInitialized],
+      [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.BEFORE_UPDATE, onBeforeUpdate],
+      [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.UPDATED, onUpdated],
+      [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.BEFORE_DRAW, onBeforeDraw],
+      [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.DRAWN, onDrawn],
+      [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.BEFORE_REMOVE, onBeforeRemove],
+      [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.REMOVED, onRemoved],
+      [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.ANIMATION_END, onAnimationEnd]
     ].forEach(([id, callback]) => {
       if (callback && typeof callback === 'function') {
         canvas.once(id).then(callback);

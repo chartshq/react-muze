@@ -9,7 +9,7 @@ import { SideEffects, Behaviours } from '../../configurations';
 export default class Muze extends React.Component<MuzeProps, MuzeState> {
   public static defaultProps = {
     sideEffects: {},
-    behaviours: {},
+    behaviours: {}
   };
 
   constructor(props: MuzeProps) {
@@ -17,7 +17,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     this.state = {
       env: null,
       interactiveCharts: {},
-      allCharts: {},
+      allCharts: {}
     };
   }
 
@@ -31,9 +31,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
   componentDidUpdate() {
     const { interactiveCharts, allCharts } = this.state;
     const { sideEffects, behaviours } = this.props;
-    const canvases = Object.values(interactiveCharts).length
-      ? Object.values(interactiveCharts)
-      : Object.values(allCharts);
+    const canvases = Object.values(interactiveCharts).length ? Object.values(interactiveCharts) : Object.values(allCharts);
     let sideEffectsMap = {};
     let physicalBehaviouralMap = {};
 
@@ -44,19 +42,20 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
 
     physicalBehaviouralMap = (behaviours.on || []).reduce((acc: any, elem: string, i: number) => {
       acc[elem] = {
-        behaviours: behaviours.for[i],
+        behaviours: behaviours.for[i]
       };
       return acc;
     }, {});
 
-    const registeredSideEffect = sideEffects._effect;
-    const registeredBehaviour = behaviours._effect;
-    // console.log('Behaviours.effect', Behaviours.effect, behaviours, Behaviours.staticProperty);
-    const actionModel = muze.ActionModel.for(...canvases)
-    .enableCrossInteractivity()
-    .mapSideEffects(sideEffectsMap)
-    .registerPhysicalBehaviouralMap(physicalBehaviouralMap);
-    
+    const registeredSideEffect = SideEffects.effect;
+    const registeredBehaviour = Behaviours.effect;
+
+    const actionModel = muze.ActionModel
+      .for(...canvases)
+      .enableCrossInteractivity()
+      .mapSideEffects(sideEffectsMap)
+      .registerPhysicalBehaviouralMap(physicalBehaviouralMap);
+
     if (registeredSideEffect) {
       actionModel.registerSideEffects(registeredSideEffect);
     }
@@ -73,29 +72,29 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
 
   addCrossInteraction = (canvas: muze.Canvas): void => {
     const { interactiveCharts } = this.state;
-
+    
     if (!interactiveCharts[canvas.alias()]) {
       this.setState({
         interactiveCharts: {
           ...this.state.interactiveCharts,
-          [canvas.alias()]: canvas,
-        },
+          [canvas.alias()]: canvas
+        }
       });
     }
-  };
+  }
 
   addChildChart = (canvas: muze.Canvas): void => {
     const { allCharts } = this.state;
-
+    
     if (!allCharts[canvas.alias()]) {
       this.setState({
         allCharts: {
           ...this.state.allCharts,
-          [canvas.alias()]: canvas,
-        },
+          [canvas.alias()]: canvas
+        }
       });
     }
-  };
+  }
 
   render(): JSX.Element | null {
     const { env } = this.state;
@@ -117,7 +116,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       onDrawn,
       onBeforeRemove,
       onRemoved,
-      crossInteractive,
+      crossInteractive
     } = this.props;
 
     return (
@@ -144,7 +143,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
               onAnimationEnd,
               crossInteractive,
               addCrossInteraction: this.addCrossInteraction,
-              addChildChart: this.addChildChart,
+              addChildChart: this.addChildChart
             }}
           >
             {children}

@@ -1,4 +1,3 @@
-import muze from '@chartshq/muze';
 import { Axes } from './Axes';
 import { Legend, LEGEND_POSITION } from './Legend';
 import { Color, Size, Shape } from './RetinalEncoding';
@@ -10,8 +9,7 @@ import { Encoding } from './Encoding';
 import { SideEffects, SpawnableSideEffect, SurrogateSideEffect, GenericSideEffect } from './SideEffects';
 import { Behaviours, GenericBehaviour, VolatileBehaviour } from './Behaviours';
 import { Tooltip, TOOLTIP_TYPE } from './Tooltip';
-
-const { share } = muze.Operators;
+import { Border } from './Border';
 
 export {
   Axes,
@@ -24,7 +22,6 @@ export {
   GridBands,
   ScrollBar,
   html,
-  share,
   Encoding,
   Tooltip,
   SideEffects,
@@ -32,7 +29,8 @@ export {
   SurrogateSideEffect,
   GenericSideEffect,
   Behaviours,
-  GenericBehaviour, VolatileBehaviour
+  GenericBehaviour, VolatileBehaviour,
+  Border
 };
 
 export {

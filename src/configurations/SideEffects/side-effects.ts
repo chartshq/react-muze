@@ -10,7 +10,7 @@ class SideEffects {
 
   _dissociateFrom: SideEffectsInterface['_dissociateFrom'];
   
-  effect: any;
+  static effect: any;
 
   constructor({
     _for,
@@ -27,10 +27,10 @@ class SideEffects {
     return new SideEffects({});
   }
 
-  register(effect: any): SideEffects {
-    this.effect = effect;
-    return this;
+  static register(effect: any) {
+    SideEffects.effect = effect;
   }
+
 
   for(_for: SideEffectsInterface['_for']): SideEffects {
     this._for = _for;
