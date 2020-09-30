@@ -1,6 +1,6 @@
 import { ChartConfig, SanitizedConfig, CanvasState } from './interfaces';
 import { CanvasBuilder } from '../../helpers/CanvasBuilder';
-import { intoMuze } from '../../configurations/Tooltip';
+import { multiTooltipIntoMuze } from '../../configurations/Tooltip';
 
 import muze from "@chartshq/muze";
 import { FieldRangeInterface } from '../../configurations/RetinalEncoding/types';
@@ -229,7 +229,7 @@ export const createChart = (
       scrollBar,
       showHeaders,
       interaction: {
-        ...intoMuze(tooltips),
+        ...multiTooltipIntoMuze(tooltips),
       },
       border
     };

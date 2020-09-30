@@ -1,19 +1,21 @@
 import { TooltipInterface, MuzeTooltipInputInterface, TooltipType, TooltipMode } from './types';
+import { TooltipBase } from "./base";
+import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class Tooltip {
-  _type: TooltipType = TooltipType.HIGHLIGHT;
+  _on?: TooltipType;
 
-  _mode: TooltipMode = TooltipMode.CONSOLIDATED;
+  _mode?: TooltipMode;
 
   _formatter?: Function;
 
   _displayFields?: Array<String>;
 
-  constructor({ type, mode, formatter, displayFields }: TooltipInterface) {
+  constructor({ on, mode, formatter, displayFields }: TooltipInterface) {
     if (mode) this._mode = mode;
-    if (type) this._type = type;
-    this._formatter = formatter;
-    this._displayFields = displayFields;
+    if (on) this._on = on;
+    if (formatter) this._formatter = formatter;
+    if (displayFields) this._displayFields = displayFields;
   }
 
   static config(): Tooltip {
@@ -25,8 +27,8 @@ class Tooltip {
     return this;
   }
 
-  on(type: TooltipType): Tooltip {
-    this._type = type;
+  on(on: TooltipType): Tooltip {
+    this._on = on;
     return this;
   }
 
@@ -40,18 +42,9 @@ class Tooltip {
     return this;
   }
 
-  create(values?: TooltipInterface): Tooltip {
-    if (!values) {
-      return this;
-    }
-
-    const { type, mode, formatter, displayFields } = values;
-
-    if (mode) this._mode = mode;
-    if (type) this._type = type;
-    this._formatter = formatter;
-    this._displayFields = displayFields;
-    return this;
+  create(value?: TooltipInterface): TooltipBase {
+    const refinedValues = inputSanitizer(value);
+    return removeUndefinedValues(new TooltipBase(refinedValues || this));
   }
 
   asMuzeInput(): MuzeTooltipInputInterface {
@@ -63,7 +56,7 @@ class Tooltip {
   }
 }
 
-export function intoMuze(tooltips: Array<Tooltip> | undefined) {
+export function multiTooltipIntoMuze(tooltips: Array<Tooltip> | undefined) {
   if (!tooltips) {
     return {};
   }
@@ -73,7 +66,7 @@ export function intoMuze(tooltips: Array<Tooltip> | undefined) {
 
   tooltips.forEach((tooltip) => {
     const { mode, formatter, displayFields } = tooltip.asMuzeInput();
-    switch (tooltip._type) {
+    switch (tooltip._on) {
       case TooltipType.HIGHLIGHT:
         highlightSummary = {};
         if (mode) highlightSummary.mode = mode;
