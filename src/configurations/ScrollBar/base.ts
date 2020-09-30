@@ -11,13 +11,13 @@ class ScrollBarBase {
 
   constructor(builder: any) {
     this.vertical = {
-      align: builder.isClass ? builder._verticalAlign : builder.verticalAlign,
+      align: builder._verticalAlign
     };
     this.horizontal = {
-      align: builder.isClass ? builder._horizontalAlign : builder.horizontalAlign,
+      align: builder._horizontalAlign
     };
-    this.thickness = builder.isClass ? builder._thickness : builder.thickness;
-    this.speed = builder.isClass ? builder._speed : builder.speed;
+    this.thickness = builder._thickness;
+    this.speed = builder._speed;
   }
 }
 

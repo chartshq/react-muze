@@ -1,9 +1,8 @@
 import { AxesInterface } from './types';
 import { AxesBase } from './base';
+import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class Axes {
-  isClass: boolean;
-
   _name: AxesInterface['name'];
 
   _show?: AxesInterface['show'];
@@ -33,7 +32,6 @@ class Axes {
     tickFormat,
     labels,
   }: AxesInterface) {
-    this.isClass = true;
     this._name = name;
     this._show = show;
     this._showAxisName = showAxisName;
@@ -95,13 +93,9 @@ class Axes {
   }
 
   create(value?: AxesInterface): any {
-    const result: any = value ? new AxesBase(value) : new AxesBase(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new AxesBase(refinedValues || this));
   }
 }
 

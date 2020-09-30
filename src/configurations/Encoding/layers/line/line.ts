@@ -1,9 +1,8 @@
 import { LineBaseEncoding } from './base';
 import { LineEncodingInterface } from './types';
+import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
 
 class LineLayerEncoding {
-  isClass: boolean;
-
   _color: LineEncodingInterface['color'];
 
   _x: LineEncodingInterface['x'];
@@ -24,7 +23,6 @@ class LineLayerEncoding {
     fillOpacity,
     strokeWidth
   }: LineEncodingInterface) {
-    this.isClass = true;
     this._color = color;
     this._x = x;
     this._y = y;
@@ -68,13 +66,9 @@ class LineLayerEncoding {
   }
 
   create(value?: LineEncodingInterface): any {
-    const result: any = value ? new LineBaseEncoding(value) : new LineBaseEncoding(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new LineBaseEncoding(refinedValues || this));
   }
 }
 

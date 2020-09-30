@@ -22,16 +22,16 @@ class LegendBase {
   textFormatter?: LegendInterface['textFormatter'];
 
   constructor(builder: any) {
-    this.show = builder.isClass ? builder._show : builder.show;
-    this.position = builder.isClass ? builder.legendPosition : builder.position;
-    this.title = builder.isClass ? builder.legendTitle : builder.title;
-    this.border = builder.isClass ? builder.legendBorder : builder.border;
-    this.borderColor = builder.isClass ? builder.legendBorderColor : builder.borderColor;
-    this.padding = builder.isClass ? builder.legendPadding : builder.padding;
-    this.item = builder.isClass ? builder.legendItem : builder.item;
-    this.marker = builder.isClass ? builder.legendMarker : builder.marker;
-    this.textWidth = builder.isClass ? builder.itemTextWidth : builder.textWidth;
-    this.textFormatter = builder.isClass ? builder.itemTextFormatter : builder.textFormatter;
+    this.show = builder._show;
+    this.position = builder._position;
+    this.title = builder._title;
+    this.border = builder._border;
+    this.borderColor = builder._borderColor;
+    this.padding = builder._padding;
+    this.item = builder._item;
+    this.marker = builder._marker;
+    this.textWidth = builder._textWidth;
+    this.textFormatter = builder._textFormatter;
   }
 }
 

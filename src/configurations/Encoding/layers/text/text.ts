@@ -1,9 +1,8 @@
 import { TextBaseEncoding } from './base';
 import { TextEncodingInterface } from './types';
+import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
 
 class TextLayerEncoding {
-  isClass: boolean;
-  
   _color?: TextEncodingInterface['color'];
   
   _size?: TextEncodingInterface['size'];
@@ -27,7 +26,6 @@ class TextLayerEncoding {
     rotation,
     alignmentBaseline
   }: TextEncodingInterface) {
-    this.isClass = true;
     this._color = color;
     this._size = size;
     this._radius = radius;
@@ -77,13 +75,9 @@ class TextLayerEncoding {
   }
 
   create(value?: TextEncodingInterface): any {
-    const result: any = value ? new TextBaseEncoding(value) : new TextBaseEncoding(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new TextBaseEncoding(refinedValues || this));
   }
 }
 

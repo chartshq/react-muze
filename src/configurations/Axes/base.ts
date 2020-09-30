@@ -20,15 +20,15 @@ class AxesBase {
   labels?: any;
 
   constructor(builder: any) {
-    this.name = builder.isClass ? builder._name : builder.name;
-    this.show = builder.isClass ? builder._show : builder.show;
-    this.showAxisName = builder.isClass ? builder._showAxisName : builder.showAxisName;
-    this.axisNamePadding = builder.isClass ? builder._axisNamePadding : builder.axisNamePadding;
-    this.padding = builder.isClass ? builder._padding : builder.padding;
-    this.showInnerTicks = builder.isClass ? builder._showInnerTicks : builder.showInnerTicks;
-    this.numberOfTicks = builder.isClass ? builder._numberOfTicks : builder.numberOfTicks;
-    this.tickFormat = builder.isClass ? builder._tickFormat : builder.tickFormat;
-    this.labels = builder.isClass ? builder._labels : builder.axisLabels;
+    this.name = builder._name;
+    this.show = builder._show;
+    this.showAxisName = builder._showAxisName;
+    this.axisNamePadding = builder._axisNamePadding;
+    this.padding = builder._padding;
+    this.showInnerTicks = builder._showInnerTicks;
+    this.numberOfTicks = builder._numberOfTicks;
+    this.tickFormat = builder._tickFormat;
+    this.labels = builder._axisLabels;
   }
 }
 

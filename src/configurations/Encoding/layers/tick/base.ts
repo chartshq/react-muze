@@ -14,25 +14,25 @@ class TickBaseEncoding {
   fillOpacity?: TickEncodingBaseInterface['fillOpacity'];
 
   constructor(builder: any) {
-    this.color = builder.isClass ? builder._color : builder.color;
+    this.color = builder._color;
     this.x = {
-      field: builder.isClass ? builder._x : builder.x
+      field: builder._x
     };
     this.y = {
-      field: builder.isClass ? builder._y : builder.y
+      field: builder._y
     };
     this.x0 = {
-      field: builder.isClass ? builder._x0 : builder.x0
+      field: builder._x0
     };
     this.y0 = {
-      field: builder.isClass ? builder._y0 : builder.y0
+      field: builder._y0
     };
-    this.radius = builder.isClass ? builder._radius : builder.radius;
-    this.radius0 = builder.isClass ? builder._radius0 : builder.radius0;
-    this.angle = builder.isClass ? builder._angle : builder.angle;
-    this.angle0 = builder.isClass ? builder._angle0 : builder.angle0;
-    this.strokeOpacity = builder.isClass ? builder._strokeOpacity : builder.strokeOpacity;
-    this.fillOpacity = builder.isClass ? builder._fillOpacity : builder.fillOpacity;
+    this.radius = builder._radius;
+    this.radius0 = builder._radius0;
+    this.angle = builder._angle;
+    this.angle0 = builder._angle0;
+    this.strokeOpacity = builder._strokeOpacity;
+    this.fillOpacity = builder._fillOpacity;
   }
 }
 

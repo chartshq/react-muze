@@ -1,25 +1,25 @@
 import { HeadersBase } from './base';
 import { StringOrMissing, HeadersConfig } from './types';
 import { POSITION, ALIGNMENT } from './constants';
+import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class Headers {
-  isClass: boolean;
-
   _content: StringOrMissing | Function;
 
   _position?: POSITION;
 
-  _alignment?: ALIGNMENT;
+  _align?: ALIGNMENT;
 
   _padding?: number;
 
   _className?: string;
 
-  constructor({ content, position, align, padding, className }: HeadersConfig) {
-    this.isClass = true;
+  constructor({
+    content, position, align, padding, className,
+  }: HeadersConfig) {
     this._content = content;
     this._position = position;
-    this._alignment = align;
+    this._align = align;
     this._padding = padding;
     this._className = className;
   }
@@ -44,7 +44,7 @@ class Headers {
   }
 
   align(alignment: ALIGNMENT): Headers {
-    this._alignment = alignment;
+    this._align = alignment;
     return this;
   }
 
@@ -59,13 +59,9 @@ class Headers {
   }
 
   create(value?: HeadersConfig): any {
-    const result: any = value ? new HeadersBase(value) : new HeadersBase(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new HeadersBase(refinedValues || this));
   }
 }
 

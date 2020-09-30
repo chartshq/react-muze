@@ -1,40 +1,43 @@
-import React from 'react';
-import { Context } from '../../utils/canvas-context';
-import './style.scss';
-import { LayerProps } from './interfaces';
+import React from "react";
+import { Context } from "../../utils/context/canvas-context";
+import "./style.scss";
+import { LayerProps } from "./interfaces";
 
 class Layer extends React.Component<LayerProps> {
   constructor(props: any) {
     super(props);
     this.state = {
-      layerConfig: []
-    }
+      layerConfig: [],
+    };
   }
 
   componentDidMount() {
     const { setLayerConfig, layerConfig } = this.context;
-    const config = Object.keys(this.props).reduce((acc: any, prop: string, index: number) => {
-      if ((this.props as any)[prop] !== undefined) {
-        if (prop === 'transformType') {
-          acc.transform = {
-            type: this.props[prop]
-          };
-        } else if (prop === 'interactionStyle') {
-          acc.interaction = {
-            ...this.props[prop]
-          };
-        } else {
-          acc[prop] = (this.props as any)[prop];
+    const config = Object.keys(this.props).reduce(
+      (acc: any, prop: string, index: number) => {
+        if ((this.props as any)[prop] !== undefined) {
+          if (prop === "transformType") {
+            acc.transform = {
+              type: this.props[prop],
+            };
+          } else if (prop === "interactionStyle") {
+            acc.interaction = {
+              ...this.props[prop],
+            };
+          } else {
+            acc[prop] = (this.props as any)[prop];
+          }
         }
-      }
-      return acc;
-    }, {});
+        return acc;
+      },
+      {}
+    );
 
     setLayerConfig(config);
   }
 
   render(): JSX.Element {
-    return <></>
+    return <></>;
   }
 }
 

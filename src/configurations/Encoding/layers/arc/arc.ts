@@ -1,9 +1,8 @@
 import { ArcBaseEncoding } from './base';
 import { ArcEncodingInterface } from './types';
+import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
 
 class ArcLayerEncoding {
-  isClass: boolean;
-
   _strokeWidth?: ArcEncodingInterface['strokeWidth'];
 
   _strokeLinejoin?: ArcEncodingInterface['strokeLinejoin'];
@@ -30,7 +29,6 @@ class ArcLayerEncoding {
     shape,
     size,
   }: ArcEncodingInterface) {
-    this.isClass = true;
     this._strokeWidth = strokeWidth;
     this._strokeLinejoin = strokeLinejoin;
     this._angle = angle;
@@ -86,13 +84,9 @@ class ArcLayerEncoding {
   }
 
   create(value?: ArcEncodingInterface): any {
-    const result: any = value ? new ArcBaseEncoding(value) : new ArcBaseEncoding(this);
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new ArcBaseEncoding(refinedValues || this));
   }
 }
 

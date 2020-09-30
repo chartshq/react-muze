@@ -26,22 +26,22 @@ class PointBaseEncoding {
   interaction?: PointEncodingBaseInterface['interaction'];
 
   constructor(builder: any) {
-    this.size = builder.isClass ? builder._size : builder.size;
-    this.color = builder.isClass ? builder._color : builder.color;
-    this.stroke = builder.isClass ? builder._stroke : builder.stroke;
-    this.strokeWidth = builder.isClass ? builder._strokeWidth : builder.strokeWidth;
-    this.fill = builder.isClass ? builder._fill : builder.fill;
-    this.shape = builder.isClass ? builder._shape : builder.shape;
+    this.size = builder._size;
+    this.color = builder._color;
+    this.stroke = builder._stroke;
+    this.strokeWidth = builder._strokeWidth;
+    this.fill = builder._fill;
+    this.shape = builder._shape;
     this.x = {
-      field: builder.isClass ? builder._x : builder.x
+      field: builder._x
     };
     this.y = {
-      field: builder.isClass ? builder._y : builder.y
+      field: builder._y
     };
-    this.strokeOpacity = builder.isClass ? builder._strokeOpacity : builder.strokeOpacity;
-    this.fillOpacity = builder.isClass ? builder._fillOpacity : builder.fillOpacity;
-    this.strokePosition = builder.isClass ? builder._strokePosition : builder.strokePosition;
-    this.interaction = builder.isClass ? builder._interaction : builder.interaction;
+    this.strokeOpacity = builder._strokeOpacity;
+    this.fillOpacity = builder._fillOpacity;
+    this.strokePosition = builder._strokePosition;
+    this.interaction = builder._interaction;
   }
 }
 

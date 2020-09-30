@@ -1,9 +1,8 @@
 import { LegendInterface } from './types';
 import { LegendBase } from './base';
+import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class Legend {
-  isClass: boolean;
-
   _show: LegendInterface['show'];
 
   _position?: LegendInterface['position'];
@@ -36,7 +35,6 @@ class Legend {
     textWidth,
     textFormatter,
   }: LegendInterface) {
-    this.isClass = true;
     this._show = show;
     this._position = position;
     this._title = title;
@@ -104,14 +102,9 @@ class Legend {
   }
 
   create(value?: LegendInterface): any {
-    const result: any = value ? new LegendBase(value) : new LegendBase(this);
+    const refinedValues = inputSanitizer(value);
 
-    return Object.keys(result).reduce((acc: any, q) => {
-      if (result[q] !== undefined) {
-        acc[q] = result[q];
-      }
-      return acc;
-    }, {});
+    return removeUndefinedValues(new LegendBase(refinedValues || this));
   }
 }
 

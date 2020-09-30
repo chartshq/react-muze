@@ -1,23 +1,21 @@
 import { GridLinesInterface } from './types';
 import { GridLinesBase } from './base';
+import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class GridLines {
-  isClass: boolean;
+  _color?: GridLinesInterface['color'];
 
-  gridLineColor?: GridLinesInterface['color'];
+  _showHorizontal?: GridLinesInterface['showHorizontal'];
 
-  showHorizontalGridLine?: GridLinesInterface['showHorizontal'];
+  _showVertical?: GridLinesInterface['showVertical'];
 
-  showVerticalGridLine?: GridLinesInterface['showVertical'];
-
-  showGridLine?: GridLinesInterface['show'];
+  _show?: GridLinesInterface['show'];
 
   constructor({ color, showHorizontal = true, showVertical = true, show = true }: GridLinesInterface) {
-    this.isClass = true;
-    this.gridLineColor = color;
-    this.showHorizontalGridLine = showHorizontal;
-    this.showVerticalGridLine = showVertical;
-    this.showGridLine = show;
+    this._color = color;
+    this._showHorizontal = showHorizontal;
+    this._showVertical = showVertical;
+    this._show = show;
   }
 
   static config(): GridLines {
@@ -25,38 +23,29 @@ class GridLines {
   }
 
   color(color: GridLinesInterface['color']): GridLines {
-    this.gridLineColor = color;
+    this._color = color;
     return this;
   }
 
   showHorizontal(showHorizontal: GridLinesInterface['showHorizontal']): GridLines {
-    this.showHorizontalGridLine = showHorizontal;
+    this._showHorizontal = showHorizontal;
     return this;
   }
 
   showVertical(showVertical: GridLinesInterface['showVertical']): GridLines {
-    this.showVerticalGridLine = showVertical;
+    this._showVertical = showVertical;
     return this;
   }
 
   show(show: GridLinesInterface['show']): GridLines {
-    this.showGridLine = show;
+    this._show = show;
     return this;
   }
 
-  create(value?: GridLinesInterface): any {
-    const {show, color, x, y} = value ? new GridLinesBase(value) : new GridLinesBase(this);
-    const result: any = {
-      show,
-      x,
-      y
-    };
-  
-    if (color) {
-      result.color = color;
-    }
-  
-    return result;
+  create(value?: GridLinesInterface) {
+    const refinedValues = inputSanitizer(value);
+
+    return removeUndefinedValues(new GridLinesBase(refinedValues || this));
   }
 }
 
