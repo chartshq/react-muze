@@ -1,6 +1,6 @@
 
 export interface TooltipInterface {
-  on?: TooltipType,
+  type?: TooltipType,
   mode?: TooltipMode;
   formatter?: Function;
   displayFields?: Array<String>;
@@ -21,5 +21,3 @@ export enum TooltipMode {
   FRAGMENTED = 'fragmented',
   CONSOLIDATED = 'consolidated'
 };
-
-// MuzeTooltipInputInterface

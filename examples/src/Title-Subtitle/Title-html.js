@@ -1,10 +1,18 @@
-import * as React from 'react';
-import Muze, { Canvas, DataModel } from '@chartshq/react-muze/components';
-import { Headers, html, POSITION, ALIGNMENT } from '@chartshq/react-muze/configurations';
+import * as React from "react";
+import Muze, { Canvas, DataModel } from "@chartshq/react-muze/components";
+import {
+  Headers,
+  html,
+  POSITION,
+  ALIGNMENT,
+  Tooltip,
+} from "@chartshq/react-muze/configurations";
+import { TOOLTIP_TYPE, TOOLTIP_MODE } from "@chartshq/react-muze/constants";
 
-const DATA_SRC = 'https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars.json';
+const DATA_SRC =
+  "https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars.json";
 const SCHEMA_SRC =
-  'https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars-schema.json';
+  "https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars-schema.json";
 
 async function createDataModel() {
   const data = await fetch(DATA_SRC).then((d) => d.json());
@@ -42,6 +50,14 @@ class Title extends React.Component {
     //     align: ALIGNMENT.RIGHT
     //   });
 
+    const tooltip = Tooltip.config()
+      .on(TOOLTIP_TYPE.HIGHLIGHT)
+      .mode(TOOLTIP_MODE.FRAGMENTED)
+      .formatter((dataStore, config, context) => {
+        return html`<p>Hello world</p>`;
+      })
+      .create();
+
     const { carsDm } = this.state;
 
     return (
@@ -51,9 +67,10 @@ class Title extends React.Component {
             <Canvas
               title={title}
               subtitle="Hello world"
-              rows={['Acceleration']}
-              columns={['Origin']}
+              rows={["Acceleration"]}
+              columns={["Origin"]}
               color="Origin"
+              tooltips={[tooltip]}
             />
           </Muze>
         )}

@@ -1,21 +1,19 @@
 import { TooltipInterface, MuzeTooltipInputInterface, TooltipType, TooltipMode } from './types';
-import { TooltipBase } from "./base";
-import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class Tooltip {
-  _on?: TooltipType;
+  _type: TooltipType = TooltipType.HIGHLIGHT;
 
-  _mode?: TooltipMode;
+  _mode: TooltipMode = TooltipMode.CONSOLIDATED;
 
   _formatter?: Function;
 
   _displayFields?: Array<String>;
 
-  constructor({ on, mode, formatter, displayFields }: TooltipInterface) {
+  constructor({ type, mode, formatter, displayFields }: TooltipInterface) {
     if (mode) this._mode = mode;
-    if (on) this._on = on;
-    if (formatter) this._formatter = formatter;
-    if (displayFields) this._displayFields = displayFields;
+    if (type) this._type = type;
+    this._formatter = formatter;
+    this._displayFields = displayFields;
   }
 
   static config(): Tooltip {
@@ -27,8 +25,8 @@ class Tooltip {
     return this;
   }
 
-  on(on: TooltipType): Tooltip {
-    this._on = on;
+  on(type: TooltipType): Tooltip {
+    this._type = type;
     return this;
   }
 
@@ -42,9 +40,18 @@ class Tooltip {
     return this;
   }
 
-  create(value?: TooltipInterface): TooltipBase {
-    const refinedValues = inputSanitizer(value);
-    return removeUndefinedValues(new TooltipBase(refinedValues || this));
+  create(values?: TooltipInterface): Tooltip {
+    if (!values) {
+      return this;
+    }
+
+    const { type, mode, formatter, displayFields } = values;
+
+    if (mode) this._mode = mode;
+    if (type) this._type = type;
+    this._formatter = formatter;
+    this._displayFields = displayFields;
+    return this;
   }
 
   asMuzeInput(): MuzeTooltipInputInterface {
@@ -66,7 +73,7 @@ export function multiTooltipIntoMuze(tooltips: Array<Tooltip> | undefined) {
 
   tooltips.forEach((tooltip) => {
     const { mode, formatter, displayFields } = tooltip.asMuzeInput();
-    switch (tooltip._on) {
+    switch (tooltip._type) {
       case TooltipType.HIGHLIGHT:
         highlightSummary = {};
         if (mode) highlightSummary.mode = mode;
@@ -93,4 +100,4 @@ export function multiTooltipIntoMuze(tooltips: Array<Tooltip> | undefined) {
   }
 }
 
-export { Tooltip, TooltipType as TOOLTIP_TYPE };
+export { Tooltip, TooltipType as TOOLTIP_TYPE, TooltipMode as TOOLTIP_MODE };
