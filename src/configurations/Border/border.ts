@@ -59,8 +59,8 @@ class Border {
   }
 
   create(value?: BorderInterface): Border {
-    const refinedValues = inputSanitizer(value);
-    return removeUndefinedValues(new BorderBase(refinedValues || this));
+    inputSanitizer(value, this);
+    return removeUndefinedValues(new BorderBase(this));
   }
 }
 
