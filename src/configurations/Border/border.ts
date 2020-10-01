@@ -58,7 +58,7 @@ class Border {
     return this;
   }
 
-  create(value?: BorderInterface): any {
+  create(value?: BorderInterface): Border {
     inputSanitizer(value, this);
     return removeUndefinedValues(new BorderBase(this));
   }
