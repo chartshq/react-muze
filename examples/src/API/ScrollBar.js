@@ -1,7 +1,10 @@
 import * as React from "react";
 import Muze, { Canvas, DataModel } from "@chartshq/react-muze/components";
-import { Border } from "@chartshq/react-muze/configurations";
-import { MuzeConstants } from "@chartshq/react-muze/constants";
+import { ScrollBar } from "@chartshq/react-muze/configurations";
+import {
+  SCROLL_HORIZONTAL,
+  SCROLL_VERTICAL,
+} from "@chartshq/react-muze/constants";
 
 const DATA_SRC =
   "https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars.json";
@@ -31,38 +34,21 @@ class Simple extends React.Component {
   render() {
     const { carsDm } = this.state;
 
-    const border = Border.config()
-      .showRowBorders({
-        top: true,
-        bottom: true,
-        left: true,
-        right: true,
-      })
-      .showColBorders({
-        top: true,
-        bottom: true,
-        left: true,
-        right: true,
-      })
-      .showValueBorders({
-        top: true,
-        bottom: true,
-        left: true,
-        right: true,
-      })
-      .width(1)
-      .style(MuzeConstants.BORDER_STYLE.DASHED)
-      .color("#a2a2a2");
+    const scrollbar = ScrollBar.config()
+      .verticalAlign(SCROLL_VERTICAL.LEFT)
+      .horizontalAlign(SCROLL_HORIZONTAL.TOP)
+      .thickness(10)
+      .verticalAlign(2)
+      .create();
 
     return (
-      <div style={{ display: "inline-block", float: "left", padding: 30 }}>
+      <div>
         {carsDm && (
           <Muze data={carsDm}>
             <Canvas
-              columns={["Origin"]}
               rows={["Acceleration"]}
-              color="Origin"
-              border={border}
+              columns={["Year"]}
+              scrollbar={scrollbar}
             />
           </Muze>
         )}
