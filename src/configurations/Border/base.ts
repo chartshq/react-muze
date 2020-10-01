@@ -14,17 +14,17 @@ class BorderBase {
   showRowBorders?: BorderInterface['showRowBorders'];
 
   constructor(builder: any) {
-    this.width = builder._BorderInterface;
+    this.width = builder._width;
 
-    this.style = builder._BorderInterface;
+    this.style = builder._style;
 
-    this.color = builder._BorderInterface;
+    this.color = builder._color;
 
-    this.showColBorders = builder._BorderInterface;
+    this.showColBorders = builder._showColBorders;
 
-    this.showValueBorders = builder._BorderInterface;
+    this.showValueBorders = builder._showValueBorders;
 
-    this.showRowBorders = builder._BorderInterface;
+    this.showRowBorders = builder._showRowBorders;
   }
 }
 
