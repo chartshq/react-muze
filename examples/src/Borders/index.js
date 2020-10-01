@@ -32,19 +32,19 @@ class Simple extends React.Component {
     const { carsDm } = this.state;
 
     const border = Border.config()
-      .onRows({
+      .showRowBorders({
         top: true,
         bottom: true,
         left: true,
         right: true,
       })
-      .onColumns({
+      .showColBorders({
         top: true,
         bottom: true,
         left: true,
         right: true,
       })
-      .onValues({
+      .showValueBorders({
         top: true,
         bottom: true,
         left: true,
