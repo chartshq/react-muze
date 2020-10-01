@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Title from './Title-Subtitle/Title-html';
-import Test from './Test';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import Title from "./Title-Subtitle/Title-html";
 import Border from "./Borders";
+import Test from "./Test";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <Border /> */}
-    {/* <Title /> */}
-    <Test />
+    <Title />
+    {/* <Test /> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -8,7 +8,7 @@ import { ScrollBar, SCROLL_VERTICAL, SCROLL_HORIZONTAL } from './ScrollBar';
 import { Encoding } from './Encoding';
 import { SideEffects, SpawnableSideEffect, SurrogateSideEffect, GenericSideEffect } from './SideEffects';
 import { Behaviours, GenericBehaviour, VolatileBehaviour } from './Behaviours';
-import { Tooltip, TOOLTIP_TYPE } from './Tooltip';
+import { Tooltip, TOOLTIP_TYPE, TOOLTIP_MODE } from './Tooltip';
 import { Border } from './Border';
 import muze from '@chartshq/muze';
 
@@ -43,5 +43,6 @@ export {
   ALIGNMENT,
   SCROLL_VERTICAL,
   SCROLL_HORIZONTAL,
-  TOOLTIP_TYPE
+  TOOLTIP_TYPE,
+  TOOLTIP_MODE
 }

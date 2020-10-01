@@ -63,7 +63,7 @@ class Tooltip {
   }
 }
 
-export function intoMuze(tooltips: Array<Tooltip> | undefined) {
+export function multiTooltipIntoMuze(tooltips: Array<Tooltip> | undefined) {
   if (!tooltips) {
     return {};
   }
@@ -100,4 +100,4 @@ export function intoMuze(tooltips: Array<Tooltip> | undefined) {
   }
 }
 
-export { Tooltip, TooltipType as TOOLTIP_TYPE };
+export { Tooltip, TooltipType as TOOLTIP_TYPE, TooltipMode as TOOLTIP_MODE };

@@ -1,6 +1,6 @@
 import { ChartConfig, SanitizedConfig, CanvasState } from './interfaces';
 import { CanvasBuilder } from '../../helpers/CanvasBuilder';
-import { intoMuze } from '../../configurations/Tooltip';
+import { multiTooltipIntoMuze } from '../../configurations/Tooltip';
 
 import muze from "@chartshq/muze";
 import { FieldRangeInterface } from '../../configurations/RetinalEncoding/types';
@@ -229,8 +229,9 @@ export const createChart = (
       scrollBar,
       showHeaders,
       interaction: {
-        ...intoMuze(tooltips),
-      }
+        ...multiTooltipIntoMuze(tooltips),
+      },
+      border
     };
 
     // had to do it like this because muze was throwing
@@ -238,9 +239,6 @@ export const createChart = (
     // error: `Cannot convert undefined or null`
     if (sort) {
       config.sort = sort;
-    }
-    if (border) {
-      config.border = border.intoMuzeInput();
     }
 
     CanvasBuilder.config(canvas)
