@@ -10,6 +10,9 @@ import { SideEffects, SpawnableSideEffect, SurrogateSideEffect, GenericSideEffec
 import { Behaviours, GenericBehaviour, VolatileBehaviour } from './Behaviours';
 import { Tooltip, TOOLTIP_TYPE } from './Tooltip';
 import { Border } from './Border';
+import muze from '@chartshq/muze';
+
+const { share } = muze.Operators;
 
 export {
   Axes,
@@ -30,7 +33,8 @@ export {
   GenericSideEffect,
   Behaviours,
   GenericBehaviour, VolatileBehaviour,
-  Border
+  Border,
+  share
 };
 
 export {
