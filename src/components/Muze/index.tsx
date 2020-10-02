@@ -1,6 +1,6 @@
 import React from "react";
 import muze from "@chartshq/muze";
-import "@chartshq/muze/dist/muze.css";
+// import "@chartshq/muze/dist/muze.css";
 import { MuzeProvider } from "../../utils/context/muze-context";
 import "./style.scss";
 import { MuzeProps, MuzeState } from "./interfaces";

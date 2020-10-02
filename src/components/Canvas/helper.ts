@@ -4,6 +4,7 @@ import { multiTooltipIntoMuze } from '../../configurations/Tooltip';
 
 import muze from "@chartshq/muze";
 import { FieldRangeInterface } from '../../configurations/RetinalEncoding/types';
+import { transcode } from 'buffer';
 
 const getLegendConfig = (legendConfig: any, legendType: string) => {
   const {
@@ -88,7 +89,8 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     crossInteractive: canvasCrossInteractive = false,
     sideEffects = {},
     sort,
-    border
+    border,
+    transform
   } = config;
 
   let { title, subtitle } = config;
@@ -163,7 +165,8 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     crossInteractive: canvasCrossInteractive,
     canvasSideEffects: sideEffectsMap,
     sort,
-    border
+    border,
+    transform
   };
 };
 
@@ -207,7 +210,8 @@ export const createChart = (
     crossInteractive,
     canvasSideEffects,
     sort,
-    border
+    border = {},
+    transform
   } = configSanitizer(props, context);
 
   const html = muze.Operators.html;
@@ -217,14 +221,6 @@ export const createChart = (
     context.addChildChart(canvas);
     //Add canvas entry in parent only if crossInteractive prop is passed to canvas
     crossInteractive && context.addCrossInteraction(canvas);
-
-    const __tooltips = multiTooltipIntoMuze(tooltips);
-
-    (() => {
-      setTimeout(() => {
-        console.log("__tooltips", __tooltips)
-      })
-    })();
 
     const config: any = {
       axes: {
@@ -237,7 +233,7 @@ export const createChart = (
       scrollBar,
       showHeaders,
       interaction: {
-        ...__tooltips,
+        ...multiTooltipIntoMuze(tooltips),
       },
       border
     };
@@ -255,6 +251,7 @@ export const createChart = (
       .columns(columns)
       .width(width)
       .height(height)
+      .transform(transform)
       .color(color)
       .size(size)
       .shape(shape)

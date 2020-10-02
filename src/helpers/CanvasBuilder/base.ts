@@ -51,6 +51,8 @@ class CanvasBase {
 
   sideEffectsMap?: CanvasBuilderInterface['sideEffectsMap'];
 
+  transform?: CanvasBuilderInterface['transform'];
+
   constructor(builder: any) {
     this.canvas = builder._canvas;
     this.data = builder._data;
@@ -78,6 +80,7 @@ class CanvasBase {
     this.onRemoved = builder._onRemoved;
     this.onAnimationEnd = builder._onAnimationEnd;
     this.sideEffectsMap = builder._sideEffectsMap;
+    this.transform = builder._transform;
   }
 }
 

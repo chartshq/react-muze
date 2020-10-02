@@ -2,8 +2,6 @@ import { CanvasBuilderInterface } from './types';
 import { CanvasBase } from './base';
 import { MuzeConstants } from '../../constants';
 
-import { HeadersConfig } from "../../configurations/Headers/types";
-
 class CanvasBuilder {
   _canvas: CanvasBuilderInterface['canvas'];
 
@@ -53,6 +51,8 @@ class CanvasBuilder {
 
   _onAnimationEnd?: CanvasBuilderInterface['onAnimationEnd'];
 
+  _transform?: CanvasBuilderInterface['transform'];
+
   constructor({
     canvas,
     data,
@@ -67,6 +67,7 @@ class CanvasBuilder {
     subtitle,
     config,
     legend,
+    transform
   }: {
     canvas: muze.Canvas;
     data?: CanvasBuilderInterface['data'];
@@ -81,6 +82,7 @@ class CanvasBuilder {
     subtitle?: CanvasBuilderInterface['subtitle'];
     config?: CanvasBuilderInterface['config'];
     legend?: CanvasBuilderInterface['legend'];
+    transform?: CanvasBuilderInterface['transform']
   }) {
     this._canvas = canvas;
     this._data = data;
@@ -95,6 +97,7 @@ class CanvasBuilder {
     this._subtitle = subtitle;
     this._config = config;
     this._legend = legend;
+    this._transform = transform;
   }
 
   static config(canvas: muze.Canvas): CanvasBuilder {
@@ -220,6 +223,11 @@ class CanvasBuilder {
     return this;
   }
 
+  transform(callback: CanvasBuilderInterface['transform']): CanvasBuilder {
+    this._transform = callback;
+    return this;
+  }
+
   create(): void {
     const {
       canvas,
@@ -246,6 +254,7 @@ class CanvasBuilder {
       onBeforeRemove,
       onRemoved,
       onAnimationEnd,
+      transform
     } = new CanvasBase(this);
 
     canvas
@@ -264,6 +273,7 @@ class CanvasBuilder {
       .config(config)
       .legend(legend)
       .layers(layers)
+      .transform(transform)
       .mount(mount);
 
     [

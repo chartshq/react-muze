@@ -52,7 +52,8 @@ class Simple extends React.Component {
       })
       .width(1)
       .style(MuzeConstants.BORDER_STYLE.DASHED)
-      .color("#a2a2a2");
+      .color("#ab1111")
+      .create();
 
     return (
       <div style={{ display: "inline-block", float: "left", padding: 30 }}>

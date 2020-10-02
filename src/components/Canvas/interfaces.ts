@@ -49,7 +49,10 @@ export interface ChartConfig {
   crossInteractive?: boolean;
   sideEffects?: any;
   sort?: Map<string, MuzeConstants.SORT_ORDER>;
-  border: Border
+  border: Border,
+  transform?: {
+    [key: string]: Function
+  }
 }
 
 export interface SanitizedConfig {
@@ -85,7 +88,10 @@ export interface SanitizedConfig {
   crossInteractive: boolean;
   canvasSideEffects: any;
   sort?: Map<string, MuzeConstants.SORT_ORDER>;
-  border: Border
+  border: Border,
+  transform?: {
+    [key: string]: Function
+  }
 }
 
 export interface CanvasState {

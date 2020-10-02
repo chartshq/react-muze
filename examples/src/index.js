@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
+import Borders from './Borders/index';
 import Basic from "./Demo/Basic";
 import Layer from "./Demo/Layer";
 import Operation from "./Demo/Operation";
@@ -38,19 +39,33 @@ import Line5 from "./WebDemo/Line/Line5";
 import Area1 from "./WebDemo/Area/Area1";
 import Area2 from "./WebDemo/Area/Area2";
 
-import TooltipStyling from "./WebDemo/CustomCSS/TooltipStyling";
-import DarkThemeWithGrid from "./WebDemo/CustomCSS/DarkThemeWithGrid";
-import DarkBackground from "./WebDemo/CustomCSS/DarkBackground";
-import BackgroundImageTheme from "./WebDemo/CustomCSS/BackgroundImageTheme";
-import LightTheme from "./WebDemo/CustomCSS/LightTheme";
+// import TooltipStyling from "./WebDemo/CustomCSS/TooltipStyling";
+// import DarkThemeWithGrid from "./WebDemo/CustomCSS/DarkThemeWithGrid";
+// import DarkBackground from "./WebDemo/CustomCSS/DarkBackground";
+// import BackgroundImageTheme from "./WebDemo/CustomCSS/BackgroundImageTheme";
+// import LightTheme from "./WebDemo/CustomCSS/LightTheme";
 
 import AxisTickLabelsFormatting from "./WebDemo/ChartConfiguration/AxisTickLabelsFormatting";
 
 import FragmentedTooltip from "./WebDemo/Tooltips/FragmentedTooltip";
 
+import Heatmap1 from './WebDemo/Heatmap/Heatmap1';
+
+import Crosstab1 from './WebDemo/Crosstab/Crosstab1';
+
+import Legend1 from './WebDemo/Legend/Legend1';
+import Legend2 from './WebDemo/Legend/Legend2';
+import Legend3 from './WebDemo/Legend/Legend3';
+import Legend4 from './WebDemo/Legend/Legend4';
+
+import Compose1 from './WebDemo/Composability/Compose1';
+import Compose2 from './WebDemo/Composability/Compose2';
+
+import Large1 from './WebDemo/Large/Large1';
+
 ReactDOM.render(
   <React.StrictMode>
-    <FragmentedTooltip />
+    {/* <FragmentedTooltip /> */}
     {/* <TooltipStyling /> */}
     {/* <Border /> */}
     {/* <Title /> */}
@@ -85,6 +100,21 @@ ReactDOM.render(
 
     {/* <Area1 />
     <Area2 /> */}
+
+    {/* <Heatmap1 /> */}
+
+    <Crosstab1 />
+
+    {/* <Borders /> */}
+    {/* <Legend1 />
+    <Legend2 />
+    <Legend3 />
+    <Legend4 /> */}
+
+    {/* <Compose1 /> */}
+    {/* <Compose2 /> */}
+
+    {/* <Large1 /> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

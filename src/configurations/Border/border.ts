@@ -60,6 +60,7 @@ class Border {
 
   create(value?: BorderInterface): Border {
     inputSanitizer(value, this);
+
     return removeUndefinedValues(new BorderBase(this));
   }
 }

@@ -36,4 +36,7 @@ export interface CanvasBuilderInterface {
   onAnimationEnd?: Function;
   sideEffectsMap?: any;
   behavioursMap?: any;
+  transform?: {
+    [key: string]: Function
+  }
 }

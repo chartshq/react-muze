@@ -1,5 +1,6 @@
 /* Light theme */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -13,8 +14,9 @@ html, body {
   background: #eee;
 }
 
-#chart, .chart {
-/*   width: 900px; */
+#chart,
+.chart {
+  /*   width: 900px; */
   height: 650px;
 }
 

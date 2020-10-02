@@ -7,7 +7,6 @@ import {
   SCROLL_VERTICAL,
   SCROLL_HORIZONTAL,
   TOOLTIP_TYPE,
-  TOOLTIP_MODE,
 } from "../configurations";
 
 export { DataModelConstants, MuzeConstants };
@@ -17,6 +16,5 @@ export {
   ALIGNMENT,
   SCROLL_VERTICAL,
   SCROLL_HORIZONTAL,
-  TOOLTIP_TYPE,
-  TOOLTIP_MODE
+  TOOLTIP_TYPE
 }
