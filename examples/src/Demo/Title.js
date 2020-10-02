@@ -7,7 +7,6 @@ import {
   ALIGNMENT,
   Tooltip,
 } from "@chartshq/react-muze/configurations";
-import { TOOLTIP_TYPE, TOOLTIP_MODE } from "@chartshq/react-muze/constants";
 
 const DATA_SRC =
   "https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars.json";
@@ -41,40 +40,36 @@ class Title extends React.Component {
       .align(ALIGNMENT.RIGHT)
       .create();
 
-    // console.log('title', title);
-
-    // const title = Headers.config()
-    //   .create({
-    //     content: html`<i>I am</i> title`,
-    //     position: POSITION.BOTTOM,
-    //     align: ALIGNMENT.RIGHT
-    //   });
-
-    const tooltip = Tooltip.config()
-      .on(TOOLTIP_TYPE.HIGHLIGHT)
-      .mode(TOOLTIP_MODE.FRAGMENTED)
-      .formatter((dataStore, config, context) => {
-        return html`<p>Hello world</p>`;
-      })
-      .create();
-
     const { carsDm } = this.state;
 
     return (
-      <div>
-        {carsDm && (
-          <Muze data={carsDm}>
-            <Canvas
-              title={title}
-              subtitle="Hello world"
-              rows={["Acceleration"]}
-              columns={["Origin"]}
-              color="Origin"
-              tooltips={[tooltip]}
-            />
-          </Muze>
-        )}
-      </div>
+      <>
+        <Muze data={carsDm}>
+          <Canvas
+            title="this is title"
+            subtitle={title}
+            rows={["Acceleration"]}
+            columns={["Origin"]}
+            color="Origin"
+          />
+          <Canvas
+            title="this is title"
+            subtitle={title}
+            rows={["Acceleration"]}
+            columns={["Origin"]}
+            color="Origin"
+          />
+        </Muze>
+        <Muze data={carsDm}>
+          <Canvas
+            title="this is title"
+            subtitle={title}
+            rows={["Acceleration"]}
+            columns={["Origin"]}
+            color="Origin"
+          />
+        </Muze>
+      </>
     );
   }
 }

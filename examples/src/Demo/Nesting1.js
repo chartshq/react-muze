@@ -1,41 +1,52 @@
-import * as React from 'react';
-import Muze, { Canvas, DataModel } from '@chartshq/react-muze/components';
+import * as React from "react";
+import Muze, { Canvas, DataModel } from "@chartshq/react-muze/components";
 
-const createDataModel = async (dataUrl, schemaUrl) => {
-    const data = await fetch(dataUrl).then((d) => d.json());
-    const schema = await fetch(schemaUrl).then((d) => d.json());
+async function createDataModel() {
+    const data = await fetch("/data/cars.json")
+        .then((d) => d.json());
+    const schema = await fetch("/data/cars-schema.json")
+        .then((d) => d.json());
     const DataModelClass = await DataModel.onReady();
     const formattedData = await DataModelClass.loadData(data, schema);
     return new DataModelClass(formattedData);
-};
+}
 
-class CanvasExample extends React.Component {
+async function createDataModel1() {
+    const data = await fetch("/data/movies.json")
+        .then((d) => d.json());
+    const schema = await fetch("/data/movies-schema.json")
+        .then((d) => d.json());
+    const DataModelClass = await DataModel.onReady();
+    const formattedData = await DataModelClass.loadData(data, schema);
+    return new DataModelClass(formattedData);
+}
+
+class Basic extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dm: null,
+            carsDm: null,
+            dm: null
         };
     }
 
     componentDidMount() {
-        createDataModel(
-            'https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars.json',
-            'https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars-schema.json'
-        )
-            .then(dm => this.setState({ dm }));
+        Promise.all([createDataModel(), createDataModel1()]).then(([carsDm, dm]) => {
+            this.setState({ carsDm, dm });
+        });
     }
 
     render() {
-        const { dm } = this.state;
+        const { carsDm, dm } = this.state;
+
         return (
-            <div>
-                <Muze data={carsDm}>
-                    <table id="dashboard">
+            <Muze data={carsDm} crossInteractive>
+                <table id="dashboard">
+                    <tbody>
                         <tr>
                             <td>
                                 <Canvas
                                     title="this is title"
-                                    subtitle={title}
                                     rows={["Acceleration"]}
                                     columns={["Origin"]}
                                     color="Origin"
@@ -44,21 +55,25 @@ class CanvasExample extends React.Component {
                             <td>
                                 <Canvas
                                     title="this is title"
-                                    subtitle={title}
                                     rows={["Acceleration"]}
-                                    columns={["Origin"]}
+                                    columns={["Cylinders"]}
                                     color="Origin"
                                 />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <Muze data={moviesDm}>
+                                <Muze data={carsDm}>
                                     <Canvas
                                         title="this is title"
-                                        subtitle={title}
                                         rows={["Acceleration"]}
-                                        columns={["Origin"]}
+                                        columns={["Year"]}
+                                        color="Origin"
+                                    />
+                                    <Canvas
+                                        title="this is title"
+                                        rows={["Acceleration"]}
+                                        columns={["Year"]}
                                         color="Origin"
                                     />
                                 </Muze>
@@ -66,18 +81,18 @@ class CanvasExample extends React.Component {
                             <td>
                                 <Canvas
                                     title="this is title"
-                                    subtitle={title}
                                     rows={["Acceleration"]}
-                                    columns={["Origin"]}
+                                    columns={["Year"]}
                                     color="Origin"
                                 />
                             </td>
                         </tr>
-                    </table>
-                </Muze>
-            </div>
-        )
+                    </tbody>
+                </table>
+            </Muze>
+
+        );
     }
 }
 
-export default CanvasExample;
+export default Basic;
