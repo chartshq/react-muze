@@ -88,12 +88,22 @@ export function multiTooltipIntoMuze(tooltips: Array<Tooltip> | undefined) {
     }
   });
 
-  if (!highlightSummary && !selectionSummary) {
-    return {};
-  } else {
+  if (highlightSummary && selectionSummary) {
     return {
       tooltip: {
         highlightSummary,
+        selectionSummary,
+      },
+    };
+  } else if (highlightSummary) {
+    return {
+      tooltip: {
+        highlightSummary,
+      },
+    };
+  } else {
+    return {
+      tooltip: {
         selectionSummary,
       },
     };

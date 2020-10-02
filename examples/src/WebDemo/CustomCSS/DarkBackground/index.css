@@ -1,0 +1,37 @@
+/* Theme with background image */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#chart-container {
+  width: 65%;
+  height: 80%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #262A33;
+}
+
+#chart, .chart {
+  width: 800px;
+  height: 350px;
+}
+
+/* .muze-group-container {
+  background: #3C3C3E;
+} */
+
+.muze-legend-item-info {
+  color: #999ca5;
+}
+
+.muze-legend-title-text {
+  color: #999ca5;
+}
+
+.muze-text-cell {
+  color: #999ca5;
+  text-align: center;
+}

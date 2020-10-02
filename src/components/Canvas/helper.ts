@@ -218,6 +218,14 @@ export const createChart = (
     //Add canvas entry in parent only if crossInteractive prop is passed to canvas
     crossInteractive && context.addCrossInteraction(canvas);
 
+    const __tooltips = multiTooltipIntoMuze(tooltips);
+
+    (() => {
+      setTimeout(() => {
+        console.log("__tooltips", __tooltips)
+      })
+    })();
+
     const config: any = {
       axes: {
         x: xAxis,
@@ -229,7 +237,7 @@ export const createChart = (
       scrollBar,
       showHeaders,
       interaction: {
-        ...multiTooltipIntoMuze(tooltips),
+        ...__tooltips,
       },
       border
     };

@@ -64,6 +64,9 @@ class Simple extends React.Component {
                 rows={["Acceleration"]}
                 color="Origin"
                 border={border}
+                sort={{
+                  Acceleration: "desc",
+                }}
               />
             </Muze>
           </Muze>

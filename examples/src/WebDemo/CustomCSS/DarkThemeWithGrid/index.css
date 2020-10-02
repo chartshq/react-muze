@@ -1,0 +1,35 @@
+/* Light theme */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#chart-container {
+  width: 65%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3C3C3E;
+}
+
+#chart, .chart {
+  width: 800px;
+  height: 350px;
+}
+
+.muze-group-container {
+  background: #3C3C3E;
+}
+
+.muze-legend-item-info {
+  color: #fff;
+}
+
+.muze-legend-title-text {
+  color: #fff;
+}
+
+.muze-text-cell {
+  color: #fff;
+}
