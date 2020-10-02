@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Border from "./Borders";
-import Test from "./Test";
 import * as serviceWorker from "./serviceWorker";
+
 import Basic from "./Demo/Basic";
 import Layer from "./Demo/Layer";
 import Operation from "./Demo/Operation";

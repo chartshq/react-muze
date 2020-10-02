@@ -16,12 +16,12 @@ class Border {
   _showValueBorders?: BorderInterface["showValueBorders"]
 
   constructor({ showRowBorders, showColBorders, showValueBorders, width, style, color }: BorderInterface) {
-    if (width) this._width = width;
-    if (style) this._style = style;
-    if (color) this._color = color;
-    if (showRowBorders) this._showColBorders = showRowBorders;
-    if (showColBorders) this._showValueBorders = showColBorders;
-    if (showValueBorders) this._showRowBorders = showValueBorders;
+    this._width = width;
+    this._style = style;
+    this._color = color;
+    this._showColBorders = showRowBorders;
+    this._showValueBorders = showColBorders;
+    this._showRowBorders = showValueBorders;
   }
 
   static config(): Border {
