@@ -4,7 +4,6 @@ import { multiTooltipIntoMuze } from '../../configurations/Tooltip';
 
 import muze from "@chartshq/muze";
 import { FieldRangeInterface } from '../../configurations/RetinalEncoding/types';
-import { transcode } from 'buffer';
 
 const getLegendConfig = (legendConfig: any, legendType: string) => {
   const {
@@ -90,7 +89,8 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     sideEffects = {},
     sort,
     border,
-    transform
+    transform,
+    axesRadius
   } = config;
 
   let { title, subtitle } = config;
@@ -101,7 +101,6 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
   if (typeof subtitle === "string") {
     subtitle = { content: subtitle }
   }
-
 
   let canvasData = globalDm;
   let chartColor = (color || {}) as FieldRangeInterface;
@@ -166,7 +165,8 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     canvasSideEffects: sideEffectsMap,
     sort,
     border,
-    transform
+    transform,
+    axesRadius
   };
 };
 
@@ -211,6 +211,7 @@ export const createChart = (
     canvasSideEffects,
     sort,
     border = {},
+    axesRadius,
     transform
   } = configSanitizer(props, context);
 
@@ -226,6 +227,9 @@ export const createChart = (
       axes: {
         x: xAxis,
         y: yAxis,
+        radius: {
+          ...axesRadius
+        }
       },
       legend,
       gridLines,
@@ -235,7 +239,7 @@ export const createChart = (
       interaction: {
         ...multiTooltipIntoMuze(tooltips),
       },
-      border
+      border,
     };
 
     // had to do it like this because muze was throwing

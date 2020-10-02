@@ -26,7 +26,7 @@ const operationFn = dm => {
     }, ['Weight_in_lbs'], val => val);
 }
 
-const areaEncoding = Encoding.Area.config().y('Max Weight').y0('Min Weight').color({ value: () => '#ff9800' }).create();
+const areaEncoding = Encoding.Area.config().y('Max Weight').y0('Min Weight').x('Year').color({ value: () => '#ff9800' }).create();
 const axis = Axes.config().name('Weight').create();
 
 class Bar extends React.Component {

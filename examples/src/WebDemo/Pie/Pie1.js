@@ -13,9 +13,7 @@ async function createDataModel() {
 }
 
 const arcEncoding = Encoding.Arc.config().angle('Horsepower').create();
-const axes = Axes.config().radius({
-    range: (_range) => ([_range[0] + 100, _range[1]])
-}).create();
+const axes = Axes.Radius.config().range((r) => [r[0] + 100, r[1]]).create();
 
 class Bar extends React.Component {
     constructor(props) {
@@ -36,7 +34,7 @@ class Bar extends React.Component {
 
         return (
             <Muze data={carsDm}>
-                <Canvas rows={[]} columns={[]} color="Origin">
+                <Canvas rows={[]} columns={[]} color="Origin" axesRadius={axes}>
                     <Layer mark="arc" encoding={arcEncoding} />
                 </Canvas>
             </Muze>

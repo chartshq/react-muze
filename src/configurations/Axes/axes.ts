@@ -1,6 +1,7 @@
 import { AxesInterface } from './types';
 import { AxesBase } from './base';
 import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
+import { AxesRadius } from './radius';
 
 class Axes {
   _name: AxesInterface['name'];
@@ -20,6 +21,8 @@ class Axes {
   _tickFormat?: AxesInterface['tickFormat'];
 
   _labels?: any;
+
+  static Radius = AxesRadius;
 
   constructor({
     name,

@@ -53,6 +53,10 @@ export interface ChartConfig {
   transform?: {
     [key: string]: Function
   }
+  axesRadius?: {
+      range: Function;
+      domain: number[];
+  }
 }
 
 export interface SanitizedConfig {
@@ -91,6 +95,10 @@ export interface SanitizedConfig {
   border: Border,
   transform?: {
     [key: string]: Function
+  },
+  axesRadius?: {
+    range: Function;
+    domain: number[];
   }
 }
 
