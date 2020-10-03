@@ -4,8 +4,6 @@ import Muze, {
   Layer,
   DataModel,
 } from "@chartshq/react-muze/components";
-import { Encoding } from "@chartshq/react-muze/configurations";
-
 import "./index.css";
 
 async function createDataModel() {
@@ -33,25 +31,18 @@ class BackgroundImageTheme extends React.Component {
   render() {
     const { carsDm } = this.state;
 
-    const barEncoding = Encoding.Bar.config().color("#818180").create();
-
-    // NOTE: throwing the following error
-    // Uncaught TypeError: Cannot read property 'largestTickDimensions' of undefined
-
     return (
-      <div id="chart-container">
-        <Muze data={carsDm}>
-          <Canvas
-            className="chart"
-            rows={["Acceleration"]}
-            columns={["Year"]}
-            title={"Average of Acceleration over the years"}
-            subtitle={"For years 1970-1982"}
-          >
-            <Layer type="bar" encoding={barEncoding} />
-          </Canvas>
-        </Muze>
-      </div>
+      <Muze data={carsDm}>
+        <Canvas
+          className="muze-chart-1"
+          rows={["Acceleration"]}
+          columns={["Year"]}
+          title={"Average of Acceleration over the years"}
+          subtitle={"For years 1970-1982"}
+        >
+          <Layer mark="bar" />
+        </Canvas>
+      </Muze>
     );
   }
 }

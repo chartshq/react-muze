@@ -1,36 +1,28 @@
 import * as React from "react";
-import Muze, {
-  Canvas,
-  Layer,
-  DataModel,
-} from "@chartshq/react-muze/components";
-import { Color, Axes } from "@chartshq/react-muze/configurations";
-
-import jsonData from "./statewise-testing-in.json";
-
+import Muze, { Canvas, Layer, DataModel } from "@chartshq/react-muze/components";
+import { Color, Axes, Headers } from "@chartshq/react-muze/configurations";
 import "./index.css";
 
-const schema = [
-  {
-    name: "month",
-    type: "dimension",
-    displayName: "Month",
-  },
-  {
-    name: "value",
-    type: "measure",
-    displayName: "Total tests done",
-    format: numberFormatter,
-  },
-  {
-    name: "state",
-    type: "dimension",
-    displayName: "State",
-  },
-];
-
 async function createDataModel() {
-  const data = jsonData;
+  const data = await fetch("/data/statewise-testing-in.json").then((d) => d.json());
+  const schema = [
+    {
+      name: "month",
+      type: "dimension",
+      displayName: "Month",
+    },
+    {
+      name: "value",
+      type: "measure",
+      displayName: "Total tests done",
+      format: numberFormatter,
+    },
+    {
+      name: "state",
+      type: "dimension",
+      displayName: "State",
+    },
+  ];
   const DataModelClass = await DataModel.onReady();
   const formattedData = await DataModelClass.loadData(data, schema);
   return new DataModelClass(formattedData);
@@ -40,18 +32,18 @@ class DarkThemeWithGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      carsDm: null,
+      dm: null,
     };
   }
 
   componentDidMount() {
-    createDataModel().then((carsDm) => {
-      this.setState({ carsDm });
+    createDataModel().then((dm) => {
+      this.setState({ dm });
     });
   }
 
   render() {
-    const { carsDm } = this.state;
+    const { dm } = this.state;
 
     const color = Color.config()
       .field("state")
@@ -61,6 +53,11 @@ class DarkThemeWithGrid extends React.Component {
     const yAxis = Axes.config()
       .tickFormat((v) => numberFormatter(v))
       .numberOfTicks(8)
+      .create();
+
+    const title = Headers.config()
+      .content("Coronavirus tests done by states")
+      .className('dark-theme-title')
       .create();
 
     // NOTE: this configuration requires a sort prop to be passed
@@ -73,21 +70,19 @@ class DarkThemeWithGrid extends React.Component {
     // supporting className, we need a id field too
 
     return (
-      <div id="chart-container">
-        <Muze data={carsDm}>
-          <Canvas
-            title="Coronavirus tests done by states"
-            subtitle="From April - August"
-            className="chart"
-            rows={["value"]}
-            columns={["month"]}
-            color={color}
-            yAxis={yAxis}
-          >
-            <Layer type="bar" transformType="group" />
-          </Canvas>
-        </Muze>
-      </div>
+      <Muze data={dm}>
+        <Canvas
+          title={title}
+          subtitle="From April - August"
+          className="dark-theme-chart"
+          rows={["value"]}
+          columns={["month"]}
+          color={color}
+          yAxis={yAxis}
+        >
+          <Layer type="bar" transformType="group" />
+        </Canvas>
+      </Muze>
     );
   }
 }

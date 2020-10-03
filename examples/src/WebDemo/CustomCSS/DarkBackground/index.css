@@ -1,10 +1,12 @@
-/* Theme with background image */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
 
-#chart-container {
+.dark-background-chart {
+  width: 800px;
+  height: 350px;
   width: 65%;
   height: 80%;
   min-height: 400px;
@@ -14,20 +16,11 @@ html, body {
   background-color: #262A33;
 }
 
-#chart, .chart {
-  width: 800px;
-  height: 350px;
-}
-
-/* .muze-group-container {
-  background: #3C3C3E;
-} */
-
-.muze-legend-item-info {
+.dark-background-chart .muze-legend-item-info {
   color: #999ca5;
 }
 
-.muze-legend-title-text {
+.dark-background-chart .muze-legend-title-text {
   color: #999ca5;
 }
 

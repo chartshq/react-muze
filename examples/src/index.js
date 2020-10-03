@@ -40,10 +40,10 @@ import Area1 from "./WebDemo/Area/Area1";
 import Area2 from "./WebDemo/Area/Area2";
 
 // import TooltipStyling from "./WebDemo/CustomCSS/TooltipStyling";
-// import DarkThemeWithGrid from "./WebDemo/CustomCSS/DarkThemeWithGrid";
-// import DarkBackground from "./WebDemo/CustomCSS/DarkBackground";
-// import BackgroundImageTheme from "./WebDemo/CustomCSS/BackgroundImageTheme";
-// import LightTheme from "./WebDemo/CustomCSS/LightTheme";
+import DarkThemeWithGrid from "./WebDemo/CustomCSS/DarkThemeWithGrid";
+import DarkBackground from "./WebDemo/CustomCSS/DarkBackground";
+import BackgroundImageTheme from "./WebDemo/CustomCSS/BackgroundImageTheme";
+import LightTheme from "./WebDemo/CustomCSS/LightTheme";
 
 import AxisTickLabelsFormatting from "./WebDemo/ChartConfiguration/AxisTickLabelsFormatting";
 
@@ -96,6 +96,10 @@ ReactDOM.render(
     <Pie3 />
     <Pie4 />
 
+    {/* <BackgroundImageTheme />
+    <LightTheme />
+    <DarkThemeWithGrid /> */}
+    <DarkBackground />
     {/* <Scatter1 />
     <Scatter2 />
     <Scatter3 />

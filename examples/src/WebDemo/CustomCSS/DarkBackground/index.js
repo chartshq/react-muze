@@ -1,24 +1,18 @@
 import * as React from "react";
-import Muze, {
-  Canvas,
-  Layer,
-  DataModel,
-} from "@chartshq/react-muze/components";
+import Muze, { Canvas, Layer, DataModel } from "@chartshq/react-muze/components";
 import {
   Color,
   Border,
   Encoding,
   Axes,
+  Headers
 } from "@chartshq/react-muze/configurations";
-
 import "./index.css";
 
-import csvData from "./supermarket.csv";
-import jsonSchema from "./supermarket-schema.json";
-
 async function createDataModel() {
-  const data = csvData;
-  const schema = jsonSchema.map((s) => {
+  const data = await fetch("/data/supermarket.csv").then((d) => d.text());
+  let schema = await fetch("/data/supermarket-schema.json").then((d) => d.json());
+  schema = schema.map((s) => {
     if (s.name === "Total") {
       return Object.assign(s, {
         format: (val) =>
@@ -27,7 +21,6 @@ async function createDataModel() {
     }
     return s;
   });
-
   const DataModelClass = await DataModel.onReady();
   const formattedData = await DataModelClass.loadData(data, schema);
   return new DataModelClass(formattedData);
@@ -37,51 +30,43 @@ class DarkThemeWithGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      carsDm: null,
+      dm: null
     };
   }
 
   componentDidMount() {
-    createDataModel().then((carsDm) => {
-      this.setState({ carsDm });
+    createDataModel().then((dm) => {
+      this.setState({ dm });
     });
   }
 
   render() {
-    const { carsDm } = this.state;
+    const { dm } = this.state;
 
+    const title = Headers.config().content("Supermarket Sales").create();
     const color = Color.config()
       .field("City")
       .range(["#35B5D8", "#F2726F", "#FFC534"])
       .create();
-
     const arcEncoding = Encoding.Arc.config().angle("Total").create();
-
     const border = Border.config().style("transparent").create();
-
-    // NOTE: there's no solution for
-    // axes: {
-    //   radius: {
-    //     range: range => [range[0], range[1] - 10]
-    //   }
-    // }
+    const radius = Axes.Radius.config().range(r => [r[0], r[1] - 10]).create();
 
     return (
-      <div id="chart-container">
-        <Muze data={carsDm}>
-          <Canvas
-            title="Supermarket Sales"
-            subtitle="Total amount spent for each payment methods"
-            className="chart"
-            rows={["Payment"]}
-            columns={[]}
-            color={color}
-            border={border}
-          >
-            <Layer type="mark" encoding={arcEncoding} />
-          </Canvas>
-        </Muze>
-      </div>
+      <Muze data={dm}>
+        <Canvas
+          title={title}
+          subtitle="Total amount spent for each payment methods"
+          className="dark-background-chart"
+          rows={["Payment"]}
+          columns={[]}
+          color={color}
+          border={border}
+          axesRadius={radius}
+        >
+          <Layer mark="arc" encoding={arcEncoding} />
+        </Canvas>
+      </Muze>
     );
   }
 }

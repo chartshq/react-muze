@@ -1,10 +1,13 @@
 /* Light theme */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
 
-#chart-container {
+.dark-theme-chart {
+  width: 800px;
+  height: 350px;
   width: 65%;
   height: 80%;
   display: flex;
@@ -13,23 +16,18 @@ html, body {
   background: #3C3C3E;
 }
 
-#chart, .chart {
-  width: 800px;
-  height: 350px;
-}
-
-.muze-group-container {
+.dark-theme-chart div {
   background: #3C3C3E;
 }
 
-.muze-legend-item-info {
+.dark-theme-chart .muze-legend-item-info {
   color: #fff;
 }
 
-.muze-legend-title-text {
+.dark-theme-chart .muze-legend-title-text {
   color: #fff;
 }
 
-.muze-text-cell {
+.dark-theme-title {
   color: #fff;
 }
