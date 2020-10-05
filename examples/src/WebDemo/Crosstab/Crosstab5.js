@@ -1,6 +1,8 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
+import Muze, { Canvas } from "@chartshq/react-muze/components";
 import { Axes, Headers } from "@chartshq/react-muze/configurations";
+
+const { DataModel } = Muze;
 
 async function createDataModel() {
     const data = await fetch("/data/health-index.csv")

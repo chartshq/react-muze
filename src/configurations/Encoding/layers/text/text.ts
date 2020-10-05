@@ -3,6 +3,10 @@ import { TextEncodingInterface } from './types';
 import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
 
 class TextLayerEncoding {
+  _x?: TextEncodingInterface['x'];
+
+  _y?: TextEncodingInterface['y'];
+
   _color?: TextEncodingInterface['color'];
   
   _size?: TextEncodingInterface['size'];
@@ -18,6 +22,8 @@ class TextLayerEncoding {
   _alignmentBaseline: TextEncodingInterface['alignmentBaseline'];
 
   constructor({
+    x,
+    y,
     color,
     size,
     radius,
@@ -26,6 +32,8 @@ class TextLayerEncoding {
     rotation,
     alignmentBaseline
   }: TextEncodingInterface) {
+    this._x = x;
+    this._y = y;
     this._color = color;
     this._size = size;
     this._radius = radius;
@@ -37,6 +45,16 @@ class TextLayerEncoding {
 
   static config(): TextLayerEncoding {
     return new TextLayerEncoding({});
+  }
+
+  x(x: TextEncodingInterface['x']): TextLayerEncoding {
+    this._x = x;
+    return this;
+  }
+
+  y(y: TextEncodingInterface['y']): TextLayerEncoding {
+    this._y = y;
+    return this;
   }
 
   color(color: TextEncodingInterface['color']): TextLayerEncoding {

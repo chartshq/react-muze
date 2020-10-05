@@ -1,5 +1,7 @@
 import * as React from 'react';
-import Muze, { Canvas, DataModel } from '@chartshq/react-muze/components';
+import Muze, { Canvas } from '@chartshq/react-muze/components';
+
+const { DataModel } = Muze;
 
 const createDataModel = async (dataUrl, schemaUrl) => {
     const data = await fetch(dataUrl).then((d) => d.json());

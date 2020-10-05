@@ -56,7 +56,8 @@ export interface ChartConfig {
   axesRadius?: {
       range: Function;
       domain: number[];
-  }
+  },
+  autoGroupBy?: boolean;
 }
 
 export interface SanitizedConfig {
@@ -99,6 +100,9 @@ export interface SanitizedConfig {
   axesRadius?: {
     range: Function;
     domain: number[];
+  },
+  autoGroupBy?: {
+    disabled: boolean
   }
 }
 

@@ -1,15 +1,18 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
-import { share, Encoding } from "@chartshq/react-muze/configurations";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
+import { Encoding } from '@chartshq/react-muze/configurations';
+
+const share = Muze.Operators.share;
 
 async function createDataModel() {
     const data = await fetch("/data/cars.json")
         .then((d) => d.json());
     const schema = await fetch("/data/cars-schema.json")
         .then((d) => d.json());
-    const DataModelClass = await DataModel.onReady();
-    const formattedData = await DataModelClass.loadData(data, schema);
-    return new DataModelClass(formattedData);
+    const DataModel = await Muze.DataModel.onReady();
+    // const DataModelClass = await DataModel.onReady();
+    const formattedData = await DataModel.loadData(data, schema);
+    return new DataModel(formattedData);
 }
 
 const operationFn = (dm) => {
@@ -43,6 +46,7 @@ class Bar extends React.Component {
 
     componentDidMount() {
         createDataModel().then((carsDm) => {
+            console.log(carsDm.getData());
             this.setState({ carsDm });
         });
     }
@@ -51,15 +55,27 @@ class Bar extends React.Component {
         const { carsDm } = this.state;
 
         return (
-            <Muze data={carsDm}>
-                <Canvas
-                    rows={["Year"]}
-                    columns={[share("Max Weight", "Min Weight")]}
-                    operation={operationFn}
-                >
-                    <Layer mark="bar" encoding={barEncoding} />
-                </Canvas>
-            </Muze>
+            <>
+                {carsDm &&
+                    <Muze data={carsDm}>
+                        <div>
+                            <div>
+                                <div>
+                                    <Canvas
+                                        columns={[share("Max Weight", "Min Weight")]}
+                                        rows={["Year"]}
+                                        width={500}
+                                        width={500}
+                                        operation={operationFn}
+                                    >
+                                        <Layer mark="bar" encoding={barEncoding} />
+                                    </Canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </Muze>
+                }
+            </>
         );
     }
 }

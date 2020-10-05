@@ -19,6 +19,10 @@ class AxesBase {
 
   labels?: any;
 
+  interpolator?: AxesInterface['interpolator'];
+
+  nice?: AxesInterface['nice'];
+
   constructor(builder: any) {
     this.name = builder._name;
     this.show = builder._show;
@@ -29,6 +33,8 @@ class AxesBase {
     this.numberOfTicks = builder._numberOfTicks;
     this.tickFormat = builder._tickFormat;
     this.labels = builder._axisLabels;
+    this.interpolator = builder._interpolator;
+    this.nice = builder._nice;
   }
 }
 

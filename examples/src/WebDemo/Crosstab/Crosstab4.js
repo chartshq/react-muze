@@ -1,6 +1,12 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
-import { Axes, Headers, Encoding } from "@chartshq/react-muze/configurations";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
+import { Axes, Headers, Encoding, Border } from "@chartshq/react-muze/configurations";
+
+const { DataModel } = Muze;
+
+const border = Border.config().create({
+    style: 'transparent'
+});
 
 async function createDataModel() {
     const data = await fetch("/data/coffee.csv")
@@ -52,6 +58,8 @@ const textEncoding = Encoding.Text.config()
     })
     .create();
 
+const axisRadius = Axes.Radius.config().range(r => [r[0] + 20, r[1] - 25]).create();
+
 class Crosstab extends React.Component {
     constructor(props) {
         super(props);
@@ -72,10 +80,14 @@ class Crosstab extends React.Component {
         return (
             <Muze data={carsDm}>
                 <Canvas
+                    border={border}
                     rows={["Product Type"]}
                     columns={[['Market'], []]}
                     color="Product"
                     title={title}
+                    axesRadius={axisRadius}
+                    width={700}
+                    height={800}
                 >
                     <Layer mark="arc" encoding={arc} />
                     <Layer mark="text" encoding={textEncoding} />

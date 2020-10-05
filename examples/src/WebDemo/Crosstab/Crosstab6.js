@@ -1,6 +1,8 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
-import { Axes, Headers, Legend } from "@chartshq/react-muze/configurations";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
+import { Color, Axes, Headers, Legend } from "@chartshq/react-muze/configurations";
+
+const { DataModel } = Muze;
 
 async function createDataModel() {
     const data = await fetch("/data/by-election.json")

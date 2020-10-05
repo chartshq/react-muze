@@ -1,7 +1,9 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel } from "@chartshq/react-muze/components";
+import Muze, { Canvas } from "@chartshq/react-muze/components";
 import { Border } from "@chartshq/react-muze/configurations";
 import { MuzeConstants } from "@chartshq/react-muze/constants";
+
+const { DataModel } = Muze;
 
 const DATA_SRC =
   "https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars.json";

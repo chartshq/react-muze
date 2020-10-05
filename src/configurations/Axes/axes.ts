@@ -22,6 +22,10 @@ class Axes {
 
   _labels?: any;
 
+  _interpolator?: AxesInterface['interpolator'];
+
+  _nice?: AxesInterface['nice'];
+
   static Radius = AxesRadius;
 
   constructor({
@@ -34,6 +38,8 @@ class Axes {
     numberOfTicks,
     tickFormat,
     labels,
+    interpolator,
+    nice
   }: AxesInterface) {
     this._name = name;
     this._show = show;
@@ -44,6 +50,8 @@ class Axes {
     this._numberOfTicks = numberOfTicks;
     this._tickFormat = tickFormat;
     this._labels = labels;
+    this._interpolator = interpolator;
+    this._nice = nice;
   }
 
   static config(): Axes {
@@ -92,6 +100,16 @@ class Axes {
 
   labels(labelConfig: AxesInterface['labels']): Axes {
     this._labels = labelConfig;
+    return this;
+  }
+
+  interpolator(type: AxesInterface['interpolator']): Axes {
+    this._interpolator = type;
+    return this;
+  }
+
+  nice(isNice: AxesInterface['nice']): Axes {
+    this._nice = isNice;
     return this;
   }
 

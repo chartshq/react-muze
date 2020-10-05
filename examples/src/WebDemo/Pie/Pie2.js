@@ -1,5 +1,5 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
 import { Encoding } from "@chartshq/react-muze/configurations";
 
 async function createDataModel() {
@@ -7,7 +7,7 @@ async function createDataModel() {
         .then((d) => d.json());
     const schema = await fetch("/data/cars-schema.json")
         .then((d) => d.json());
-    const DataModelClass = await DataModel.onReady();
+    const DataModelClass = await Muze.DataModel.onReady();
     const formattedData = await DataModelClass.loadData(data, schema);
     return new DataModelClass(formattedData);
 }

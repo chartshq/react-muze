@@ -14,4 +14,6 @@ export interface AxesInterface {
   labels?: {
     rotation: NumberOrMissing;
   };
+  interpolator?: string;
+  nice?: boolean;
 }

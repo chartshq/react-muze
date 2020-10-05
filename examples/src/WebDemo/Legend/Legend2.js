@@ -1,5 +1,7 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
+import Muze, { Canvas } from "@chartshq/react-muze/components";
+
+const { DataModel } = Muze;
 
 async function createDataModel() {
     const data = await fetch("/data/cars.json")
@@ -30,8 +32,7 @@ class Bar extends React.Component {
 
         return (
             <Muze data={carsDm}>
-                <Canvas rows={["Acceleration"]} columns={["Horsepower"]} color="Acceleration" detail={['Name']}>
-                </Canvas>
+                <Canvas rows={["Acceleration"]} columns={["Horsepower"]} color="Acceleration" detail={['Name']} />
             </Muze>
         );
     }

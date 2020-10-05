@@ -1,9 +1,14 @@
 import React from "react";
+import muze from "@chartshq/muze";
 import { Context } from "../../utils/context/canvas-context";
 import "./style.scss";
 import { LayerProps } from "./interfaces";
 
 class Layer extends React.Component<LayerProps> {
+  static Operators = {
+    compose: muze.layerFactory.composeLayers,
+  };
+
   constructor(props: any) {
     super(props);
     this.state = {

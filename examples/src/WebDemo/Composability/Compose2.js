@@ -1,6 +1,9 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
-import { share, Encoding, Axes } from "@chartshq/react-muze/configurations";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
+import { Encoding, Axes } from "@chartshq/react-muze/configurations";
+
+const share = Muze.Operators.share;
+const DataModel = Muze.DataModel;
 
 async function createDataModel() {
     const data = await fetch("/data/cars.json")
@@ -29,7 +32,7 @@ const operationFn = dm => {
 const areaEncoding = Encoding.Area.config().y('Max Weight').y0('Min Weight').x('Year').color({ value: () => '#ff9800' }).create();
 const axis = Axes.config().name('Weight').create();
 
-class Bar extends React.Component {
+class RangeArea extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -61,4 +64,4 @@ class Bar extends React.Component {
     }
 }
 
-export default Bar;
+export default RangeArea;
