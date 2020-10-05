@@ -29,9 +29,10 @@ class Cross extends React.Component {
 
         return (
             <Muze data={carsDm}>
-                <Canvas rows={['Acceleration']} columns={['Horsepower']} color="Origin" detail={["Name"]} crossInteractive />
+                <h2>Default - Cross Interaction disabled</h2>
+                <Canvas rows={['Acceleration']} columns={['Horsepower']} color="Origin" detail={["Name"]} />
                 <Canvas rows={['Acceleration']} columns={['Year']} color="Origin" />
-                <Canvas rows={['Acceleration']} columns={['Year']} color="Origin" crossInteractive />
+                <Canvas rows={['Acceleration']} columns={['Year']} color="Origin" />
             </Muze>
         );
     }
