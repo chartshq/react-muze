@@ -78,7 +78,7 @@ ReactDOM.render(
     {/* <Basic /> */}
     {/* <Layer /> */}
     {/* <Operation /> */}
-    {/* <Cross /> */}
+    <Cross />
     {/* <Title /> */}
     {/* <Scroll /> */}
     {/* <Nesting /> */}

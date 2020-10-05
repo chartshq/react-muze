@@ -1,6 +1,6 @@
 import React from "react";
 import muze from "@chartshq/muze";
-// import "@chartshq/muze/dist/muze.css";
+import "@chartshq/muze/dist/muze.css";
 import { MuzeProvider } from "../../utils/context/muze-context";
 import "./style.scss";
 import { MuzeProps, MuzeState } from "./interfaces";
@@ -30,10 +30,15 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
 
   componentDidUpdate() {
     const { interactiveCharts, allCharts } = this.state;
-    const { sideEffects, behaviours } = this.props;
-    const canvases = Object.values(interactiveCharts).length
-      ? Object.values(interactiveCharts)
-      : Object.values(allCharts);
+    const { sideEffects, behaviours, crossInteractive } = this.props;
+
+    const interactiveChartsLen = Object.values(interactiveCharts).length;
+    // Make all charts connected only if Muze has crossInteractive true and
+    // crossInteractive prop in not passed in any Canvas
+    const canvases =
+      crossInteractive && !interactiveChartsLen
+        ? Object.values(allCharts)
+        : Object.values(interactiveCharts);
     let sideEffectsMap = {};
     let physicalBehaviouralMap = {};
 
