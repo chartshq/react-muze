@@ -13,3 +13,5 @@ Open the examples directory
 - yarn install
 - yarn link @chartshq/react-muze
 - yarn start
+
+Examples include all the web demos
