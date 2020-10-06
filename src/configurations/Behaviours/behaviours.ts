@@ -1,7 +1,17 @@
+import muze from '@chartshq/muze';
 import { BehavioursInterface, BehavioursConfigInterface } from './types';
 
 class Behaviours {
   private _config : BehavioursConfigInterface;
+
+  static GenericBehaviour = muze.Behaviours.standards.GenericBehaviour;
+  static PersistentBehaviour = muze.Behaviours.standards.PersistentBehaviour;
+  static VolatileBehaviour = muze.Behaviours.standards.VolatileBehaviour;
+  
+  static BrushBehaviour = muze.Behaviours.behaviouralActions.BrushBehaviour;
+  static FilterBehaviour = muze.Behaviours.behaviouralActions.FilterBehaviour;
+  static HighlightBeahviour = muze.Behaviours.behaviouralActions.HighlightBeahviour;
+  static SelectBehaviour = muze.Behaviours.behaviouralActions.SelectBehaviour;
 
   private constructor() {
     this._config = {};

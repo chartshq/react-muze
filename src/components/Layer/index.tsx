@@ -21,6 +21,11 @@ class Layer extends React.Component<LayerProps> {
     const config = Object.keys(this.props).reduce(
       (acc: any, prop: string, index: number) => {
         if ((this.props as any)[prop] !== undefined) {
+          if (prop === "transitionDuration") {
+            acc.transition = {
+              duration: this.props[prop],
+            };
+          }
           if (prop === "transformType") {
             acc.transform = {
               type: this.props[prop],

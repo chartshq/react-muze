@@ -1,70 +1,71 @@
 import * as React from "react";
 import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
+import { SideEffects, Behaviours } from "@chartshq/react-muze/configurations";
 
 const { DataModel } = Muze;
-const { html } = Muze.Operators;
-const DateTimeFormatter = DataModel.DateTimeFormatter;
+const { SpawnableSideEffect } = SideEffects;
+const { VolatileBehaviour } = Behaviours;
 
 async function createDataModel() {
-    const data = await fetch("/data/economic-indicator.json")
+    const data = await fetch("/data/cars.json")
         .then((d) => d.json());
-    const schema = [
-        {
-            name: 'date',
-            type: 'dimension',
-            subtype: 'temporal',
-            format: '%Y-%m-%d'
-        },
-        {
-            name: 'value',
-            type: 'measure'
-        },
-        {
-            name: 'indicator',
-            type: 'dimension'
-        },
-        {
-            name: 'unit',
-            type: 'dimension'
-        }
-    ];
+    const schema = await fetch("/data/cars-schema.json")
+        .then((d) => d.json());
     const DataModelClass = await DataModel.onReady();
     const formattedData = await DataModelClass.loadData(data, schema);
     return new DataModelClass(formattedData);
 }
 
-class Line extends React.Component {
+class SingleSelectBehaviour extends VolatileBehaviour {
+    static formalName() {
+        return "singleSelect";
+    }
+}
+
+Muze.Operators.registerBehaviours([SingleSelectBehaviour]);
+
+const beh = Behaviours.config().create({
+    for: ['singleSelect'],
+    on: ['click'],
+    dissociateFrom: ["select", "click"]
+});
+
+const sideEffectConfig = SideEffects.config().create({
+    for: [{
+        name: 'highlighter',
+        options: {
+            strategy: 'focus'
+        }
+    }],
+    on: ['singleSelect']
+})
+
+class Bar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dms: [],
+            carsDm: null,
         };
     }
 
     componentDidMount() {
-        createDataModel().then((dm) => {
-            const dms = dm.splitByRow(['indicator']);
-            this.setState({ dms });
+        createDataModel().then((carsDm) => {
+            this.setState({ carsDm });
         });
     }
 
     render() {
-        const { dms } = this.state;
+        const { carsDm } = this.state;
 
         return (
-            dms.map(dm => {
-                const title = dm.getField('indicator').data()[0];
-
-                return (
-                    <Muze data={dm} crossInteractive>
-                        <Canvas rows={[[], ["value"]]} columns={["date"]} detail={["indicator", "unit"]} title={title}>
-                            <Layer mark="area" interpolate="catmullRom" />
-                        </Canvas>
-                    </Muze>
-                )
-            })
+            <Muze data={carsDm} behaviours={beh} sideEffects={sideEffectConfig} crossInteractive>
+                <Canvas
+                    rows={["Miles_per_Gallon"]}
+                    columns={["Maker"]}
+                />
+            </Muze>
         );
     }
 }
 
-export default Line;
+export default Bar;

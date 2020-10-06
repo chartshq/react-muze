@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+// import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import Area from './Examples/Pie/Pie1';
+import Cross from './Examples/CrossInteractive/Cross3';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Area />
+    <Cross />
   </React.StrictMode>,
   document.getElementById("root")
 );

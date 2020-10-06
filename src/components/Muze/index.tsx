@@ -4,25 +4,40 @@ import "@chartshq/muze/dist/muze.css";
 import { MuzeProvider } from "../../utils/context/muze-context";
 import "./style.scss";
 import { MuzeProps, MuzeState } from "./interfaces";
-import { SideEffects, Behaviours } from "../../configurations";
 import { DataModelConstants } from "../../constants";
 
 export default class Muze extends React.Component<MuzeProps, MuzeState> {
   public static defaultProps = {
-    sideEffects: [],
+    sideEffects: {},
     behaviours: {},
   };
+
+  static _sideEffects = new Map();
+  static get sideEffects() {
+    return Muze._sideEffects;
+  }
+
+  static _behaviours = new Map();
+  static get behaviours() {
+    return Muze._behaviours;
+  }
+
+  static DataModel = Object.assign(muze.DataModel, DataModelConstants);
 
   static Operators = {
     share: muze.Operators.share,
     html: muze.Operators.html,
+    registerSideEffects: (effects: any[]) => {
+      effects.forEach((effect) => {
+        Muze._sideEffects.set(effect.formalName(), effect);
+      });
+    },
+    registerBehaviours: (behaviours: any[]) => {
+      behaviours.forEach((beh) => {
+        Muze._behaviours.set(beh.formalName(), beh);
+      });
+    },
   };
-
-  static DataModel = Object.assign(muze.DataModel, DataModelConstants);
-
-  static SideEffects = muze.SideEffects.standards;
-
-  static Behaviours = muze.Behaviours.standards;
 
   constructor(props: MuzeProps) {
     super(props);
@@ -55,38 +70,25 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     let sideEffectsMap = {};
     let physicalBehaviouralMap = {};
 
-    sideEffectsMap = sideEffects.reduce((acc: any, elem: any, i: number) => {
-      const sideEffectConfig = (elem.on || []).reduce(
-        (acc: any, elem1: string, i: number) => {
-          acc[elem1] = [elem.for[i]];
-          return acc;
-        },
-        {}
-      );
-      acc = { ...acc, ...sideEffectConfig };
-      return acc;
-    }, {});
-
-    // sideEffectsMap = (sideEffects.on || []).reduce(
-    //   (acc: any, elem: string, i: number) => {
-    //     acc[elem] = sideEffects.for[i];
-    //     return acc;
-    //   },
-    //   {}
-    // );
-
-    physicalBehaviouralMap = (behaviours.on || []).reduce(
+    sideEffectsMap = (sideEffects.on || []).reduce(
       (acc: any, elem: string, i: number) => {
-        acc[elem] = {
-          behaviours: behaviours.for[i],
-        };
+        // acc[elem] = [sideEffects.for[i]];
+        acc[elem] = sideEffects.for;
         return acc;
       },
       {}
     );
 
-    // const registeredSideEffect = SideEffects.effect;
-    // const registeredBehaviour = Behaviours.effect;
+    physicalBehaviouralMap = (behaviours.on || []).reduce(
+      (acc: any, elem: string, i: number) => {
+        acc[elem] = {
+          // behaviours: behaviours.for[i],
+          behaviours: behaviours.for,
+        };
+        return acc;
+      },
+      {}
+    );
 
     const actionModel = muze.ActionModel.for(...canvases)
       .enableCrossInteractivity()
@@ -101,12 +103,14 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       }
     });
 
-    // if (registeredSideEffect) {
-    //   actionModel.registerSideEffects(registeredSideEffect);
-    // }
-    // if (registeredBehaviour) {
-    //   actionModel.registerBehaviouralActions(registeredBehaviour);
-    // }
+    Muze.sideEffects.forEach((item) => {
+      actionModel.registerSideEffects(item);
+    });
+
+    Muze.behaviours.forEach((item) => {
+      actionModel.registerBehaviouralActions(item);
+    });
+
     if (sideEffects.dissociateSideEffect) {
       actionModel.dissociateSideEffect(sideEffects.dissociateSideEffect);
     }

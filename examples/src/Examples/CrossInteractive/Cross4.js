@@ -4,7 +4,7 @@ import { Headers, Encoding, SideEffects } from "@chartshq/react-muze/configurati
 
 const { DataModel } = Muze;
 const html = Muze.Operators.html;
-const { SpawnableSideEffect, SurrogateSideEffect, GenericSideEffect } = Muze.SideEffects;
+const { SurrogateSideEffect } = SideEffects;
 
 async function createDataModel() {
     const data = await fetch("/data/seattle-weather.csv")
@@ -44,6 +44,18 @@ function operationFn(dm) {
     );
 }
 
+const tickEncoding = Encoding.Tick.config().create({
+    x: null,
+    y: "Precipitation",
+    color: {
+        value: () => "#f71616"
+    }
+});
+
+const subtitle = Headers.config()
+    .content(html`Selecting individual months will give the <b>average</b> for those months`)
+    .create();
+
 class AverageLine extends SurrogateSideEffect {
     static formalName() {
         return "averageLine";
@@ -64,24 +76,15 @@ class AverageLine extends SurrogateSideEffect {
     }
 }
 
-const tickEncoding = Encoding.Tick.config().create({
-    x: {
-        field: null
-    },
-    y: "Precipitation",
-    color: {
-        value: () => "#f71616"
-    }
-});
+Muze.Operators.registerSideEffects([AverageLine]); //array
 
-const subtitle = Headers.config().content(html`Selecting individual months will give the <b>average</b> for those
-        months`).create();
+const config = SideEffects.config().for(['averageLine'])
+    .on(['select', 'brush'])
+    .create();
 
-SideEffects.register(AverageLine);
-
-const sideEffectNew = SideEffects.config().create({
-    for: ['averageLine', 'averageLine'],
-    on: ['select', 'brush'],
+let side = SideEffects.config().create({
+    for: ['averageLine'],
+    on: ['select', 'brush']
 });
 
 class Line extends React.Component {
@@ -102,7 +105,7 @@ class Line extends React.Component {
         const { dm } = this.state;
 
         return (
-            <Muze data={dm} crossInteractive sideEffects={[sideEffectNew]}>
+            <Muze data={dm} crossInteractive sideEffects={config}>
                 <Canvas
                     rows={['Precipitation']}
                     columns={['Month']}

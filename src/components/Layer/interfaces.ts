@@ -10,4 +10,5 @@ export interface LayerProps {
   calculateDomain?: boolean;
   source?: Function;
   interactive?: boolean;
+  transitionDuration?: number;
 }

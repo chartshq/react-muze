@@ -1,18 +1,15 @@
 import * as React from "react";
 import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
-import { Tooltip } from "@chartshq/react-muze/configurations";
-
-const { DataModel } = Muze;
 
 async function createDataModel() {
   const data = await fetch("/data/cars.json").then((d) => d.json());
   const schema = await fetch("/data/cars-schema.json").then((d) => d.json());
-  const DataModelClass = await DataModel.onReady();
+  const DataModelClass = await Muze.DataModel.onReady();
   const formattedData = await DataModelClass.loadData(data, schema);
   return new DataModelClass(formattedData);
 }
 
-class FragmentedTooltip extends React.Component {
+class AnimationEnd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,21 +26,26 @@ class FragmentedTooltip extends React.Component {
   render() {
     const { carsDm } = this.state;
 
-    const tooltip = Tooltip.config().on("highlight").mode("fragmented");
-
     return (
       <Muze data={carsDm}>
         <Canvas
           rows={["Horsepower"]}
-          columns={["Origin"]}
-          color="Cylinders"
-          tooltips={[tooltip]}
+          columns={["Year"]}
+          onAnimationEnd={(canvas) => {
+            canvas.client.config({
+              border: {
+                style: "solid",
+                color: "red",
+                width: 2,
+              },
+            });
+          }}
         >
-          <Layer type="bar" transformType="stack" />
+          <Layer mark="area" />
         </Canvas>
       </Muze>
     );
   }
 }
 
-export default FragmentedTooltip;
+export default AnimationEnd;
