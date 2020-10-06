@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+// import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
 // import Borders from './Borders/index';
@@ -12,6 +12,7 @@ import * as serviceWorker from "./serviceWorker";
 // import Scroll from "./Demo/Scroll";
 // import Nesting from "./Demo/Nesting";
 // import Nesting1 from "./Demo/Nesting1";
+
 import Bar1 from "./WebDemo/Bar/Bar1";
 import Bar2 from "./WebDemo/Bar/Bar2";
 import Bar3 from "./WebDemo/Bar/Bar3";
@@ -60,36 +61,41 @@ import CustomTooltip from "./WebDemo/Tooltips/CustomTooltip";
 
 import Heatmap1 from "./WebDemo/Heatmap/Heatmap1";
 
-import Crosstab1 from './WebDemo/Crosstab/Crosstab1';
-import Crosstab2 from './WebDemo/Crosstab/Crosstab2';
-import Crosstab3 from './WebDemo/Crosstab/Crosstab3';
-import Crosstab4 from './WebDemo/Crosstab/Crosstab4';
-import Crosstab5 from './WebDemo/Crosstab/Crosstab5';
-import Crosstab6 from './WebDemo/Crosstab/Crosstab6';
-import Crosstab7 from './WebDemo/Crosstab/Crosstab7';
+import Crosstab1 from "./WebDemo/Crosstab/Crosstab1";
+import Crosstab2 from "./WebDemo/Crosstab/Crosstab2";
+import Crosstab3 from "./WebDemo/Crosstab/Crosstab3";
+import Crosstab4 from "./WebDemo/Crosstab/Crosstab4";
+import Crosstab5 from "./WebDemo/Crosstab/Crosstab5";
+import Crosstab6 from "./WebDemo/Crosstab/Crosstab6";
+import Crosstab7 from "./WebDemo/Crosstab/Crosstab7";
 
 import Legend1 from "./WebDemo/Legend/Legend1";
 import Legend2 from "./WebDemo/Legend/Legend2";
 import Legend3 from "./WebDemo/Legend/Legend3";
 import Legend4 from "./WebDemo/Legend/Legend4";
 
-import Compose1 from './WebDemo/Composability/Compose1';
-import Compose2 from './WebDemo/Composability/Compose2';
-import Compose3 from './WebDemo/Composability/Compose3';
-import Compose4 from './WebDemo/Composability/Compose4';
+import Compose1 from "./WebDemo/Composability/Compose1";
+import Compose2 from "./WebDemo/Composability/Compose2";
+import Compose3 from "./WebDemo/Composability/Compose3";
+import Compose4 from "./WebDemo/Composability/Compose4";
 
-import Large1 from './WebDemo/Large/Large1';
-import Large2 from './WebDemo/Large/Large2';
-import Large3 from './WebDemo/Large/Large3';
+import Large1 from "./WebDemo/Large/Large1";
+import Large2 from "./WebDemo/Large/Large2";
+import Large3 from "./WebDemo/Large/Large3";
 
-import Cross1 from './WebDemo/Cross/Cross1';
+import Cross1 from "./WebDemo/Cross/Cross1";
 // import Cross3 from './WebDemo/Cross/Cross3';
-import Cross4 from './WebDemo/Cross/Cross4';
+import Cross4 from "./WebDemo/Cross/Cross4";
+
+import LifecycleInitialization from "./WebDemo/LifecycleHooks/Initialization";
+import LifecycleAnimationEnd from "./WebDemo/LifecycleHooks/AnimationEnd";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CustomTooltip />
-    <FragmentedTooltip />
+    {/* <CustomTooltip />
+    <FragmentedTooltip /> */}
+    {/* <LifecycleInitialization /> */}
+    <LifecycleAnimationEnd />
     {/* <TooltipStyling /> */}
     {/* <Border /> */}
     {/* <Title /> */}
@@ -111,7 +117,7 @@ ReactDOM.render(
     <Bar6 />
     <Bar7 /> */}
 
-    <Pie1 />
+    {/* <Pie1 /> */}
     {/* <Pie2 />
     <Pie3 />
     <Pie4 /> */}
