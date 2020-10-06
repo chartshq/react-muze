@@ -1,3 +1,4 @@
+import muze from '@chartshq/muze';
 import { BehavioursInterface } from './types';
 import { SideEffectsBase } from './base';
 import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
@@ -8,8 +9,15 @@ class Behaviours {
   _on: BehavioursInterface['_on'];
 
   _dissociateFrom: BehavioursInterface['_dissociateFrom'];
+
+  static GenericBehaviour = muze.Behaviours.standards.GenericBehaviour;
+  static PersistentBehaviour = muze.Behaviours.standards.PersistentBehaviour;
+  static VolatileBehaviour = muze.Behaviours.standards.VolatileBehaviour;
   
-  static effect: any;
+  static BrushBehaviour = muze.Behaviours.behaviouralActions.BrushBehaviour;
+  static FilterBehaviour = muze.Behaviours.behaviouralActions.FilterBehaviour;
+  static HighlightBeahviour = muze.Behaviours.behaviouralActions.HighlightBeahviour;
+  static SelectBehaviour = muze.Behaviours.behaviouralActions.SelectBehaviour;
 
   constructor({
     _for,
@@ -24,11 +32,6 @@ class Behaviours {
   static config(): Behaviours {
     return new Behaviours({});
   }
-
-  static register(effect: any) {
-    Behaviours.effect = effect;
-  }
-
 
   for(_for: BehavioursInterface['_for']): Behaviours {
     this._for = _for;

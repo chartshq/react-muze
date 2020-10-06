@@ -1,6 +1,7 @@
 import { SideEffectsInterface } from './types';
 import { SideEffectsBase } from './base';
 import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
+import muze from '@chartshq/muze';
 
 class SideEffects {
   _for: SideEffectsInterface['_for'];
@@ -8,8 +9,21 @@ class SideEffects {
   _on: SideEffectsInterface['_on'];
 
   _dissociateFrom: SideEffectsInterface['_dissociateFrom'];
-  
-  static effect: any;
+
+  static GenericSideEffect = muze.SideEffects.standards.GenericSideEffect;
+  static SpawnableSideEffect = muze.SideEffects.standards.SpawnableSideEffect;
+  static SurrogateSideEffect = muze.SideEffects.standards.SurrogateSideEffect;
+
+  static AnchorEffect = muze.SideEffects.sideEffects.AnchorEffect;
+  static AxisLabelHighLighter = muze.SideEffects.sideEffects.AxisLabelHighLighter;
+  static BrushAnchors = muze.SideEffects.sideEffects.BrushAnchors;
+  static Crossline = muze.SideEffects.sideEffects.Crossline;
+  static FilterEffect = muze.SideEffects.sideEffects.FilterEffect;
+  static FragmentedTooltip = muze.SideEffects.sideEffects.FragmentedTooltip;
+  static PersistentAnchors = muze.SideEffects.sideEffects.PersistentAnchors;
+  static PlotHighlighter = muze.SideEffects.sideEffects.PlotHighlighter;
+  static SelectionBox = muze.SideEffects.sideEffects.SelectionBox;
+  static Tooltip = muze.SideEffects.sideEffects.Tooltip;
 
   constructor({
     _for,
@@ -23,10 +37,6 @@ class SideEffects {
 
   static config(): SideEffects {
     return new SideEffects({});
-  }
-
-  static register(effect: any) {
-    SideEffects.effect = effect;
   }
 
   for(_for: SideEffectsInterface['_for']): SideEffects {

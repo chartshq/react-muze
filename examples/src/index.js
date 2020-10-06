@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import Area from './Examples/CrossInteractive/Cross4';
+import Cross4 from './Examples/CrossInteractive/Cross3';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Area />
+    <Cross4 />
   </React.StrictMode>,
   document.getElementById("root")
 );
