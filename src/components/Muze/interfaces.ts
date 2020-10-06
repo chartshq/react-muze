@@ -22,7 +22,6 @@ export interface MuzeProps {
   crossInteractive?: boolean;
   sideEffects?: any;
   behaviours?: any;
-  propagationBehaviourMap?: {}
 }
 
 export interface MuzeState {
@@ -33,4 +32,7 @@ export interface MuzeState {
   allCharts: {
     [canvas: string]: muze.Canvas
   };
+  propagationBehaviour: {
+    [canvas: string]: muze.Canvas
+  }
 }
