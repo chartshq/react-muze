@@ -53,7 +53,7 @@ export interface ChartConfig {
   transform?: {
     [key: string]: Function
   }
-  axesRadius?: RadialAxisOptions,
+  radiusAxis?: RadialAxisOptions,
   autoGroupBy?: boolean;
   facetRows?: {
     verticalAlign?: string;
@@ -101,7 +101,7 @@ export interface SanitizedConfig {
   transform?: {
     [key: string]: Function
   },
-  axesRadius?: RadialAxisOptions,
+  radiusAxis?: RadialAxisOptions,
   autoGroupBy?: {
     disabled: boolean
   },

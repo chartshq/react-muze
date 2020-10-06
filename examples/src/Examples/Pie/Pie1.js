@@ -34,7 +34,7 @@ class Bar extends React.Component {
 
         return (
             <Muze data={carsDm}>
-                <Canvas rows={[]} columns={[]} color="Origin" axesRadius={axes}>
+                <Canvas rows={[]} columns={[]} color="Origin" radiusAxis={axes}>
                     <Layer mark="arc" encoding={arcEncoding} />
                 </Canvas>
             </Muze>

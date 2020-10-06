@@ -43,7 +43,7 @@ class Bar extends React.Component {
 
         return (
             <Muze data={carsDm}>
-                <Canvas axesRadius={axesradius} rows={[]} columns={[]} color="Cylinders" operation={operationFn} title="Radial Pie Chart" subtitle='Number of cars listed in dataset is represented as varying radius per maker per cylinder'>
+                <Canvas radiusAxis={axesradius} rows={[]} columns={[]} color="Cylinders" operation={operationFn} title="Radial Pie Chart" subtitle='Number of cars listed in dataset is represented as varying radius per maker per cylinder'>
                     <Layer mark="arc" encoding={arcEncoding} />
                 </Canvas>
             </Muze>

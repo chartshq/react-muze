@@ -89,7 +89,7 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     sort,
     border,
     transform,
-    axesRadius,
+    radiusAxis,
     autoGroupBy = true,
     facetRows,
     highlightExact = false,
@@ -169,7 +169,7 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     sort,
     border,
     transform,
-    axesRadius,
+    radiusAxis,
     autoGroupBy: {
       disabled: !autoGroupBy
     },
@@ -225,7 +225,7 @@ export const createChart = (
     canvasSideEffects,
     sort,
     border = {},
-    axesRadius,
+    radiusAxis,
     transform,
     autoGroupBy,
     facet,
@@ -248,7 +248,7 @@ export const createChart = (
         x: xAxis,
         y: yAxis,
         radius: {
-          ...axesRadius
+          ...radiusAxis
         }
       },
       legend,

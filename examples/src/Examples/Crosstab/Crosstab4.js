@@ -88,7 +88,7 @@ class Crosstab extends React.Component {
                     columns={[['Market'], []]}
                     color="Product"
                     title={title}
-                    axesRadius={axisRadius}
+                    radiusAxis={axisRadius}
                     width={700}
                     height={800}
                     facetRows={align}

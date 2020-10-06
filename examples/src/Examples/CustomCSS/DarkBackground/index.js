@@ -64,7 +64,7 @@ class DarkThemeWithGrid extends React.Component {
           columns={[]}
           color={color}
           border={border}
-          axesRadius={radius}
+          radiusAxis={radius}
         >
           <Layer mark="arc" encoding={arcEncoding} />
         </Canvas>
