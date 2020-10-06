@@ -1,8 +1,5 @@
 import * as React from "react";
-import Muze, {
-  Canvas,
-  Layer
-} from "@chartshq/react-muze/components";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
 import { Tooltip } from "@chartshq/react-muze/configurations";
 
 const { DataModel } = Muze;
@@ -15,7 +12,7 @@ async function createDataModel() {
   return new DataModelClass(formattedData);
 }
 
-class CustomTooltip extends React.Component {
+class FragmentedTooltip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,4 +46,4 @@ class CustomTooltip extends React.Component {
   }
 }
 
-export default CustomTooltip;
+export default FragmentedTooltip;

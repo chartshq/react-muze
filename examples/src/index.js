@@ -87,8 +87,8 @@ import Large3 from './WebDemo/Large/Large3';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <CustomTooltip /> */}
-    {/* <FragmentedTooltip /> */}
+    <CustomTooltip />
+    <FragmentedTooltip />
     {/* <TooltipStyling /> */}
     {/* <Border /> */}
     {/* <Title /> */}

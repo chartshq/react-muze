@@ -1,10 +1,8 @@
 import * as React from "react";
-import Muze, {
-  Canvas,
-  Layer,
-  DataModel,
-} from "@chartshq/react-muze/components";
-import { Tooltip, html } from "@chartshq/react-muze/configurations";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
+import { Tooltip } from "@chartshq/react-muze/configurations";
+
+const { DataModel } = Muze;
 
 async function createDataModel() {
   const data = await fetch("/data/cars.json").then((d) => d.json());
@@ -14,7 +12,7 @@ async function createDataModel() {
   return new DataModelClass(formattedData);
 }
 
-class FragmentedTooltip extends React.Component {
+class CustomTooltip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,7 +49,7 @@ ${i ? "" : `<h3 style="background-color:#EAEAEA">Country: ${originVal}</h3>`}
 `;
         tooltipContent += "<br>";
       });
-      return html`${tooltipContent}`;
+      return Muze.Operators.html`${tooltipContent}`;
     });
 
     // NOTE: in the demo (react) tooltip is not fragmented
@@ -78,4 +76,4 @@ ${i ? "" : `<h3 style="background-color:#EAEAEA">Country: ${originVal}</h3>`}
   }
 }
 
-export default FragmentedTooltip;
+export default CustomTooltip;
