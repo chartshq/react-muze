@@ -1,13 +1,15 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
-import { html, Tooltip, Color, Size, Encoding, Axes, Headers, ALIGNMENT, Legend } from "@chartshq/react-muze/configurations";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
+import { Tooltip, Color, Size, Encoding, Axes, Headers, ALIGNMENT, Legend } from "@chartshq/react-muze/configurations";
+
+const html = Muze.Operators.html;
 
 async function createDataModel() {
     const data = await fetch("/data/word-frequency.json")
         .then((d) => d.json());
     const schema = await fetch("/data/word-frequency-schema.json")
         .then((d) => d.json());
-    const DataModelClass = await DataModel.onReady();
+    const DataModelClass = await Muze.DataModel.onReady();
     DataModelClass.unsetInvalids(['']);
     const formattedData = await DataModelClass.loadData(data, schema);
     return new DataModelClass(formattedData);

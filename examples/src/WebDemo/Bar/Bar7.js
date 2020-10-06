@@ -1,5 +1,5 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
 import { Axes, Encoding } from "@chartshq/react-muze/configurations";
 
 const numberFormat = new Intl.NumberFormat();
@@ -15,7 +15,7 @@ async function createDataModel() {
         type: 'measure',
         format: (value) => numberFormat.format(value)
     }]
-    const DataModelClass = await DataModel.onReady();
+    const DataModelClass = await Muze.DataModel.onReady();
     const formattedData = await DataModelClass.loadData(data, schema);
     return new DataModelClass(formattedData);
 }

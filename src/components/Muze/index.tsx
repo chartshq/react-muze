@@ -1,16 +1,24 @@
 import React from "react";
 import muze from "@chartshq/muze";
-import "@chartshq/muze/dist/muze.css";
+// import "@chartshq/muze/dist/muze.css";
 import { MuzeProvider } from "../../utils/context/muze-context";
 import "./style.scss";
 import { MuzeProps, MuzeState } from "./interfaces";
 import { SideEffects, Behaviours } from "../../configurations";
+import { DataModelConstants } from "../../constants";
 
 export default class Muze extends React.Component<MuzeProps, MuzeState> {
   public static defaultProps = {
     sideEffects: {},
     behaviours: {},
   };
+
+  static Operators = {
+    share: muze.Operators.share,
+    html: muze.Operators.html,
+  };
+
+  static DataModel = Object.assign(muze.DataModel, DataModelConstants);
 
   constructor(props: MuzeProps) {
     super(props);

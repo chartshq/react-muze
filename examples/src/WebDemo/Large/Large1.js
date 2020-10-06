@@ -1,6 +1,8 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel } from "@chartshq/react-muze/components";
+import Muze, { Canvas } from "@chartshq/react-muze/components";
 import { Axes, Headers } from "@chartshq/react-muze/configurations";
+
+const { DataModel } = Muze;
 
 async function createDataModel() {
     const data = await fetch("/data/MSFT.csv")
@@ -31,21 +33,21 @@ class Large extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            carsDm: null,
+            dm: null,
         };
     }
 
     componentDidMount() {
-        createDataModel().then((carsDm) => {
-            this.setState({ carsDm });
+        createDataModel().then((dm) => {
+            this.setState({ dm });
         });
     }
 
     render() {
-        const { carsDm } = this.state;
+        const { dm } = this.state;
 
         return (
-            <Muze data={carsDm}>
+            <Muze data={dm}>
                 <Canvas
                     yAxis={axis}
                     title={title}

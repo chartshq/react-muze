@@ -1,5 +1,5 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel } from "@chartshq/react-muze/components";
+import Muze, { Canvas } from "@chartshq/react-muze/components";
 import { Axes, GridLines } from "@chartshq/react-muze/configurations";
 
 async function createDataModel() {
@@ -29,7 +29,7 @@ async function createDataModel() {
             "type": "measure"
         }
     ];
-    const DataModelClass = await DataModel.onReady();
+    const DataModelClass = await Muze.DataModel.onReady();
     const formattedData = await DataModelClass.loadData(data, schema);
     return new DataModelClass(formattedData);
 }

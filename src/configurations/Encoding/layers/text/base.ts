@@ -1,6 +1,10 @@
 import { TextEncodingInterface } from './types';
 
 class TextBaseEncoding {
+  x?: TextEncodingInterface['x'];
+
+  y?: TextEncodingInterface['y'];
+
   color?: TextEncodingInterface['color'];
 
   size?: TextEncodingInterface['size'];
@@ -16,6 +20,8 @@ class TextBaseEncoding {
   alignmentBaseline?: TextEncodingInterface['alignmentBaseline'];
 
   constructor(builder: any) {
+    this.x = builder._x;
+    this.y = builder._y;
     this.color = builder._color;
     this.size = builder._size;
     this.radius = builder._radius;

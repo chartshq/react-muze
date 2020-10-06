@@ -1,10 +1,12 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel } from "@chartshq/react-muze/components";
+import Muze, { Canvas } from "@chartshq/react-muze/components";
 import { ScrollBar } from "@chartshq/react-muze/configurations";
 import {
   SCROLL_HORIZONTAL,
   SCROLL_VERTICAL,
 } from "@chartshq/react-muze/constants";
+
+const { DataModel } = Muze;
 
 const DATA_SRC =
   "https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars.json";

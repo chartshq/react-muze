@@ -2,7 +2,6 @@ import { ChartConfig, SanitizedConfig, CanvasState } from './interfaces';
 import { CanvasBuilder } from '../../helpers/CanvasBuilder';
 import { multiTooltipIntoMuze } from '../../configurations/Tooltip';
 
-import muze from "@chartshq/muze";
 import { FieldRangeInterface } from '../../configurations/RetinalEncoding/types';
 
 const getLegendConfig = (legendConfig: any, legendType: string) => {
@@ -90,7 +89,8 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     sort,
     border,
     transform,
-    axesRadius
+    axesRadius,
+    autoGroupBy = true
   } = config;
 
   let { title, subtitle } = config;
@@ -166,11 +166,13 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     sort,
     border,
     transform,
-    axesRadius
+    axesRadius,
+    autoGroupBy: {
+      disabled: !autoGroupBy
+    }
   };
 };
 
-// NOTE: creates chart
 export const createChart = (
   state: CanvasState,
   props: ChartConfig,
@@ -212,10 +214,11 @@ export const createChart = (
     sort,
     border = {},
     axesRadius,
-    transform
+    transform,
+    autoGroupBy
   } = configSanitizer(props, context);
 
-  const html = muze.Operators.html;
+  console.log(autoGroupBy);
 
   if (canvas && data && mountPoint) {
     //Add canvas entry in parent
@@ -240,6 +243,7 @@ export const createChart = (
         ...multiTooltipIntoMuze(tooltips),
       },
       border,
+      autoGroupBy
     };
 
     // had to do it like this because muze was throwing

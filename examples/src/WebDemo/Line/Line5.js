@@ -1,6 +1,16 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
-import { html, Tooltip, Color, Size, Encoding, Axes, Headers, ALIGNMENT, Legend } from "@chartshq/react-muze/configurations";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
+import { Encoding, Axes, Legend, Border } from "@chartshq/react-muze/configurations";
+
+const numberFormat = new Intl.NumberFormat();
+const axis = Axes.config().tickFormat((value) => numberFormat.format(value)).create();
+const leg = Legend.config().show(false).create();
+const border = Border.config().create({
+    showValueBorders: {
+        left: false,
+        bottom: false
+    }
+});
 
 async function createDataModel() {
     const data = await fetch("/data/covid19-complete.csv")
@@ -19,7 +29,7 @@ async function createDataModel() {
         subtype: 'temporal',
         format: '%Y-%m-%d'
     }];
-    const DataModelClass = await DataModel.onReady();
+    const DataModelClass = await Muze.DataModel.onReady();
     const formattedData = await DataModelClass.loadData(data, schema);
     return new DataModelClass(formattedData);
 }
@@ -28,7 +38,7 @@ const operationFn = (dm) => {
     return dm = dm.select({
         field: 'Country/Region',
         value: ['US', 'India', 'Brazil'],
-        operator: DataModel.ComparisonOperators.IN
+        operator: Muze.DataModel.ComparisonOperators.IN
     });
 }
 
@@ -48,7 +58,7 @@ class Line extends React.Component {
 
     render() {
         const { carsDm } = this.state;
-        const text1 = Encoding.Text.create({
+        const text1 = Encoding.Text.config().create({
             text: 'Country/Region',
             color: {
                 value: () => 'black'
@@ -75,7 +85,7 @@ class Line extends React.Component {
 
         return (
             <Muze data={carsDm}>
-                <Canvas rows={['Confirmed']} columns={['Date']} color='Country/Region' operation={operationFn}>
+                <Canvas border={border} colorLegend={leg} yAxis={axis} rows={['Confirmed']} columns={['Date']} color='Country/Region' operation={operationFn}>
                     <Layer mark="line" />
                     <Layer mark="text" encoding={text1} source={lineSource} />
                 </Canvas>

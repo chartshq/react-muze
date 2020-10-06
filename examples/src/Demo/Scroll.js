@@ -1,6 +1,8 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel, Layer } from "@chartshq/react-muze/components";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
 import { Legend, GridLines, ScrollBar, SCROLL_HORIZONTAL, SCROLL_VERTICAL, LEGEND_POSITION } from '@chartshq/react-muze/configurations';
+
+const { DataModel } = Muze;
 
 const createDataModel1 = async () => {
     const data = await fetch('/data/movies.json').then((d) => d.json());

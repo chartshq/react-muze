@@ -1,7 +1,7 @@
 import * as React from "react";
-import Muze, { Canvas, DataModel } from "@chartshq/react-muze/components";
-import { Axes } from "@chartshq/react-muze/configurations";
-import {} from "@chartshq/react-muze/constants";
+import Muze, { Canvas } from "@chartshq/react-muze/components";
+
+const { DataModel } = Muze;
 
 const DATA_SRC =
   "https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars.json";
@@ -66,7 +66,7 @@ class Simple extends React.Component {
             <Canvas
               rows={["Acceleration"]}
               columns={["Month"]}
-              operation={() => {}}
+              operation={() => { }}
             />
           </Muze>
         )}

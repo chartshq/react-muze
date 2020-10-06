@@ -1,5 +1,5 @@
 import * as React from "react";
-import Muze, { Canvas, Layer, DataModel } from "@chartshq/react-muze/components";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
 import {
   Color,
   Border,
@@ -8,6 +8,8 @@ import {
   Headers
 } from "@chartshq/react-muze/configurations";
 import "./index.css";
+
+const { DataModel } = Muze;
 
 async function createDataModel() {
   const data = await fetch("/data/supermarket.csv").then((d) => d.text());

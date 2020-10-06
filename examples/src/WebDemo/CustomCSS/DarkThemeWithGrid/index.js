@@ -1,7 +1,9 @@
 import * as React from "react";
-import Muze, { Canvas, Layer, DataModel } from "@chartshq/react-muze/components";
+import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
 import { Color, Axes, Headers } from "@chartshq/react-muze/configurations";
 import "./index.css";
+
+const { DataModel } = Muze;
 
 async function createDataModel() {
   const data = await fetch("/data/statewise-testing-in.json").then((d) => d.json());
