@@ -2,14 +2,13 @@ import * as React from "react";
 import Muze, { Canvas } from "@chartshq/react-muze/components";
 import {
   Headers,
-  html,
   POSITION,
-  ALIGNMENT,
-  Tooltip,
+  ALIGNMENT
 } from "@chartshq/react-muze/configurations";
 
-const { DataModel } = Muze;
 
+const { DataModel } = Muze;
+const { html } = Muze.Operators;
 const DATA_SRC =
   "https://raw.githubusercontent.com/chartshq/datamodel-app-template/master/public/data/cars.json";
 const SCHEMA_SRC =

@@ -81,8 +81,9 @@ import Large1 from './WebDemo/Large/Large1';
 import Large2 from './WebDemo/Large/Large2';
 import Large3 from './WebDemo/Large/Large3';
 
-// import Cross1 from './WebDemo/Cross/Cross1';
+import Cross1 from './WebDemo/Cross/Cross1';
 // import Cross3 from './WebDemo/Cross/Cross3';
+import Cross4 from './WebDemo/Cross/Cross4';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -106,10 +107,10 @@ ReactDOM.render(
     <Bar4 />
     <Bar5 />
     <Bar6 />
-    <Bar7 />
+    <Bar7 /> */}
 
     <Pie1 />
-    <Pie2 />
+    {/* <Pie2 />
     <Pie3 />
     <Pie4 /> */}
 
@@ -149,10 +150,10 @@ ReactDOM.render(
 
     {/* <Cross /> */}
 
-    <Compose1 />
+    {/* <Compose1 />
     <Compose2 />
     <Compose3 />
-    <Compose4 />
+    <Compose4 /> */}
 
     {/* <Large1 />
     <Large2 />
@@ -160,6 +161,7 @@ ReactDOM.render(
 
     {/* <Cross1 /> */}
     {/* <Cross3 /> */}
+    {/* <Cross4 /> */}
 
     {/* <Config1 />
     <Config2 />

@@ -13,26 +13,40 @@ class TickBaseEncoding {
   strokeOpacity?: TickEncodingBaseInterface['strokeOpacity'];
   fillOpacity?: TickEncodingBaseInterface['fillOpacity'];
 
+  // constructor(builder: any) {
+  //   this.color = builder._color;
+  //   this.x = {
+  //     field: builder._x
+  //   };
+  //   this.y = {
+  //     field: builder._y
+  //   };
+  //   this.x0 = {
+  //     field: builder._x0
+  //   };
+  //   this.y0 = {
+  //     field: builder._y0
+  //   };
+  //   this.radius = builder._radius;
+  //   this.radius0 = builder._radius0;
+  //   this.angle = builder._angle;
+  //   this.angle0 = builder._angle0;
+  //   this.strokeOpacity = builder._strokeOpacity;
+  //   this.fillOpacity = builder._fillOpacity;
+  // }
+
   constructor(builder: any) {
-    this.color = builder._color;
-    this.x = {
-      field: builder._x
-    };
-    this.y = {
-      field: builder._y
-    };
-    this.x0 = {
-      field: builder._x0
-    };
-    this.y0 = {
-      field: builder._y0
-    };
-    this.radius = builder._radius;
-    this.radius0 = builder._radius0;
-    this.angle = builder._angle;
-    this.angle0 = builder._angle0;
-    this.strokeOpacity = builder._strokeOpacity;
-    this.fillOpacity = builder._fillOpacity;
+    const fieldsProp: string[] = ['x', 'y', 'x0', 'y0'];
+
+    Object.keys(builder).forEach(key => {
+      if (builder[key]) {
+        const property = key.slice(1);
+
+        this[property as keyof TickBaseEncoding] = 
+        fieldsProp.includes(property) ?
+          { field: builder[key] } : builder[key];
+      }
+    })
   }
 }
 

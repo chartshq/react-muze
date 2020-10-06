@@ -58,6 +58,10 @@ export interface ChartConfig {
       domain: number[];
   },
   autoGroupBy?: boolean;
+  facetRows?: {
+    verticalAlign?: string;
+  },
+  highlightExact?: boolean;
 }
 
 export interface SanitizedConfig {
@@ -103,6 +107,14 @@ export interface SanitizedConfig {
   },
   autoGroupBy?: {
     disabled: boolean
+  },
+  facet?: {
+    rows?: {
+      verticalAlign?: string;
+    }
+  },
+  highlight?: {
+    exact?: boolean;
   }
 }
 

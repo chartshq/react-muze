@@ -90,7 +90,9 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     border,
     transform,
     axesRadius,
-    autoGroupBy = true
+    autoGroupBy = true,
+    facetRows,
+    highlightExact = false
   } = config;
 
   let { title, subtitle } = config;
@@ -169,6 +171,14 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     axesRadius,
     autoGroupBy: {
       disabled: !autoGroupBy
+    },
+    facet: {
+      rows: {
+        ...facetRows
+      }
+    },
+    highlight: {
+      exact: highlightExact
     }
   };
 };
@@ -215,10 +225,10 @@ export const createChart = (
     border = {},
     axesRadius,
     transform,
-    autoGroupBy
+    autoGroupBy,
+    facet,
+    highlight
   } = configSanitizer(props, context);
-
-  console.log(autoGroupBy);
 
   if (canvas && data && mountPoint) {
     //Add canvas entry in parent
@@ -241,10 +251,18 @@ export const createChart = (
       showHeaders,
       interaction: {
         ...multiTooltipIntoMuze(tooltips),
+        behaviours: {
+          highlight: {
+            ...highlight
+          }
+        }
       },
       border,
-      autoGroupBy
+      autoGroupBy,
+      facet
     };
+
+    console.log(config);
 
     // had to do it like this because muze was throwing
     // an error on `config = { ...config, sort: sort }`

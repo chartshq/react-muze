@@ -45,6 +45,7 @@ class RangeArea extends React.Component {
                     columns={['Year']}
                     color="Origin"
                     detail={['Name']}
+                    highlightExact
                 >
                     <Layer mark="tick" />
                 </Canvas>
