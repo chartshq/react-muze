@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import Area from './Examples/Area/Area2';
+import Area from './Examples/CrossInteractive/Cross4';
 
 ReactDOM.render(
   <React.StrictMode>

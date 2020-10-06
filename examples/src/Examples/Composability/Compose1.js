@@ -102,7 +102,6 @@ class Bar extends React.Component {
                     transform={{
                         averageLine: (dt) => dt.groupBy([''])
                     }}
-                    autoGroupBy={false}
                     title={title}
                     subtitle={subtitle}
                 >

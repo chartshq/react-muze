@@ -44,6 +44,20 @@ function operationFn(dm) {
     );
 }
 
+const tickEncoding = Encoding.Tick.config().create({
+    x: null,
+    y: "Precipitation",
+    color: {
+        value: () => "#f71616"
+    }
+});
+
+console.log(tickEncoding);
+
+const subtitle = Headers.config()
+    .content(html`Selecting individual months will give the <b>average</b> for those months`)
+    .create();
+
 class AverageLine extends SurrogateSideEffect {
     static formalName() {
         return "averageLine";
@@ -64,24 +78,12 @@ class AverageLine extends SurrogateSideEffect {
     }
 }
 
-const tickEncoding = Encoding.Tick.config().create({
-    x: {
-        field: null
-    },
-    y: "Precipitation",
-    color: {
-        value: () => "#f71616"
-    }
-});
-
-const subtitle = Headers.config().content(html`Selecting individual months will give the <b>average</b> for those
-        months`).create();
-
-SideEffects.register(AverageLine);
+// SideEffects.register(AverageLine);
 
 const sideEffectNew = SideEffects.config().create({
     for: ['averageLine', 'averageLine'],
     on: ['select', 'brush'],
+    effect: AverageLine
 });
 
 class Line extends React.Component {

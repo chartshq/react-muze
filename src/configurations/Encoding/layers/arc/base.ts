@@ -31,7 +31,7 @@ class ArcBaseEncoding {
     const fieldsProp: string[] = [];
 
     Object.keys(builder).forEach(key => {
-      if (builder[key]) {
+      if (builder[key] !== undefined) {
         const property = key.slice(1);
 
         this[property as keyof ArcBaseEncoding] = 
