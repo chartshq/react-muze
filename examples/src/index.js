@@ -109,7 +109,7 @@ ReactDOM.render(
     <Bar6 />
     <Bar7 /> */}
 
-    <Pie1 />
+    {/* <Pie1 /> */}
     {/* <Pie2 />
     <Pie3 />
     <Pie4 /> */}
@@ -148,8 +148,6 @@ ReactDOM.render(
     <Legend3 />
     <Legend4 /> */}
 
-    {/* <Cross /> */}
-
     {/* <Compose1 />
     <Compose2 />
     <Compose3 />
@@ -159,7 +157,7 @@ ReactDOM.render(
     <Large2 />
     <Large3 /> */}
 
-    {/* <Cross1 /> */}
+    <Cross1 />
     {/* <Cross3 /> */}
     {/* <Cross4 /> */}
 

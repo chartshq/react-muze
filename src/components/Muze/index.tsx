@@ -11,7 +11,6 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
   public static defaultProps = {
     sideEffects: [],
     behaviours: {},
-    propagationBehaviourMap: {},
   };
 
   static Operators = {
@@ -30,6 +29,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     this.state = {
       env: null,
       interactiveCharts: {},
+      propagationBehaviour: {},
       allCharts: {},
     };
   }
@@ -42,13 +42,8 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
   };
 
   componentDidUpdate() {
-    const { interactiveCharts, allCharts } = this.state;
-    const {
-      sideEffects,
-      behaviours,
-      crossInteractive,
-      propagationBehaviourMap,
-    } = this.props;
+    const { interactiveCharts, allCharts, propagationBehaviour } = this.state;
+    const { sideEffects, behaviours, crossInteractive } = this.props;
 
     const interactiveChartsLen = Object.values(interactiveCharts).length;
     // Make all charts connected only if Muze has crossInteractive true and
@@ -96,8 +91,15 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     const actionModel = muze.ActionModel.for(...canvases)
       .enableCrossInteractivity()
       .mapSideEffects(sideEffectsMap)
-      .registerPhysicalBehaviouralMap(physicalBehaviouralMap)
-      .registerPropagationBehaviourMap(propagationBehaviourMap);
+      .registerPhysicalBehaviouralMap(physicalBehaviouralMap);
+
+    Object.keys(propagationBehaviour).forEach((key) => {
+      if (allCharts[key]) {
+        actionModel
+          .for(allCharts[key])
+          .registerPropagationBehaviourMap(propagationBehaviour[key]);
+      }
+    });
 
     if (registeredSideEffect) {
       actionModel.registerSideEffects(registeredSideEffect);
@@ -134,6 +136,19 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
         allCharts: {
           ...this.state.allCharts,
           [canvas.alias()]: canvas,
+        },
+      });
+    }
+  };
+
+  addPropagationBehaviour = (canvas: muze.Canvas, config: any): void => {
+    const { propagationBehaviour } = this.state;
+
+    if (!propagationBehaviour[canvas.alias()]) {
+      this.setState({
+        propagationBehaviour: {
+          ...this.state.propagationBehaviour,
+          [canvas.alias()]: config,
         },
       });
     }
@@ -187,6 +202,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
               crossInteractive,
               addCrossInteraction: this.addCrossInteraction,
               addChildChart: this.addChildChart,
+              addPropagationBehaviour: this.addPropagationBehaviour,
             }}
           >
             {children}

@@ -44,11 +44,11 @@ class Line extends React.Component {
         };
 
         return (
-            <Muze data={dm} crossInteractive propagationBehaviourMap={propagationBehMap}>
+            <Muze data={dm} crossInteractive>
                 <Canvas rows={['price']} columns={['date']} title="Select a range from the bottom chart to get a detailed view for that range">
                     <Layer mark="area" />
                 </Canvas>
-                <Canvas rows={['price']} columns={['date']} height={150}>
+                <Canvas rows={['price']} columns={['date']} height={150} propagationBehaviourMap={propagationBehMap}>
                     <Layer mark="area" interpolate="catmullRom" />
                 </Canvas>
             </Muze>

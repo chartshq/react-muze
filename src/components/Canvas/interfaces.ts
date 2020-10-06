@@ -62,6 +62,9 @@ export interface ChartConfig {
     verticalAlign?: string;
   },
   highlightExact?: boolean;
+  propagationBehaviourMap?: {
+    [key: string]: string[]
+  }
 }
 
 export interface SanitizedConfig {
@@ -115,6 +118,9 @@ export interface SanitizedConfig {
   },
   highlight?: {
     exact?: boolean;
+  },
+  propagationBehaviourMap?: {
+    [key: string]: string[]
   }
 }
 

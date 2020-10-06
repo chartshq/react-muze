@@ -92,7 +92,8 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     axesRadius,
     autoGroupBy = true,
     facetRows,
-    highlightExact = false
+    highlightExact = false,
+    propagationBehaviourMap
   } = config;
 
   let { title, subtitle } = config;
@@ -179,7 +180,8 @@ const configSanitizer = (config: ChartConfig, context: any): SanitizedConfig => 
     },
     highlight: {
       exact: highlightExact
-    }
+    },
+    propagationBehaviourMap
   };
 };
 
@@ -227,10 +229,15 @@ export const createChart = (
     transform,
     autoGroupBy,
     facet,
-    highlight
+    highlight,
+    propagationBehaviourMap
   } = configSanitizer(props, context);
 
   if (canvas && data && mountPoint) {
+    if (propagationBehaviourMap) {
+      context.addPropagationBehaviour(canvas, propagationBehaviourMap);
+    }
+
     //Add canvas entry in parent
     context.addChildChart(canvas);
     //Add canvas entry in parent only if crossInteractive prop is passed to canvas
@@ -261,8 +268,6 @@ export const createChart = (
       autoGroupBy,
       facet
     };
-
-    console.log(config);
 
     // had to do it like this because muze was throwing
     // an error on `config = { ...config, sort: sort }`
