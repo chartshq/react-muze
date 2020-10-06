@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import Borders from './Borders/index';
+import Borders from "./Borders/index";
 import Basic from "./Demo/Basic";
 import Layer from "./Demo/Layer";
 import Operation from "./Demo/Operation";
@@ -19,7 +19,7 @@ import Bar5 from "./WebDemo/Bar/Bar5";
 import Bar7 from "./WebDemo/Bar/Bar7";
 import Bar6 from "./WebDemo/Bar/Bar6";
 
-import Pie1 from './WebDemo/Pie/Pie1';
+import Pie1 from "./WebDemo/Pie/Pie1";
 import Pie2 from "./WebDemo/Pie/Pie2";
 import Pie3 from "./WebDemo/Pie/Pie3";
 import Pie4 from "./WebDemo/Pie/Pie4";
@@ -48,28 +48,30 @@ import LightTheme from "./WebDemo/CustomCSS/LightTheme";
 import AxisTickLabelsFormatting from "./WebDemo/ChartConfiguration/AxisTickLabelsFormatting";
 
 import FragmentedTooltip from "./WebDemo/Tooltips/FragmentedTooltip";
+import CustomTooltip from "./WebDemo/Tooltips/CustomTooltip";
 
-import Heatmap1 from './WebDemo/Heatmap/Heatmap1';
+import Heatmap1 from "./WebDemo/Heatmap/Heatmap1";
 
-import Crosstab1 from './WebDemo/Crosstab/Crosstab1';
-import Crosstab2 from './WebDemo/Crosstab/Crosstab2';
-import Crosstab3 from './WebDemo/Crosstab/Crosstab3';
-import Crosstab4 from './WebDemo/Crosstab/Crosstab4';
-import Crosstab5 from './WebDemo/Crosstab/Crosstab5';
-import Crosstab7 from './WebDemo/Crosstab/Crosstab7';
+import Crosstab1 from "./WebDemo/Crosstab/Crosstab1";
+import Crosstab2 from "./WebDemo/Crosstab/Crosstab2";
+import Crosstab3 from "./WebDemo/Crosstab/Crosstab3";
+import Crosstab4 from "./WebDemo/Crosstab/Crosstab4";
+import Crosstab5 from "./WebDemo/Crosstab/Crosstab5";
+import Crosstab7 from "./WebDemo/Crosstab/Crosstab7";
 
-import Legend1 from './WebDemo/Legend/Legend1';
-import Legend2 from './WebDemo/Legend/Legend2';
-import Legend3 from './WebDemo/Legend/Legend3';
-import Legend4 from './WebDemo/Legend/Legend4';
+import Legend1 from "./WebDemo/Legend/Legend1";
+import Legend2 from "./WebDemo/Legend/Legend2";
+import Legend3 from "./WebDemo/Legend/Legend3";
+import Legend4 from "./WebDemo/Legend/Legend4";
 
-import Compose1 from './WebDemo/Composability/Compose1';
-import Compose2 from './WebDemo/Composability/Compose2';
+import Compose1 from "./WebDemo/Composability/Compose1";
+import Compose2 from "./WebDemo/Composability/Compose2";
 
-import Large1 from './WebDemo/Large/Large1';
+import Large1 from "./WebDemo/Large/Large1";
 
 ReactDOM.render(
   <React.StrictMode>
+    <CustomTooltip />
     {/* <FragmentedTooltip /> */}
     {/* <TooltipStyling /> */}
     {/* <Border /> */}

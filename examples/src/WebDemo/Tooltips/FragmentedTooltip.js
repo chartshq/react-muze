@@ -14,7 +14,7 @@ async function createDataModel() {
   return new DataModelClass(formattedData);
 }
 
-class FragmentedTooltip extends React.Component {
+class CustomTooltip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,15 +33,6 @@ class FragmentedTooltip extends React.Component {
 
     const tooltip = Tooltip.config().on("highlight").mode("fragmented");
 
-    // NOTE: in the demo (react) tooltip is not fragmented
-
-    // the input that is getting passed to muze is (core muze bug)
-    // tooltip: {
-    //   highlightSummary: {
-    //     mode: "fragmented";
-    //   }
-    // }
-
     return (
       <Muze data={carsDm}>
         <Canvas
@@ -57,4 +48,4 @@ class FragmentedTooltip extends React.Component {
   }
 }
 
-export default FragmentedTooltip;
+export default CustomTooltip;
