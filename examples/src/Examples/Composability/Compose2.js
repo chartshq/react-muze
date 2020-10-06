@@ -30,7 +30,7 @@ const operationFn = dm => {
 }
 
 const areaEncoding = Encoding.Area.config().y('Max Weight').y0('Min Weight').x('Year').color({ value: () => '#ff9800' }).create();
-const axis = Axes.config().name('Weight').create();
+const axis = Axes.LinearAxis.config().name('Weight').create();
 
 class RangeArea extends React.Component {
     constructor(props) {

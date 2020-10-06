@@ -16,13 +16,4 @@ export interface MuzeBorderRegionInterface {
   [BORDER_POSITION.LEFT]: Boolean;
 }
 
-export interface MuzeBorderInputInterface {
-  width?: Number;
-  style?: BORDER_STYLE;
-  color?: String;
-  showColBorders?: MuzeBorderRegionInterface;
-  showValueBorders?: MuzeBorderRegionInterface;
-  showRowBorders?: MuzeBorderRegionInterface;
-}
-
 export { BORDER_POSITION, BORDER_STYLE };

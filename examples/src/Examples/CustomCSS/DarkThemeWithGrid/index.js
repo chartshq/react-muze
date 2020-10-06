@@ -52,7 +52,7 @@ class DarkThemeWithGrid extends React.Component {
       .range(["pink", "orange", "red", "mauvish", "yellow"])
       .create();
 
-    const yAxis = Axes.config()
+    const yAxis = Axes.LinearAxis.config()
       .tickFormat((v) => numberFormatter(v))
       .numberOfTicks(8)
       .create();

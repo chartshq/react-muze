@@ -1,35 +1,28 @@
-import { RetinalEncodingBase } from '../base';
-import { FieldRangeInterface } from '../types';
-import { inputSanitizer, removeUndefinedValues } from '../../../utils/input-sanitizer';
+import { FieldRangeInterface, FieldRangeConfigInterface } from '../types';
 
 class Shape {
-  _field: FieldRangeInterface['field'];
+  private _config : FieldRangeConfigInterface;
 
-  _range: FieldRangeInterface['range'];
-
-  constructor({ field = null, range }: FieldRangeInterface) {
-    this._field = field;
-    this._range = range;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): Shape {
-    return new Shape({ field: null });
+    return new Shape();
   }
 
-  field(field: string): Shape {
-    this._field = field || null;
+  field(field: FieldRangeInterface['field']): Shape {
+    this._config.field = field || null;
     return this;
   }
 
-  range(range: number[]): Shape {
-    this._range = range;
+  range(range: FieldRangeInterface['range']): Shape {
+    this._config.range = range;
     return this;
   }
 
-  create(value?: FieldRangeInterface): FieldRangeInterface {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new RetinalEncodingBase(this));
+  create(options: FieldRangeConfigInterface = {}): FieldRangeConfigInterface {
+    return { ...this._config ,...options};
   }
 }
 

@@ -1,128 +1,82 @@
-import { PointBaseEncoding } from './base';
-import { PointEncodingInterface } from './types';
-import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
+import { PointEncodingInterface, PointEncodingBaseInterface } from './types';
 
 class PointLayerEncoding {
-  _size?: PointEncodingInterface['size'];
+  private _config : PointEncodingBaseInterface;
 
-  _color?: PointEncodingInterface['color'];
-
-  _stroke?: PointEncodingInterface['stroke'];
-
-  _strokeWidth?: PointEncodingInterface['strokeWidth'];
-
-  _fill?: PointEncodingInterface['fill'];
-
-  _shape: PointEncodingInterface['shape'];
-
-  _x: PointEncodingInterface['x'];
-
-  _y: PointEncodingInterface['y'];
-
-  _strokeOpacity?: PointEncodingInterface['strokeOpacity'];
-
-  _fillOpacity?: PointEncodingInterface['fillOpacity']
-
-  _strokePosition?: PointEncodingInterface['strokePosition'];
-
-  _interaction?: PointEncodingInterface['interaction'];
-
-  constructor({
-    size,
-    color,
-    stroke,
-    strokeWidth,
-    fill,
-    shape,
-    x,
-    y,
-    strokeOpacity,
-    fillOpacity,
-    strokePosition,
-    interaction
-  }: PointEncodingInterface) {
-    this._size = size;
-    this._color = color;
-    this._stroke = stroke;
-    this._strokeWidth = strokeWidth;
-    this._fill = fill;
-    this._shape = shape;
-    this._x = x;
-    this._y = y;
-    this._strokeOpacity = strokeOpacity;
-    this._fillOpacity = fillOpacity;
-    this._strokePosition = strokePosition;
-    this._interaction = interaction;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): PointLayerEncoding {
-    return new PointLayerEncoding({});
+    return new PointLayerEncoding();
   }
 
   size(size: PointEncodingInterface['size']): PointLayerEncoding {
-    this._size = size;
+    this._config.size = size;
     return this;
   }
 
   color(color: PointEncodingInterface['color']): PointLayerEncoding {
-    this._color = color;
+    this._config.color = color;
     return this;
   }
 
   stroke(stroke: PointEncodingInterface['stroke']): PointLayerEncoding {
-    this._stroke = stroke;
+    this._config.stroke = stroke;
     return this;
   }
 
   strokeWidth(strokeWidth: PointEncodingInterface['strokeWidth']): PointLayerEncoding {
-    this._strokeWidth = strokeWidth;
+    this._config.strokeWidth = strokeWidth;
     return this;
   }
 
   fill(fill: PointEncodingInterface['fill']): PointLayerEncoding {
-    this._fill = fill;
+    this._config.fill = fill;
     return this;
   }
   
   shape(shape: PointEncodingInterface['shape']): PointLayerEncoding {
-    this._shape = shape;
+    this._config.shape = shape;
     return this;
   }
 
   x(x: PointEncodingInterface['x']): PointLayerEncoding {
-    this._x = x;
+    this._config.x = {
+      field: x
+    }
     return this;
   }
 
   y(y: PointEncodingInterface['y']): PointLayerEncoding {
-    this._y = y;
+    this._config.y = {
+      field: y
+    }
     return this;
   }
 
   strokeOpacity(strokeOpacity: PointEncodingInterface['strokeOpacity']): PointLayerEncoding {
-    this._strokeOpacity = strokeOpacity;
+    this._config.strokeOpacity = strokeOpacity;
     return this;
   }
 
   fillOpacity(fillOpacity: PointEncodingInterface['fillOpacity']): PointLayerEncoding {
-    this._fillOpacity = fillOpacity;
+    this._config.fillOpacity = fillOpacity;
     return this;
   }
 
   strokePosition(strokePosition: PointEncodingInterface['strokePosition']): PointLayerEncoding {
-    this._strokePosition = strokePosition;
+    this._config.strokePosition = strokePosition;
     return this;
   }
 
   interaction(interaction: PointEncodingInterface['interaction']): PointLayerEncoding {
-    this._interaction = interaction;
+    this._config.interaction = interaction;
     return this;
   }
 
-  create(value?: PointEncodingInterface): any {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new PointBaseEncoding(this));
+  create(options: PointEncodingBaseInterface = {}): PointEncodingBaseInterface {
+    return { ...this._config ,...options};
   }
 }
 

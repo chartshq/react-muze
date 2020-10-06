@@ -85,8 +85,8 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       {}
     );
 
-    const registeredSideEffect = SideEffects.effect;
-    const registeredBehaviour = Behaviours.effect;
+    // const registeredSideEffect = SideEffects.effect;
+    // const registeredBehaviour = Behaviours.effect;
 
     const actionModel = muze.ActionModel.for(...canvases)
       .enableCrossInteractivity()
@@ -101,12 +101,12 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       }
     });
 
-    if (registeredSideEffect) {
-      actionModel.registerSideEffects(registeredSideEffect);
-    }
-    if (registeredBehaviour) {
-      actionModel.registerBehaviouralActions(registeredBehaviour);
-    }
+    // if (registeredSideEffect) {
+    //   actionModel.registerSideEffects(registeredSideEffect);
+    // }
+    // if (registeredBehaviour) {
+    //   actionModel.registerBehaviouralActions(registeredBehaviour);
+    // }
     if (sideEffects.dissociateSideEffect) {
       actionModel.dissociateSideEffect(sideEffects.dissociateSideEffect);
     }

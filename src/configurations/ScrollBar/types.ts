@@ -7,13 +7,13 @@ export interface ScrollBarInterface {
   speed?: number;
 }
 
-export interface ScrollBarBaseInterface {
+export interface ScrollBarConfigInterface {
   vertical?: {
     align: ScrollBarInterface["verticalAlign"];
   };
-  horizontal: {
+  horizontal?: {
     align: ScrollBarInterface["horizontalAlign"];
   };
-  thickness?: number;
-  speed?: number;
+  thickness?: ScrollBarInterface['thickness'];
+  speed?: ScrollBarInterface['speed'];
 }

@@ -36,7 +36,7 @@ async function createDataModel() {
     return new DataModelClass(formattedData);
 }
 
-const axis = Axes.config().tickFormat(val => `$${val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`).create();
+const axis = Axes.LinearAxis.config().tickFormat(val => `$${val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`).create();
 
 class Crosstab extends React.Component {
     constructor(props) {

@@ -1,43 +1,34 @@
-import { RetinalEncodingBase } from '../base';
-import { FieldRangeInterface, stringOrNull } from '../types';
-import { inputSanitizer, removeUndefinedValues } from '../../../utils/input-sanitizer';
+import { FieldRangeInterface, FieldRangeConfigInterface } from '../types';
 
 class Color {
-  _field: FieldRangeInterface['field'];
+  private _config : FieldRangeConfigInterface;
 
-  _range?: FieldRangeInterface['range'];
-
-  _isStep?: FieldRangeInterface['isStep'];
-
-  constructor({ field, range, isStep }: FieldRangeInterface) {
-    this._field = field;
-    this._range = range;
-    this._isStep = isStep;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): Color {
-    return new Color({ field: null });
+    return new Color();
   }
 
-  field(value: stringOrNull): Color {
-    this._field = value || null;
+  field(value: FieldRangeInterface['field']): Color {
+    this._config.field = value || null;
     return this;
   }
 
-  range(value: string[] | number[]): Color {
-    this._range = value;
+  range(value: FieldRangeInterface['range']): Color {
+    this._config.range = value;
     return this;
   }
 
-  step(isStep: boolean): Color {
-    this._isStep = isStep;
+  step(isStep: FieldRangeInterface['isStep']): Color {
+    this._config.step = isStep;
     return this;
   }
 
-  create(value?: FieldRangeInterface): FieldRangeInterface {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new RetinalEncodingBase(this));
+  create(options: FieldRangeConfigInterface = {}): FieldRangeConfigInterface {
+    return { ...this._config ,...options};
   }
 }
+
 export { Color };

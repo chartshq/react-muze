@@ -1,4 +1,3 @@
-
 import { RadialAxisOptions } from './types';
 
 class RadialAxis {
@@ -23,7 +22,7 @@ class RadialAxis {
   }
 
   create(options: RadialAxisOptions = {}): RadialAxisOptions {
-   return { ...this._config , ...options };
+    return { ...this._config , ...options };
   }
 }
 

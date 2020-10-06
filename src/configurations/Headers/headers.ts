@@ -1,62 +1,44 @@
-import { HeadersBase } from './base';
-import { StringOrMissing, HeadersConfig } from './types';
+import { HeadersConfig } from './types';
 import { POSITION, ALIGNMENT } from './constants';
-import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class Headers {
-  _content: StringOrMissing | Function;
+  private _config : HeadersConfig;
 
-  _position?: POSITION;
-
-  _align?: ALIGNMENT;
-
-  _padding?: number;
-
-  _className?: string;
-
-  constructor({
-    content, position, align, padding, className,
-  }: HeadersConfig) {
-    this._content = content;
-    this._position = position;
-    this._align = align;
-    this._padding = padding;
-    this._className = className;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): Headers {
-    return new Headers({ content: null });
+    return new Headers();
   }
 
-  content(content: StringOrMissing): Headers {
-    this._content = content;
+  content(content: HeadersConfig['content']): Headers {
+    this._config.content = content;
     return this;
   }
 
   position(position: POSITION): Headers {
-    this._position = position;
+    this._config.position = position;
     return this;
   }
 
   align(alignment: ALIGNMENT): Headers {
-    this._align = alignment;
+    this._config.align = alignment;
     return this;
   }
 
-  padding(padding: number): Headers {
-    this._padding = padding;
+  padding(padding: HeadersConfig['padding']): Headers {
+    this._config.padding = padding;
     return this;
   }
 
-  className(className: string): Headers {
-    this._className = className;
+  className(className: HeadersConfig['className']): Headers {
+    this._config.className = className;
     return this;
   }
 
-  create(value?: HeadersConfig): any {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new HeadersBase(this));
+  create(options: HeadersConfig = {}): HeadersConfig {
+    return { ...this._config ,...options};
   }
 }
 

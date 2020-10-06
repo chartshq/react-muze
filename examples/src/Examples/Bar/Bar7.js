@@ -24,7 +24,7 @@ const operationFn = (dm) => {
     return dm.sort([['Confirmed']]);
 }
 
-const axes = Axes.config().show(false).create();
+const axes = Axes.LinearAxis.config().show(false).create();
 const text = Encoding.Text.config()
     .create({
         text: {

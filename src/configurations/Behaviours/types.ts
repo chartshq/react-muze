@@ -1,7 +1,11 @@
-type StringOrMissing = string | null | undefined;
-
 export interface BehavioursInterface {
-  _for?: StringOrMissing;
-  _on?: StringOrMissing;
-  _dissociateFrom?: StringOrMissing;
+  for?: string[];
+  on?: string[];
+  dissociateFrom?: string[];
+}
+
+export interface BehavioursConfigInterface {
+  for?: BehavioursInterface['for'];
+  on?: BehavioursInterface['on'];
+  dissociateBehaviour?: BehavioursInterface['dissociateFrom'];
 }

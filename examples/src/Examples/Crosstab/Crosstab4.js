@@ -58,7 +58,7 @@ const textEncoding = Encoding.Text.config()
     })
     .create();
 
-const axisRadius = Axes.Radius.config().range(r => [r[0] + 20, r[1] - 25]).create();
+const axisRadius = Axes.RadialAxis.config().range(r => [r[0] + 20, r[1] - 25]).create();
 
 class Crosstab extends React.Component {
     constructor(props) {

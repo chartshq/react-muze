@@ -1,8 +1,8 @@
 export interface AreaEncodingInterface {
     color?: any;
-    x?: string | null;
-    y?: string | null;
-    y0?: string | null;
+    x?: string;
+    y?: string;
+    y0?: string;
     strokeOpacity?: {
         [value: string]: number
     };
@@ -11,16 +11,16 @@ export interface AreaEncodingInterface {
     };
 }
 
-export interface AreaEncodingBaseInterface {
+export interface AreaEncodingConfigInterface {
     color?: any;
     x?: {
-        field: string | null
+        field: string
     };
     y?: {
-        field: string | null
+        field: string
     };
     y0?: {
-        field: string | null
+        field: string
     };
     strokeOpacity?: {
         [value: string]: number

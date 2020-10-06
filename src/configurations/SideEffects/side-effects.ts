@@ -1,53 +1,33 @@
-import { SideEffectsInterface } from './types';
-import { SideEffectsBase } from './base';
-import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
+import { SideEffectsInterface, SideEffectsConfigInterface } from './types';
 
 class SideEffects {
-  _for: SideEffectsInterface['_for'];
+  private _config : SideEffectsConfigInterface;
 
-  _on: SideEffectsInterface['_on'];
-
-  _dissociateFrom: SideEffectsInterface['_dissociateFrom'];
-  
-  static effect: any;
-
-  constructor({
-    _for,
-    _on,
-    _dissociateFrom
-  }: SideEffectsInterface) {
-    this._for = _for;
-    this._on = _on;
-    this._dissociateFrom = _dissociateFrom;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): SideEffects {
-    return new SideEffects({});
+    return new SideEffects();
   }
 
-  static register(effect: any) {
-    SideEffects.effect = effect;
-  }
-
-  for(_for: SideEffectsInterface['_for']): SideEffects {
-    this._for = _for;
+  for(_for: SideEffectsInterface['for']): SideEffects {
+    this._config.for = _for;
     return this;
   }
 
-  on(_on: SideEffectsInterface['_on']): SideEffects {
-    this._on = _on;
+  on(_on: SideEffectsInterface['on']): SideEffects {
+    this._config.on = _on;
     return this;
   }
 
-  dissociateFrom(_dissociateFrom: SideEffectsInterface['_dissociateFrom']): SideEffects {
-    this._dissociateFrom = _dissociateFrom;
+  dissociateFrom(_dissociateFrom: SideEffectsInterface['dissociateFrom']): SideEffects {
+    this._config.dissociateSideEffect = _dissociateFrom;
     return this;
   }
 
-  create(value?: SideEffectsInterface): any {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new SideEffectsBase(this));
+  create(options: SideEffectsInterface = {}): SideEffectsInterface {
+    return { ...this._config ,...options};
   }
 }
 

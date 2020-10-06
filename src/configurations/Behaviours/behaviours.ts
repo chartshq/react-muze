@@ -1,54 +1,33 @@
-import { BehavioursInterface } from './types';
-import { SideEffectsBase } from './base';
-import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
+import { BehavioursInterface, BehavioursConfigInterface } from './types';
 
 class Behaviours {
-  _for: BehavioursInterface['_for'];
+  private _config : BehavioursConfigInterface;
 
-  _on: BehavioursInterface['_on'];
-
-  _dissociateFrom: BehavioursInterface['_dissociateFrom'];
-  
-  static effect: any;
-
-  constructor({
-    _for,
-    _on,
-    _dissociateFrom
-  }: BehavioursInterface) {
-    this._for = _for;
-    this._on = _on;
-    this._dissociateFrom = _dissociateFrom;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): Behaviours {
-    return new Behaviours({});
+    return new Behaviours();
   }
 
-  static register(effect: any) {
-    Behaviours.effect = effect;
-  }
-
-
-  for(_for: BehavioursInterface['_for']): Behaviours {
-    this._for = _for;
+  for(_for: BehavioursInterface['for']): Behaviours {
+    this._config.for = _for;
     return this;
   }
 
-  on(_on: BehavioursInterface['_on']): Behaviours {
-    this._on = _on;
+  on(_on: BehavioursInterface['on']): Behaviours {
+    this._config.on = _on;
     return this;
   }
 
-  dissociateFrom(_dissociateFrom: BehavioursInterface['_dissociateFrom']): Behaviours {
-    this._dissociateFrom = _dissociateFrom;
+  dissociateFrom(_dissociateFrom: BehavioursInterface['dissociateFrom']): Behaviours {
+    this._config.dissociateBehaviour = _dissociateFrom;
     return this;
   }
 
-  create(value?: BehavioursInterface): any {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new SideEffectsBase(this));
+  create(options: BehavioursConfigInterface = {}): BehavioursConfigInterface {
+    return { ...this._config ,...options};
   }
 }
 

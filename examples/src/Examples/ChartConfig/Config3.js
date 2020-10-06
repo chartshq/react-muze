@@ -35,7 +35,7 @@ function numberFormat(num) {
     return num;
 }
 
-const axis = Axes.config().tickFormat(numberFormat).interpolator('log').numberOfTicks(6).create();
+const axis = Axes.LinearAxis.config().tickFormat(numberFormat).interpolator('log').numberOfTicks(6).create();
 
 const border = Border.config().create({
     showValueBorders: {

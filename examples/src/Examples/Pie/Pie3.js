@@ -13,7 +13,7 @@ async function createDataModel() {
 }
 
 const arcEncoding = Encoding.Arc.config().radius('No. of cars').angle('Maker').create();
-const axesradius = Axes.Radius.config().range(r => [r[0] + 50, r[1]]).create();
+const axesradius = Axes.RadialAxis.config().range(r => [r[0] + 50, r[1]]).create();
 
 const operationFn = (dm) => {
     return dm.calculateVariable({

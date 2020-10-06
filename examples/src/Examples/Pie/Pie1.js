@@ -13,7 +13,7 @@ async function createDataModel() {
 }
 
 const arcEncoding = Encoding.Arc.config().angle('Horsepower').create();
-const axes = Axes.Radius.config().range((r) => [r[0] + 100, r[1]]).create();
+const axes = Axes.RadialAxis.config().range((r) => [r[0] + 100, r[1]]).create();
 
 class Bar extends React.Component {
     constructor(props) {

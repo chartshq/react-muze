@@ -9,7 +9,6 @@ export interface LegendInterface {
   padding?: number;
   textWidth?: number;
   textFormatter?: Function;
-
   item?: {
     text: {
       width?: number;
