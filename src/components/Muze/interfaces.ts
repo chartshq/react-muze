@@ -1,11 +1,11 @@
-import {AxesInterface} from '../../configurations/Axes/types';
+import { LinearAxisOptions } from '../../configurations/Axes/types';
 import { LegendInterface } from '../../configurations/Legend/types';
 import { ScrollBarInterface } from '../../configurations/ScrollBar/types';
 
 export interface MuzeProps {
   data: muze.DataModel;
-  xAxis?: AxesInterface;
-  yAxis?: AxesInterface;
+  xAxis?: LinearAxisOptions;
+  yAxis?: LinearAxisOptions;
   colorLegend?: LegendInterface;
   sizeLegend?: LegendInterface;
   shapeLegend?: LegendInterface;

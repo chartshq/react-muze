@@ -1,3 +1,4 @@
-import { Axes } from './axes';
+export { LinearAxis } from './linear_axis';
 
-export { Axes };
+export  { RadialAxis } from './radial-axis';
+

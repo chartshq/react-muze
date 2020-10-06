@@ -1,4 +1,4 @@
-import { AxesInterface } from "../../configurations/Axes/types";
+import { LinearAxisOptions } from "../../configurations/Axes/types";
 import { GridBandsInterface } from "../../configurations/GridBands/types";
 import { GridLinesInterface } from "../../configurations/GridLines/types";
 import { HeadersConfig } from "../../configurations/Headers/types";
@@ -34,8 +34,8 @@ export interface SanitizedConfig {
   subtitle?: HeadersConfig;
   // title?: any;
   // subtitle?: any
-  xAxis?: AxesInterface;
-  yAxis?: AxesInterface;
+  xAxis?: LinearAxisOptions;
+  yAxis?: LinearAxisOptions;
   gridLines?: GridLinesInterface;
   gridBands?: GridBandsInterface;
   scrollBar?: ScrollBarInterface;

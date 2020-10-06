@@ -1,6 +1,6 @@
 import { Tooltip } from "../../configurations/Tooltip";
 import { Border } from "../../configurations/Border";
-import { AxesInterface } from '../../configurations/Axes/types';
+import { LinearAxisOptions , RadialAxisOptions } from '../../configurations/Axes/types';
 import { LegendInterface } from '../../configurations/Legend/types';
 import { ScrollBarInterface } from '../../configurations/ScrollBar/types';
 import { GridBandsInterface } from '../../configurations/GridBands/types';
@@ -26,8 +26,8 @@ export interface ChartConfig {
   operation?: Function;
   title?: string | HeadersConfig | undefined;
   subtitle?: string | HeadersConfig | undefined;
-  xAxis?: AxesInterface;
-  yAxis?: AxesInterface;
+  xAxis?: LinearAxisOptions;
+  yAxis?: LinearAxisOptions;
   colorLegend?: LegendInterface;
   sizeLegend?: LegendInterface;
   shapeLegend?: LegendInterface;
@@ -53,10 +53,7 @@ export interface ChartConfig {
   transform?: {
     [key: string]: Function
   }
-  axesRadius?: {
-      range: Function;
-      domain: number[];
-  },
+  axesRadius?: RadialAxisOptions,
   autoGroupBy?: boolean;
   facetRows?: {
     verticalAlign?: string;
@@ -80,8 +77,8 @@ export interface SanitizedConfig {
   operation?: Function;
   title?: HeadersConfig | undefined;
   subtitle?: HeadersConfig | undefined;
-  xAxis?: AxesInterface;
-  yAxis?: AxesInterface;
+  xAxis?: LinearAxisOptions;
+  yAxis?: LinearAxisOptions;
   gridLines?: GridLinesInterface;
   gridBands?: GridBandsInterface;
   scrollBar?: ScrollBarInterface;
@@ -104,10 +101,7 @@ export interface SanitizedConfig {
   transform?: {
     [key: string]: Function
   },
-  axesRadius?: {
-    range: Function;
-    domain: number[];
-  },
+  axesRadius?: RadialAxisOptions,
   autoGroupBy?: {
     disabled: boolean
   },

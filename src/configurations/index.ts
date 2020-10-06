@@ -1,4 +1,4 @@
-import { Axes } from './Axes';
+import * as Axes from './Axes';
 import { Legend, LEGEND_POSITION } from './Legend';
 import { Color, Size, Shape } from './RetinalEncoding';
 import { Headers, POSITION, ALIGNMENT } from './Headers';
