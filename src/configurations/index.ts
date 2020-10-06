@@ -1,13 +1,13 @@
 import { Axes } from './Axes';
 import { Legend, LEGEND_POSITION } from './Legend';
 import { Color, Size, Shape } from './RetinalEncoding';
-import { Headers, html, POSITION, ALIGNMENT } from './Headers';
+import { Headers, POSITION, ALIGNMENT } from './Headers';
 import { GridLines } from './GridLines';
 import { GridBands } from './GridBands';
 import { ScrollBar, SCROLL_VERTICAL, SCROLL_HORIZONTAL } from './ScrollBar';
 import { Encoding } from './Encoding';
-import { SideEffects, SpawnableSideEffect, SurrogateSideEffect, GenericSideEffect } from './SideEffects';
-import { Behaviours, GenericBehaviour, VolatileBehaviour } from './Behaviours';
+import { SideEffects } from './SideEffects';
+import { Behaviours } from './Behaviours';
 import { Tooltip, TOOLTIP_TYPE } from './Tooltip';
 import { Border } from './Border';
 
@@ -21,15 +21,10 @@ export {
   GridLines,
   GridBands,
   ScrollBar,
-  html,
   Encoding,
   Tooltip,
   SideEffects,
-  SpawnableSideEffect,
-  SurrogateSideEffect,
-  GenericSideEffect,
   Behaviours,
-  GenericBehaviour, VolatileBehaviour,
   Border
 };
 

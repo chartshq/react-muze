@@ -9,8 +9,9 @@ import { DataModelConstants } from "../../constants";
 
 export default class Muze extends React.Component<MuzeProps, MuzeState> {
   public static defaultProps = {
-    sideEffects: {},
+    sideEffects: [],
     behaviours: {},
+    propagationBehaviourMap: {},
   };
 
   static Operators = {
@@ -19,6 +20,10 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
   };
 
   static DataModel = Object.assign(muze.DataModel, DataModelConstants);
+
+  static SideEffects = muze.SideEffects.standards;
+
+  static Behaviours = muze.Behaviours.standards;
 
   constructor(props: MuzeProps) {
     super(props);
@@ -38,7 +43,12 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
 
   componentDidUpdate() {
     const { interactiveCharts, allCharts } = this.state;
-    const { sideEffects, behaviours, crossInteractive } = this.props;
+    const {
+      sideEffects,
+      behaviours,
+      crossInteractive,
+      propagationBehaviourMap,
+    } = this.props;
 
     const interactiveChartsLen = Object.values(interactiveCharts).length;
     // Make all charts connected only if Muze has crossInteractive true and
@@ -50,13 +60,25 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     let sideEffectsMap = {};
     let physicalBehaviouralMap = {};
 
-    sideEffectsMap = (sideEffects.on || []).reduce(
-      (acc: any, elem: string, i: number) => {
-        acc[elem] = sideEffects.for[i];
-        return acc;
-      },
-      {}
-    );
+    sideEffectsMap = sideEffects.reduce((acc: any, elem: any, i: number) => {
+      const sideEffectConfig = (elem.on || []).reduce(
+        (acc: any, elem1: string, i: number) => {
+          acc[elem1] = [elem.for[i]];
+          return acc;
+        },
+        {}
+      );
+      acc = { ...acc, ...sideEffectConfig };
+      return acc;
+    }, {});
+
+    // sideEffectsMap = (sideEffects.on || []).reduce(
+    //   (acc: any, elem: string, i: number) => {
+    //     acc[elem] = sideEffects.for[i];
+    //     return acc;
+    //   },
+    //   {}
+    // );
 
     physicalBehaviouralMap = (behaviours.on || []).reduce(
       (acc: any, elem: string, i: number) => {
@@ -74,7 +96,8 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     const actionModel = muze.ActionModel.for(...canvases)
       .enableCrossInteractivity()
       .mapSideEffects(sideEffectsMap)
-      .registerPhysicalBehaviouralMap(physicalBehaviouralMap);
+      .registerPhysicalBehaviouralMap(physicalBehaviouralMap)
+      .registerPropagationBehaviourMap(propagationBehaviourMap);
 
     if (registeredSideEffect) {
       actionModel.registerSideEffects(registeredSideEffect);

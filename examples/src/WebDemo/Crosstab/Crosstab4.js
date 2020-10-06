@@ -76,6 +76,9 @@ class Crosstab extends React.Component {
 
     render() {
         const { carsDm } = this.state;
+        const align = {
+            verticalAlign: 'middle'
+        }
 
         return (
             <Muze data={carsDm}>
@@ -88,6 +91,7 @@ class Crosstab extends React.Component {
                     axesRadius={axisRadius}
                     width={700}
                     height={800}
+                    facetRows={align}
                 >
                     <Layer mark="arc" encoding={arc} />
                     <Layer mark="text" encoding={textEncoding} />

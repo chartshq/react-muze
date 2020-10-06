@@ -22,6 +22,7 @@ export interface MuzeProps {
   crossInteractive?: boolean;
   sideEffects?: any;
   behaviours?: any;
+  propagationBehaviourMap?: {}
 }
 
 export interface MuzeState {
