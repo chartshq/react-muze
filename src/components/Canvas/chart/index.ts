@@ -1,12 +1,12 @@
 import { CanvasBuilder } from "./CanvasBuilder";
 import { multiTooltipIntoMuze } from "../../../configurations/Tooltip";
 import { configSanitizer } from "./helpers";
-import { ChartConfig, CanvasState } from "../interfaces";
+import { CanvasProps, CanvasState } from "../../types";
 import { Config } from "./Config";
 
 export const createChart = (
   state: CanvasState,
-  props: ChartConfig,
+  props: CanvasProps,
   mountPoint: HTMLInputElement,
   context: any
 ): void => {
@@ -31,14 +31,6 @@ export const createChart = (
     scrollBar,
     showHeaders,
     className,
-    onInitialized,
-    onBeforeUpdate,
-    onUpdated,
-    onBeforeDraw,
-    onDrawn,
-    onBeforeRemove,
-    onRemoved,
-    onAnimationEnd,
     tooltips,
     crossInteractive,
     canvasSideEffects,
@@ -105,14 +97,6 @@ export const createChart = (
       .layers(Object.values(layerConfig))
       .config(config)
       .mount(mountPoint)
-      .onInitialized(onInitialized)
-      .onBeforeUpdate(onBeforeUpdate)
-      .onUpdated(onUpdated)
-      .onBeforeDraw(onBeforeDraw)
-      .onDrawn(onDrawn)
-      .onBeforeRemove(onBeforeRemove)
-      .onRemoved(onRemoved)
-      .onAnimationEnd(onAnimationEnd)
       .create();
 
     const canvasClass = className

@@ -1,3 +1,3 @@
-import { CanvasBuilder } from './canvas';
+import { CanvasBuilder } from './CanvasBuilder';
 
 export { CanvasBuilder };

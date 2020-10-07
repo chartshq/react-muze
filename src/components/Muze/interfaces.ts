@@ -1,24 +1,13 @@
 import { LinearAxisOptions } from '../../configurations/Axes/types';
-import { LegendInterface } from '../../configurations/Legend/types';
 import { ScrollBarInterface } from '../../configurations/ScrollBar/types';
+import { RetinalEncodingLegend } from '../types';
 
-export interface MuzeProps {
+export interface MuzeProps extends RetinalEncodingLegend {
   data: muze.DataModel;
   xAxis?: LinearAxisOptions;
   yAxis?: LinearAxisOptions;
-  colorLegend?: LegendInterface;
-  sizeLegend?: LegendInterface;
-  shapeLegend?: LegendInterface;
   scrollBar?: ScrollBarInterface;
   colorScheme?: string[];
-  onInitialized?: Function;
-  onBeforeUpdate?: Function;
-  onUpdated?: Function;
-  onBeforeDraw?: Function;
-  onDrawn?: Function;
-  onBeforeRemove?: Function;
-  onRemoved?: Function;
-  onAnimationEnd?: Function;
   crossInteractive?: boolean;
   sideEffects?: any;
   behaviours?: any;

@@ -1,4 +1,4 @@
-import { ChartConfig, SanitizedConfig } from "../../interfaces";
+import { CanvasProps, SanitizedCanvasProps } from "../../../types"
 import { FieldRangeInterface } from "../../../../configurations/RetinalEncoding/types";
 
 export const getLegendConfig = (legendConfig: any, legendType: string) => {
@@ -50,9 +50,9 @@ export const getLegendConfig = (legendConfig: any, legendType: string) => {
 };
 
 export const configSanitizer = (
-  config: ChartConfig,
+  config: CanvasProps,
   context: any
-): SanitizedConfig => {
+): SanitizedCanvasProps => {
   const {
     xAxis = null,
     yAxis = null,
@@ -85,14 +85,6 @@ export const configSanitizer = (
     yAxis: canvasYAxis,
     className,
     colorScheme: canvasColorScheme = null,
-    onInitialized = context.onInitialized,
-    onBeforeUpdate = context.onBeforeUpdate,
-    onUpdated = context.onUpdated,
-    onBeforeDraw = context.onBeforeDraw,
-    onDrawn = context.onDrawn,
-    onBeforeRemove = context.onBeforeRemove,
-    onRemoved = context.onRemoved,
-    onAnimationEnd = context.onAnimationEnd,
     tooltips = [],
     crossInteractive: canvasCrossInteractive = false,
     sideEffects = {},
@@ -168,14 +160,6 @@ export const configSanitizer = (
     scrollBar: canvasScrollBar || scrollBar,
     showHeaders,
     className,
-    onInitialized,
-    onBeforeUpdate,
-    onUpdated,
-    onBeforeDraw,
-    onDrawn,
-    onBeforeRemove,
-    onRemoved,
-    onAnimationEnd,
     tooltips,
     crossInteractive: canvasCrossInteractive,
     canvasSideEffects: sideEffectsMap,

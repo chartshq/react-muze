@@ -8,9 +8,6 @@ import { GridBandsInterface } from "../../../../configurations/GridBands/types";
 import { ScrollBarInterface } from "../../../../configurations/ScrollBar/types";
 import { BorderInterface } from "../../../../configurations/Border/types";
 
-// wouldn't it be better if it was something like
-// import {AxesInterface} from "@chartshq/react-muze/configurations/Axes";
-
 export interface ConfigInterface {
   axes?: {
     x?: LinearAxisOptions;
@@ -31,8 +28,8 @@ export interface ConfigInterface {
       verticalAlign?: string;
     };
   };
-  sort?: any;
-  interaction?: InteractionInterface | any;
+  sort?: {
+    [key: string]: string | Function
+  };
+  interaction?: any;
 }
-
-export interface InteractionInterface {}

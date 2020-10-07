@@ -45,7 +45,7 @@ function operationFn(dm) {
 }
 
 const tickEncoding = Encoding.Tick.config().create({
-    x: null,
+    x: { field: null },
     y: "Precipitation",
     color: {
         value: () => "#f71616"

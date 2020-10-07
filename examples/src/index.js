@@ -2,17 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
-import ReferenceLine from "./Examples/Composability/ReferenceLine";
-import RangeArea from "./Examples/Composability/RangeArea";
-import BoxPlot from "./Examples/Composability/BoxPlot";
-import DotPlotTickChart from "./Examples/Composability/DotPlotTickChart";
+import BoxPlot from './Examples/Composability/BoxPlot';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ReferenceLine />
-    <RangeArea />
     <BoxPlot />
-    <DotPlotTickChart />
   </React.StrictMode>,
   document.getElementById("root")
 );

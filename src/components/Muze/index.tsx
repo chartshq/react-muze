@@ -12,6 +12,8 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     behaviours: {},
   };
 
+  static Utils = muze.utils;
+
   static _sideEffects = new Map();
   static get sideEffects() {
     return Muze._sideEffects;
@@ -20,6 +22,11 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
   static _behaviours = new Map();
   static get behaviours() {
     return Muze._behaviours;
+  }
+
+  static _physicalActions = new Map();
+  static get physicalActions() {
+    return Muze._physicalActions;
   }
 
   static DataModel = Object.assign(muze.DataModel, DataModelConstants);
@@ -37,10 +44,16 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
         Muze._behaviours.set(beh.formalName(), beh);
       });
     },
+    registerPhysicalActions: (action: { [key: string]: Function }) => {
+      Object.keys(action).forEach((key) => {
+        Muze._physicalActions.set(key, action[key]);
+      });
+    },
   };
 
   constructor(props: MuzeProps) {
     super(props);
+
     this.state = {
       env: null,
       interactiveCharts: {},
@@ -111,6 +124,13 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       actionModel.registerBehaviouralActions(item);
     });
 
+    const actions = Muze.physicalActions.entries();
+    [...actions].forEach((action: any) => {
+      muze.ActionModel.registerPhysicalActions({
+        [action[0]]: action[1],
+      });
+    });
+
     if (sideEffects.dissociateSideEffect) {
       actionModel.dissociateSideEffect(sideEffects.dissociateSideEffect);
     }
@@ -170,14 +190,6 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       shapeLegend,
       scrollBar,
       colorScheme,
-      onAnimationEnd,
-      onInitialized,
-      onBeforeUpdate,
-      onUpdated,
-      onBeforeDraw,
-      onDrawn,
-      onBeforeRemove,
-      onRemoved,
       crossInteractive,
     } = this.props;
 
@@ -195,14 +207,6 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
               shapeLegend,
               scrollBar,
               colorScheme,
-              onInitialized,
-              onBeforeUpdate,
-              onUpdated,
-              onBeforeDraw,
-              onDrawn,
-              onBeforeRemove,
-              onRemoved,
-              onAnimationEnd,
               crossInteractive,
               addCrossInteraction: this.addCrossInteraction,
               addChildChart: this.addChildChart,
