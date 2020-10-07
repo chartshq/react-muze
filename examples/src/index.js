@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import Cross from './Examples/DynamicLayer/Layer1';
+import Cross from './Examples/CrossInteractive/Cross3';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -65,7 +65,7 @@ class Bar extends React.Component {
                                         columns={[share("Max Weight", "Min Weight")]}
                                         rows={["Year"]}
                                         width={500}
-                                        width={500}
+                                        height={500}
                                         operation={operationFn}
                                     >
                                         <Layer mark="bar" encoding={barEncoding} />

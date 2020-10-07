@@ -10,7 +10,11 @@ export interface LayerProps {
   calculateDomain?: boolean;
   source?: Function;
   interactive?: boolean;
-  transitionDuration?: number;
+  transition?: {
+    effect: 'cubic' | 'bounce' | 'linear' | 'circle' | 'elastic',
+    duration?: number,
+    disabled?: boolean
+  };
 }
 
 export interface LayerState {

@@ -16,10 +16,6 @@ class Layer extends React.Component<LayerProps, LayerState> {
     this.id = uuidv4();
   }
 
-  shouldComponentUpdate() {
-    return false;
-  }
-
   componentWillUnmount() {
     const { setLayerConfig } = this.context;
 
@@ -30,11 +26,6 @@ class Layer extends React.Component<LayerProps, LayerState> {
     return Object.keys(this.props).reduce(
       (acc: any, prop: string, index: number) => {
         if ((this.props as any)[prop] !== undefined) {
-          if (prop === "transitionDuration") {
-            acc.transition = {
-              duration: this.props[prop],
-            };
-          }
           if (prop === "transformType") {
             acc.transform = {
               type: this.props[prop],

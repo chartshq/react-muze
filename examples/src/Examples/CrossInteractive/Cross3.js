@@ -62,6 +62,8 @@ class Bar extends React.Component {
                 <Canvas
                     rows={["Miles_per_Gallon"]}
                     columns={["Maker"]}
+                    title="Single Select Behaviour"
+                    subtitle="Only a single plot can be selected at a time"
                 />
             </Muze>
         );
