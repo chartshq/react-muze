@@ -50,6 +50,30 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
   }
 
   componentDidMount = async (): Promise<void> => {
+    const { interactiveCharts, allCharts } = this.state;
+    const { crossInteractive } = this.props;
+    const interactiveChartsLen = Object.values(interactiveCharts).length;
+
+    const canvases =
+      crossInteractive && !interactiveChartsLen
+        ? Object.values(allCharts)
+        : Object.values(interactiveCharts);
+    let sideEffectsMap = {};
+    let physicalBehaviouralMap = {};
+
+    const actionModel = muze.ActionModel.for(...canvases)
+      .enableCrossInteractivity()
+      .mapSideEffects(sideEffectsMap)
+      .registerPhysicalBehaviouralMap(physicalBehaviouralMap);
+
+    Muze.sideEffects.forEach((item) => {
+      actionModel.registerSideEffects(item);
+    });
+
+    Muze.behaviours.forEach((item) => {
+      actionModel.registerBehaviouralActions(item);
+    });
+
     const { env } = this.state;
     if (!env) {
       this.setState({ env: await muze() });
@@ -101,14 +125,6 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
           .for(allCharts[key])
           .registerPropagationBehaviourMap(propagationBehaviour[key]);
       }
-    });
-
-    Muze.sideEffects.forEach((item) => {
-      actionModel.registerSideEffects(item);
-    });
-
-    Muze.behaviours.forEach((item) => {
-      actionModel.registerBehaviouralActions(item);
     });
 
     if (sideEffects.dissociateSideEffect) {
