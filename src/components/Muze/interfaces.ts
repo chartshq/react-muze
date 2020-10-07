@@ -1,8 +1,8 @@
 import { LinearAxisOptions } from '../../configurations/Axes/types';
 import { ScrollBarInterface } from '../../configurations/ScrollBar/types';
-import { LifeCycleHooks, RetinalEncodingLegend } from '../types';
+import { RetinalEncodingLegend } from '../types';
 
-export interface MuzeProps extends LifeCycleHooks, RetinalEncodingLegend {
+export interface MuzeProps extends RetinalEncodingLegend {
   data: muze.DataModel;
   xAxis?: LinearAxisOptions;
   yAxis?: LinearAxisOptions;

@@ -12,18 +12,6 @@ import { FieldRangeInterface } from "../../configurations/RetinalEncoding/types"
 import { HeadersConfig } from "../../configurations/Headers/types";
 import { MuzeConstants } from "../../constants";
 
-// Interface for all the lifecycle hooks
-export interface LifeCycleHooks {
-  onInitialized?: Function;
-  onBeforeUpdate?: Function;
-  onUpdated?: Function;
-  onBeforeDraw?: Function;
-  onDrawn?: Function;
-  onBeforeRemove?: Function;
-  onRemoved?: Function;
-  onAnimationEnd?: Function;
-}
-
 // Interface for color,shape and size encoding
 export interface RetinalEncoding {
   color?: string | FieldRangeInterface;
@@ -39,7 +27,7 @@ export interface RetinalEncodingLegend {
 }
 
 // Common interface between input props and actual input to muze
-interface ChartProps extends LifeCycleHooks, RetinalEncoding, RetinalEncodingLegend {
+interface ChartProps extends RetinalEncoding, RetinalEncodingLegend {
   rows: string[];
   columns: string[];
   detail?: string[];

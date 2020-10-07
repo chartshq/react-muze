@@ -31,14 +31,6 @@ export const createChart = (
     scrollBar,
     showHeaders,
     className,
-    onInitialized,
-    onBeforeUpdate,
-    onUpdated,
-    onBeforeDraw,
-    onDrawn,
-    onBeforeRemove,
-    onRemoved,
-    onAnimationEnd,
     tooltips,
     crossInteractive,
     canvasSideEffects,
@@ -105,14 +97,6 @@ export const createChart = (
       .layers(Object.values(layerConfig))
       .config(config)
       .mount(mountPoint)
-      .onInitialized(onInitialized)
-      .onBeforeUpdate(onBeforeUpdate)
-      .onUpdated(onUpdated)
-      .onBeforeDraw(onBeforeDraw)
-      .onDrawn(onDrawn)
-      .onBeforeRemove(onBeforeRemove)
-      .onRemoved(onRemoved)
-      .onAnimationEnd(onAnimationEnd)
       .create();
 
     const canvasClass = className

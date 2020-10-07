@@ -51,6 +51,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
 
   constructor(props: MuzeProps) {
     super(props);
+
     this.state = {
       env: null,
       interactiveCharts: {},
@@ -114,11 +115,11 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     });
 
     Muze.sideEffects.forEach((item) => {
-      muze.ActionModel.registerSideEffects(item);
+      actionModel.registerSideEffects(item);
     });
 
     Muze.behaviours.forEach((item) => {
-      muze.ActionModel.registerBehaviouralActions(item);
+      actionModel.registerBehaviouralActions(item);
     });
 
     Muze.physicalActions.forEach((item) => {
@@ -184,14 +185,6 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       shapeLegend,
       scrollBar,
       colorScheme,
-      onAnimationEnd,
-      onInitialized,
-      onBeforeUpdate,
-      onUpdated,
-      onBeforeDraw,
-      onDrawn,
-      onBeforeRemove,
-      onRemoved,
       crossInteractive,
     } = this.props;
 
@@ -209,14 +202,6 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
               shapeLegend,
               scrollBar,
               colorScheme,
-              onInitialized,
-              onBeforeUpdate,
-              onUpdated,
-              onBeforeDraw,
-              onDrawn,
-              onBeforeRemove,
-              onRemoved,
-              onAnimationEnd,
               crossInteractive,
               addCrossInteraction: this.addCrossInteraction,
               addChildChart: this.addChildChart,

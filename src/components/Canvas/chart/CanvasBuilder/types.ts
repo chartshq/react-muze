@@ -1,9 +1,9 @@
 import { HeadersConfig } from "../../../../configurations/Headers/types";
 import { LegendInterface } from "../../../../configurations/Legend/types";
-import { LifeCycleHooks, RetinalEncoding } from '../../../types';
+import { RetinalEncoding } from '../../../types';
 import { ConfigInterface } from '../Config/types';
 
-export interface CanvasBuilderInterface extends LifeCycleHooks, RetinalEncoding {
+export interface CanvasBuilderInterface extends RetinalEncoding {
   canvas?: muze.Canvas;
   data?: muze.DataModel | undefined;
   rows?: string[];

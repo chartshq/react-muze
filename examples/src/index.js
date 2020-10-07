@@ -11,10 +11,10 @@ import InteractiveLayers from './Examples/CrossInteractive/InteractiveLayers';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <ReferenceLine />
+    <ReferenceLine />
     <RangeArea />
     <BoxPlot />
-    <DotPlotTickChart /> */}
+    <DotPlotTickChart />
     <InteractiveLayers />
   </React.StrictMode>,
   document.getElementById("root")
