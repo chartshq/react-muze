@@ -21,7 +21,6 @@ const operationFn = (dm) => {
         },
         ["Name"], () => 1
     );
-    console.log(aa.getData());
     return aa;
 }
 

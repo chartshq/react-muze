@@ -28,8 +28,6 @@ class Bar extends React.Component {
     render() {
         const { carsDm } = this.state;
 
-        console.log(carsDm && carsDm.getData());
-
         return (
             <Muze data={carsDm}>
                 <Canvas

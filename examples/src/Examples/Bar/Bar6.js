@@ -47,7 +47,6 @@ class Bar extends React.Component {
 
     componentDidMount() {
         createDataModel().then((carsDm) => {
-            console.log(carsDm.getData());
             this.setState({ carsDm });
         });
     }
