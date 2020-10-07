@@ -1,0 +1,20 @@
+/* Theme with background image */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#chart-container {
+  width: 1000px;
+  height: 400px;
+}
+
+.muze-chart-1 {
+  width: 800px;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("https://i.ibb.co/2Wdc2BB/brushed-alum.png");
+}

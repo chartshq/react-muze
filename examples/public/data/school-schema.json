@@ -1,0 +1,22 @@
+[
+    {
+        "name": "GenderMix",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Area",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Zone",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "PostalCode",
+        "type": "measure",
+        "subtype": "continuous"
+    }
+]
