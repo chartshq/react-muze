@@ -1,7 +1,9 @@
 import { CanvasProps, SanitizedCanvasProps } from "../../../types"
 import { FieldRangeInterface } from "../../../../configurations/RetinalEncoding/types";
+import { Headers } from '../../../../configurations/Headers';
+import { LegendInterface } from "../../../../configurations/Legend/types";
 
-export const getLegendConfig = (legendConfig: any, legendType: string) => {
+export const getLegendConfig = (legendConfig: LegendInterface, legendType: string) => {
   const {
     position = "right",
     show = "true",
@@ -64,6 +66,7 @@ export const configSanitizer = (
     data: globalDm,
     crossInteractive = false,
   } = context;
+
   const {
     rows,
     columns,
@@ -101,10 +104,10 @@ export const configSanitizer = (
   let { title, subtitle } = config;
 
   if (typeof title === "string") {
-    title = { content: title };
+    title = Headers.config().content(title).create();
   }
   if (typeof subtitle === "string") {
-    subtitle = { content: subtitle };
+    subtitle = Headers.config().content(subtitle).create();
   }
 
   let canvasData = globalDm;
