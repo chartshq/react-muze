@@ -1,7 +1,6 @@
 import * as React from "react";
 import Muze, { Canvas } from "@chartshq/react-muze/components";
 import { Behaviours } from '@chartshq/react-muze/configurations';
-import './index.css';
 
 const { DataModel } = Muze;
 

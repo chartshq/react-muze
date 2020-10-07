@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
-import DblClick from './Examples/CrossInteractive/PhysicalAction/index';
+import BoxPlot from './Examples/Composability/BoxPlot';
 
 ReactDOM.render(
   <React.StrictMode>
-    <DblClick />
+    <BoxPlot />
   </React.StrictMode>,
   document.getElementById("root")
 );
