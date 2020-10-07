@@ -12,3 +12,7 @@ export interface LayerProps {
   interactive?: boolean;
   transitionDuration?: number;
 }
+
+export interface LayerState {
+  id: string
+}

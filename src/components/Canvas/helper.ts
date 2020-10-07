@@ -289,7 +289,7 @@ export const createChart = (
       .detail(detail)
       .title(title)
       .subtitle(subtitle)
-      .layers(layerConfig)
+      .layers(Object.values(layerConfig))
       .config(config)
       .mount(mountPoint)
       .onInitialized(onInitialized)
