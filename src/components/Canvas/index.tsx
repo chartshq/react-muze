@@ -3,7 +3,7 @@ import React from "react";
 import { Context } from "../../utils/context/muze-context";
 import { CanvasProvider } from "../../utils/context/canvas-context";
 import "./style.scss";
-import { createChart } from "./helper";
+import { createChart } from "./chart";
 import { ChartConfig, CanvasState } from "./interfaces";
 import { LayerProps } from "../Layer/interfaces";
 

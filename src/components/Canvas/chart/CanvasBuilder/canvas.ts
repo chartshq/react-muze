@@ -1,6 +1,6 @@
 import { CanvasBuilderInterface } from './types';
 // import { CanvasBase } from './base';
-import { MuzeConstants } from '../../constants';
+import { MuzeConstants } from '../../../../constants';
 
 class CanvasBuilder {
   private _config : CanvasBuilderInterface;

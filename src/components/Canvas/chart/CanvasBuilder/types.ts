@@ -1,6 +1,6 @@
-import { HeadersConfig } from "../../configurations/Headers/types";
-import { LegendInterface } from "../../configurations/Legend/types";
-import { FieldRangeInterface } from "../../configurations/RetinalEncoding/types";
+import { HeadersConfig } from "../../../../configurations/Headers/types";
+import { LegendInterface } from "../../../../configurations/Legend/types";
+import { FieldRangeInterface } from "../../../../configurations/RetinalEncoding/types";
 
 export interface CanvasBuilderInterface {
   canvas?: muze.Canvas;
@@ -30,6 +30,6 @@ export interface CanvasBuilderInterface {
   sideEffectsMap?: any;
   behavioursMap?: any;
   transform?: {
-    [key: string]: Function
-  }
+    [key: string]: Function;
+  };
 }

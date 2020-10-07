@@ -1,10 +1,13 @@
 import { Tooltip } from "../../configurations/Tooltip";
 import { Border } from "../../configurations/Border";
-import { LinearAxisOptions , RadialAxisOptions } from '../../configurations/Axes/types';
-import { LegendInterface } from '../../configurations/Legend/types';
-import { ScrollBarInterface } from '../../configurations/ScrollBar/types';
-import { GridBandsInterface } from '../../configurations/GridBands/types';
-import { GridLinesInterface } from '../../configurations/GridLines/types';
+import {
+  LinearAxisOptions,
+  RadialAxisOptions,
+} from "../../configurations/Axes/types";
+import { LegendInterface } from "../../configurations/Legend/types";
+import { ScrollBarInterface } from "../../configurations/ScrollBar/types";
+import { GridBandsInterface } from "../../configurations/GridBands/types";
+import { GridLinesInterface } from "../../configurations/GridLines/types";
 import { FieldRangeInterface } from "../../configurations/RetinalEncoding/types";
 import { HeadersConfig } from "../../configurations/Headers/types";
 import { MuzeConstants } from "../../constants";
@@ -49,19 +52,19 @@ export interface ChartConfig {
   crossInteractive?: boolean;
   sideEffects?: any;
   sort?: Map<string, MuzeConstants.SORT_ORDER>;
-  border: Border,
+  border: Border;
   transform?: {
-    [key: string]: Function
-  }
-  radiusAxis?: RadialAxisOptions,
+    [key: string]: Function;
+  };
+  radiusAxis?: RadialAxisOptions;
   autoGroupBy?: boolean;
   facetRows?: {
     verticalAlign?: string;
-  },
+  };
   highlightExact?: boolean;
   propagationBehaviourMap?: {
-    [key: string]: string[]
-  }
+    [key: string]: string[];
+  };
 }
 
 export interface SanitizedConfig {
@@ -97,25 +100,25 @@ export interface SanitizedConfig {
   crossInteractive: boolean;
   canvasSideEffects: any;
   sort?: Map<string, MuzeConstants.SORT_ORDER>;
-  border: Border,
+  border: Border;
   transform?: {
-    [key: string]: Function
-  },
-  radiusAxis?: RadialAxisOptions,
+    [key: string]: Function;
+  };
+  radiusAxis?: RadialAxisOptions;
   autoGroupBy?: {
-    disabled: boolean
-  },
+    disabled: boolean;
+  };
   facet?: {
     rows?: {
       verticalAlign?: string;
-    }
-  },
+    };
+  };
   highlight?: {
     exact?: boolean;
-  },
+  };
   propagationBehaviourMap?: {
-    [key: string]: string[]
-  }
+    [key: string]: string[];
+  };
 }
 
 export interface CanvasState {

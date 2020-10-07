@@ -41,25 +41,25 @@ ReactDOM.render(
     <RangePlotBar />
     <Bar7 /> */}
 
-    {/* <AreaChart />
-    <StackedAreaChart /> */}
+    <AreaChart />
+    {/* <StackedAreaChart /> */}
 
-    {/* <ReferenceLine />
+    <ReferenceLine />
     <RangeArea />
     <BoxPlot />
-    <DotPlotTickChart /> */}
+    <DotPlotTickChart />
 
     {/* <OverviewAndZoom />
     <Cross3 />
     <InteractiveLayers /> */}
 
-    <Crosstab1 />
+    {/* <Crosstab1 />
     <Crosstab2 />
     <Crosstab3 />
     <Crosstab4 />
     <Crosstab5 />
     <Crosstab6 />
-    <Crosstab7 />
+    <Crosstab7 /> */}
   </React.StrictMode>,
   document.getElementById("root")
 );
