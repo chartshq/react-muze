@@ -1,5 +1,4 @@
 import { CanvasBuilderInterface } from './types';
-// import { CanvasBase } from './base';
 import { MuzeConstants } from '../../../../constants';
 
 class CanvasBuilder {
@@ -179,7 +178,6 @@ class CanvasBuilder {
         .size(size)
         .shape(shape)
         .detail(detail)
-        // .title(title.content, { ...title })
         .title(title ? title.content : undefined, { ...title })
         .subtitle(subtitle ? subtitle.content : undefined, { ...subtitle })
         .config(config)

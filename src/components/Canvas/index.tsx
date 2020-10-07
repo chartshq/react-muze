@@ -1,16 +1,15 @@
-/* eslint-disable react/no-did-update-set-state */
 import React from "react";
 import { Context } from "../../utils/context/muze-context";
 import { CanvasProvider } from "../../utils/context/canvas-context";
 import "./style.scss";
-import { createChart } from "./chart";
-import { ChartConfig, CanvasState } from "./interfaces";
+import { createChart } from "./Chart";
+import { CanvasProps, CanvasState } from "../types";
 import { LayerProps } from "../Layer/interfaces";
 
-export default class Canvas extends React.Component<ChartConfig, CanvasState> {
+export default class Canvas extends React.Component<CanvasProps, CanvasState> {
   mountRef: React.RefObject<HTMLInputElement>;
 
-  constructor(props: ChartConfig) {
+  constructor(props: CanvasProps) {
     super(props);
     this.state = {
       canvas: (null as unknown) as muze.Canvas,
@@ -33,7 +32,7 @@ export default class Canvas extends React.Component<ChartConfig, CanvasState> {
     }
   }
 
-  shouldComponentUpdate(nextProps: ChartConfig, nextState: CanvasState) {
+  shouldComponentUpdate(nextProps: CanvasProps, nextState: CanvasState) {
     const nextStateLen = Object.keys(nextState.layerConfig).length;
     const stateLen = Object.keys(this.state.layerConfig).length;
 
@@ -56,9 +55,9 @@ export default class Canvas extends React.Component<ChartConfig, CanvasState> {
       }));
     } else if (layerConfig[id]) {
       //Entry exists, replace state entry
-      this.setState((prevState: any) => {
+      this.setState((prevState: CanvasState) => {
         let newData = prevState.layerConfig;
-        let item = Object.keys(newData).find((d: any) => d === id);
+        let item = Object.keys(newData).find((d: string) => d === id);
         Object.assign(newData[item as string], config);
 
         return {

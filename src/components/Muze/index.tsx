@@ -22,6 +22,11 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     return Muze._behaviours;
   }
 
+  static _physicalActions = new Map();
+  static get physicalActions() {
+    return Muze._physicalActions;
+  }
+
   static DataModel = Object.assign(muze.DataModel, DataModelConstants);
 
   static Operators = {
@@ -35,6 +40,11 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     registerBehaviours: (behaviours: any[]) => {
       behaviours.forEach((beh) => {
         Muze._behaviours.set(beh.formalName(), beh);
+      });
+    },
+    registerPhysicalActions: (action: { [key: string]: Function }) => {
+      Object.keys(action).forEach((key) => {
+        Muze._physicalActions.set(key, action[key]);
       });
     },
   };
@@ -104,11 +114,15 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     });
 
     Muze.sideEffects.forEach((item) => {
-      actionModel.registerSideEffects(item);
+      muze.ActionModel.registerSideEffects(item);
     });
 
     Muze.behaviours.forEach((item) => {
-      actionModel.registerBehaviouralActions(item);
+      muze.ActionModel.registerBehaviouralActions(item);
+    });
+
+    Muze.physicalActions.forEach((item) => {
+      muze.ActionModel.registerPhysicalActions(item);
     });
 
     if (sideEffects.dissociateSideEffect) {

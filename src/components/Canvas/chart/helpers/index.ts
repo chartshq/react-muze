@@ -1,4 +1,4 @@
-import { ChartConfig, SanitizedConfig } from "../../interfaces";
+import { CanvasProps, SanitizedCanvasProps } from "../../../types"
 import { FieldRangeInterface } from "../../../../configurations/RetinalEncoding/types";
 
 export const getLegendConfig = (legendConfig: any, legendType: string) => {
@@ -50,9 +50,9 @@ export const getLegendConfig = (legendConfig: any, legendType: string) => {
 };
 
 export const configSanitizer = (
-  config: ChartConfig,
+  config: CanvasProps,
   context: any
-): SanitizedConfig => {
+): SanitizedCanvasProps => {
   const {
     xAxis = null,
     yAxis = null,

@@ -1,12 +1,12 @@
 import { CanvasBuilder } from "./CanvasBuilder";
 import { multiTooltipIntoMuze } from "../../../configurations/Tooltip";
 import { configSanitizer } from "./helpers";
-import { ChartConfig, CanvasState } from "../interfaces";
+import { CanvasProps, CanvasState } from "../../types";
 import { Config } from "./Config";
 
 export const createChart = (
   state: CanvasState,
-  props: ChartConfig,
+  props: CanvasProps,
   mountPoint: HTMLInputElement,
   context: any
 ): void => {

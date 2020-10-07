@@ -12,18 +12,37 @@ import { FieldRangeInterface } from "../../configurations/RetinalEncoding/types"
 import { HeadersConfig } from "../../configurations/Headers/types";
 import { MuzeConstants } from "../../constants";
 
-interface RetinalEncoding {
-  field: string | null;
-  range?: string[] | number[];
+// Interface for all the lifecycle hooks
+export interface LifeCycleHooks {
+  onInitialized?: Function;
+  onBeforeUpdate?: Function;
+  onUpdated?: Function;
+  onBeforeDraw?: Function;
+  onDrawn?: Function;
+  onBeforeRemove?: Function;
+  onRemoved?: Function;
+  onAnimationEnd?: Function;
 }
 
-export interface ChartConfig {
-  rows: string[];
-  columns: string[];
-  detail?: string[];
+// Interface for color,shape and size encoding
+export interface RetinalEncoding {
   color?: string | FieldRangeInterface;
   size?: string | FieldRangeInterface;
   shape?: string | FieldRangeInterface;
+}
+
+// Color,Shape,Size legend
+export interface RetinalEncodingLegend {
+  colorLegend?: LegendInterface;
+  sizeLegend?: LegendInterface;
+  shapeLegend?: LegendInterface;
+}
+
+// Common interface between input props and actual input to muze
+interface ChartProps extends LifeCycleHooks, RetinalEncoding, RetinalEncodingLegend {
+  rows: string[];
+  columns: string[];
+  detail?: string[];
   width?: number;
   height?: number;
   operation?: Function;
@@ -31,80 +50,44 @@ export interface ChartConfig {
   subtitle?: string | HeadersConfig | undefined;
   xAxis?: LinearAxisOptions;
   yAxis?: LinearAxisOptions;
-  colorLegend?: LegendInterface;
-  sizeLegend?: LegendInterface;
-  shapeLegend?: LegendInterface;
   gridLines?: GridLinesInterface;
   gridBands?: GridBandsInterface;
   scrollBar?: ScrollBarInterface;
   showHeaders?: boolean;
   className?: string;
-  colorScheme?: string[];
-  onInitialized?: Function;
-  onBeforeUpdate?: Function;
-  onUpdated?: Function;
-  onBeforeDraw?: Function;
-  onDrawn?: Function;
-  onBeforeRemove?: Function;
-  onRemoved?: Function;
-  onAnimationEnd?: Function;
-  tooltips?: Array<Tooltip>;
   crossInteractive?: boolean;
-  sideEffects?: any;
   sort?: Map<string, MuzeConstants.SORT_ORDER>;
+  tooltips?: Tooltip[];
   border: Border;
+  radiusAxis?: RadialAxisOptions;
+  propagationBehaviourMap?: {
+    [key: string]: string[];
+  };
   transform?: {
     [key: string]: Function;
   };
-  radiusAxis?: RadialAxisOptions;
+}
+
+// Input by ReactMuze Consumer
+export interface CanvasProps extends ChartProps {
+  title?: string | HeadersConfig | undefined;
+  subtitle?: string | HeadersConfig | undefined;
+  colorScheme?: string[];
+  sideEffects?: any;
   autoGroupBy?: boolean;
   facetRows?: {
     verticalAlign?: string;
   };
   highlightExact?: boolean;
-  propagationBehaviourMap?: {
-    [key: string]: string[];
-  };
 }
 
-export interface SanitizedConfig {
+// Actual input to muze
+export interface SanitizedCanvasProps extends ChartProps {
   data: muze.DataModel;
-  rows: string[];
-  columns: string[];
-  detail: string[];
-  color: string | FieldRangeInterface;
-  shape: string | FieldRangeInterface;
-  size: string | FieldRangeInterface;
-  width: number;
-  height: number;
-  operation?: Function;
   title?: HeadersConfig | undefined;
   subtitle?: HeadersConfig | undefined;
-  xAxis?: LinearAxisOptions;
-  yAxis?: LinearAxisOptions;
-  gridLines?: GridLinesInterface;
-  gridBands?: GridBandsInterface;
-  scrollBar?: ScrollBarInterface;
-  showHeaders: boolean;
-  className?: string;
   legend?: LegendInterface;
-  onInitialized?: Function;
-  onBeforeUpdate?: Function;
-  onUpdated?: Function;
-  onBeforeDraw?: Function;
-  onDrawn?: Function;
-  onBeforeRemove?: Function;
-  onRemoved?: Function;
-  onAnimationEnd?: Function;
-  tooltips?: Tooltip[];
-  crossInteractive: boolean;
   canvasSideEffects: any;
-  sort?: Map<string, MuzeConstants.SORT_ORDER>;
-  border: Border;
-  transform?: {
-    [key: string]: Function;
-  };
-  radiusAxis?: RadialAxisOptions;
   autoGroupBy?: {
     disabled: boolean;
   };
@@ -115,9 +98,6 @@ export interface SanitizedConfig {
   };
   highlight?: {
     exact?: boolean;
-  };
-  propagationBehaviourMap?: {
-    [key: string]: string[];
   };
 }
 
