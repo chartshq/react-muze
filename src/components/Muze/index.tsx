@@ -12,6 +12,8 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
     behaviours: {},
   };
 
+  static Utils = muze.utils;
+
   static _sideEffects = new Map();
   static get sideEffects() {
     return Muze._sideEffects;
@@ -122,8 +124,11 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       actionModel.registerBehaviouralActions(item);
     });
 
-    Muze.physicalActions.forEach((item) => {
-      muze.ActionModel.registerPhysicalActions(item);
+    const actions = Muze.physicalActions.entries();
+    [...actions].forEach((action: any) => {
+      muze.ActionModel.registerPhysicalActions({
+        [action[0]]: action[1],
+      });
     });
 
     if (sideEffects.dissociateSideEffect) {

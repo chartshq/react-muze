@@ -7,15 +7,11 @@ import RangeArea from "./Examples/Composability/RangeArea";
 import BoxPlot from "./Examples/Composability/BoxPlot";
 import DotPlotTickChart from "./Examples/Composability/DotPlotTickChart";
 
-import InteractiveLayers from './Examples/CrossInteractive/InteractiveLayers';
+import DblClick from './Examples/CrossInteractive/PhysicalAction/index';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ReferenceLine />
-    <RangeArea />
-    <BoxPlot />
-    <DotPlotTickChart />
-    <InteractiveLayers />
+    <DblClick />
   </React.StrictMode>,
   document.getElementById("root")
 );
