@@ -50,6 +50,7 @@ export const createChart = (
     facet,
     highlight,
     propagationBehaviourMap,
+    registerLifecyclePromises,
   } = configSanitizer(props, context);
 
   if (canvas && data && mountPoint) {
@@ -113,6 +114,7 @@ export const createChart = (
       .onBeforeRemove(onBeforeRemove)
       .onRemoved(onRemoved)
       .onAnimationEnd(onAnimationEnd)
+      .registerLifecyclePromises(registerLifecyclePromises)
       .create();
 
     const canvasClass = className

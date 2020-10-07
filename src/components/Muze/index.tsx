@@ -5,6 +5,7 @@ import { MuzeProvider } from "../../utils/context/muze-context";
 import "./style.scss";
 import { MuzeProps, MuzeState } from "./interfaces";
 import { DataModelConstants } from "../../constants";
+import { CANVAS_LIFECYCLE_EVENTS } from "../../constants/muze/lifecycle-events";
 
 export default class Muze extends React.Component<MuzeProps, MuzeState> {
   public static defaultProps = {
@@ -41,6 +42,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
 
   constructor(props: MuzeProps) {
     super(props);
+
     this.state = {
       env: null,
       interactiveCharts: {},
@@ -48,6 +50,21 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       allCharts: {},
     };
   }
+
+  onAnimationEndPromises: Array<Promise<Boolean>> = [];
+
+  registerLifecyclePromises = (
+    eventId: CANVAS_LIFECYCLE_EVENTS,
+    p: Promise<Boolean>
+  ) => {
+    switch (eventId) {
+      case CANVAS_LIFECYCLE_EVENTS.ANIMATION_END:
+        this.onAnimationEndPromises = this.onAnimationEndPromises.concat(p);
+        break;
+      default:
+        break;
+    }
+  };
 
   componentDidMount = async (): Promise<void> => {
     const { interactiveCharts, allCharts } = this.state;
@@ -223,6 +240,7 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
               addCrossInteraction: this.addCrossInteraction,
               addChildChart: this.addChildChart,
               addPropagationBehaviour: this.addPropagationBehaviour,
+              registerLifecyclePromises: this.registerLifecyclePromises,
             }}
           >
             {children}

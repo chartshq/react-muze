@@ -119,6 +119,7 @@ export interface SanitizedConfig {
   propagationBehaviourMap?: {
     [key: string]: string[];
   };
+  registerLifecyclePromises?: Function,
 }
 
 export interface CanvasState {

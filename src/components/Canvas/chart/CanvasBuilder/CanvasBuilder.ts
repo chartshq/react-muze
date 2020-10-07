@@ -1,13 +1,13 @@
-import { CanvasBuilderInterface } from './types';
+import { CanvasBuilderInterface } from "./types";
 // import { CanvasBase } from './base';
-import { MuzeConstants } from '../../../../constants';
+import { MuzeConstants } from "../../../../constants";
 
 class CanvasBuilder {
-  private _config : CanvasBuilderInterface;
+  private _config: CanvasBuilderInterface;
 
   private constructor(canvas: muze.Canvas) {
     this._config = {
-      canvas
+      canvas,
     };
   }
 
@@ -24,118 +24,135 @@ class CanvasBuilder {
     return this;
   }
 
-  rows(rows: CanvasBuilderInterface['rows']): CanvasBuilder {
+  rows(rows: CanvasBuilderInterface["rows"]): CanvasBuilder {
     this._config.rows = rows;
     return this;
   }
 
-  columns(columns: CanvasBuilderInterface['columns']): CanvasBuilder {
+  columns(columns: CanvasBuilderInterface["columns"]): CanvasBuilder {
     this._config.columns = columns;
     return this;
   }
 
-  width(width: CanvasBuilderInterface['width']): CanvasBuilder {
+  width(width: CanvasBuilderInterface["width"]): CanvasBuilder {
     this._config.width = width;
     return this;
   }
 
-  height(height: CanvasBuilderInterface['height']): CanvasBuilder {
+  height(height: CanvasBuilderInterface["height"]): CanvasBuilder {
     this._config.height = height;
     return this;
   }
 
-  color(color: CanvasBuilderInterface['color']): CanvasBuilder {
+  color(color: CanvasBuilderInterface["color"]): CanvasBuilder {
     this._config.color = color;
     return this;
   }
 
-  size(size: CanvasBuilderInterface['size']): CanvasBuilder {
+  size(size: CanvasBuilderInterface["size"]): CanvasBuilder {
     this._config.size = size;
     return this;
   }
 
-  shape(shape: CanvasBuilderInterface['shape']): CanvasBuilder {
+  shape(shape: CanvasBuilderInterface["shape"]): CanvasBuilder {
     this._config.shape = shape;
     return this;
   }
 
-  detail(detail: CanvasBuilderInterface['detail']): CanvasBuilder {
+  detail(detail: CanvasBuilderInterface["detail"]): CanvasBuilder {
     this._config.detail = detail;
     return this;
   }
 
-  title(title: CanvasBuilderInterface['title']): CanvasBuilder {
+  title(title: CanvasBuilderInterface["title"]): CanvasBuilder {
     this._config.title = title;
     return this;
   }
 
-  subtitle(subtitle: CanvasBuilderInterface['subtitle']): CanvasBuilder {
+  subtitle(subtitle: CanvasBuilderInterface["subtitle"]): CanvasBuilder {
     this._config.subtitle = subtitle;
     return this;
   }
 
-  config(config: CanvasBuilderInterface['config']): CanvasBuilder {
+  config(config: CanvasBuilderInterface["config"]): CanvasBuilder {
     this._config.config = config;
     return this;
   }
 
-  legend(legend: CanvasBuilderInterface['legend']): CanvasBuilder {
+  legend(legend: CanvasBuilderInterface["legend"]): CanvasBuilder {
     this._config.legend = legend;
     return this;
   }
 
-  mount(mount: CanvasBuilderInterface['mount']): CanvasBuilder {
+  mount(mount: CanvasBuilderInterface["mount"]): CanvasBuilder {
     this._config.mount = mount;
     return this;
   }
 
-  layers(layers: CanvasBuilderInterface['layers']): CanvasBuilder {
+  layers(layers: CanvasBuilderInterface["layers"]): CanvasBuilder {
     this._config.layers = layers;
     return this;
   }
 
-  onInitialized(callback: CanvasBuilderInterface['onInitialized']): CanvasBuilder {
+  onInitialized(
+    callback: CanvasBuilderInterface["onInitialized"]
+  ): CanvasBuilder {
     this._config.onInitialized = callback;
     return this;
   }
 
-  onBeforeUpdate(callback: CanvasBuilderInterface['onBeforeUpdate']): CanvasBuilder {
+  onBeforeUpdate(
+    callback: CanvasBuilderInterface["onBeforeUpdate"]
+  ): CanvasBuilder {
     this._config.onBeforeUpdate = callback;
     return this;
   }
 
-  onUpdated(callback: CanvasBuilderInterface['onUpdated']): CanvasBuilder {
+  onUpdated(callback: CanvasBuilderInterface["onUpdated"]): CanvasBuilder {
     this._config.onUpdated = callback;
     return this;
   }
 
-  onBeforeDraw(callback: CanvasBuilderInterface['onBeforeDraw']): CanvasBuilder {
+  onBeforeDraw(
+    callback: CanvasBuilderInterface["onBeforeDraw"]
+  ): CanvasBuilder {
     this._config.onBeforeDraw = callback;
     return this;
   }
 
-  onDrawn(callback: CanvasBuilderInterface['onDrawn']): CanvasBuilder {
+  onDrawn(callback: CanvasBuilderInterface["onDrawn"]): CanvasBuilder {
     this._config.onDrawn = callback;
     return this;
   }
 
-  onBeforeRemove(callback: CanvasBuilderInterface['onBeforeRemove']): CanvasBuilder {
+  onBeforeRemove(
+    callback: CanvasBuilderInterface["onBeforeRemove"]
+  ): CanvasBuilder {
     this._config.onBeforeRemove = callback;
     return this;
   }
 
-  onRemoved(callback: CanvasBuilderInterface['onRemoved']): CanvasBuilder {
+  onRemoved(callback: CanvasBuilderInterface["onRemoved"]): CanvasBuilder {
     this._config.onRemoved = callback;
     return this;
   }
 
-  onAnimationEnd(callback: CanvasBuilderInterface['onAnimationEnd']): CanvasBuilder {
+  onAnimationEnd(
+    callback: CanvasBuilderInterface["onAnimationEnd"]
+  ): CanvasBuilder {
     this._config.onAnimationEnd = callback;
     return this;
   }
 
-  transform(callback: CanvasBuilderInterface['transform']): CanvasBuilder {
+  transform(callback: CanvasBuilderInterface["transform"]): CanvasBuilder {
     this._config.transform = callback;
+    return this;
+  }
+
+  registerLifecyclePromises(
+    callback: CanvasBuilderInterface["registerLifecyclePromises"]
+  ): CanvasBuilder {
+    this._config.registerLifecyclePromises = callback;
     return this;
   }
 
@@ -165,7 +182,8 @@ class CanvasBuilder {
       onBeforeRemove,
       onRemoved,
       onAnimationEnd,
-      transform
+      transform,
+      registerLifecyclePromises,
     } = this._config;
 
     if (canvas) {
@@ -196,10 +214,14 @@ class CanvasBuilder {
         [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.DRAWN, onDrawn],
         [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.BEFORE_REMOVE, onBeforeRemove],
         [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.REMOVED, onRemoved],
-        [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.ANIMATION_END, onAnimationEnd]
-      ].forEach(([id, callback]) => {
-        if (callback && typeof callback === 'function') {
-          canvas.once(id).then(callback);
+        [MuzeConstants.CANVAS_LIFECYCLE_EVENTS.ANIMATION_END, onAnimationEnd],
+      ].forEach(([eventId, callback]) => {
+        if (callback && typeof callback === "function") {
+          let p = canvas.once(eventId);
+          if (registerLifecyclePromises) {
+            registerLifecyclePromises(eventId, p);
+          }
+          p.then(callback);
         }
       });
     }

@@ -32,4 +32,5 @@ export interface CanvasBuilderInterface {
   transform?: {
     [key: string]: Function;
   };
+  registerLifecyclePromises?: Function;
 }

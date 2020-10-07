@@ -63,6 +63,7 @@ export const configSanitizer = (
     colorScheme = null,
     data: globalDm,
     crossInteractive = false,
+    registerLifecyclePromises,
   } = context;
   const {
     rows,
@@ -195,5 +196,6 @@ export const configSanitizer = (
       exact: highlightExact,
     },
     propagationBehaviourMap,
+    registerLifecyclePromises,
   };
 };
