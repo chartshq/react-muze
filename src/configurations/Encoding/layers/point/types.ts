@@ -11,8 +11,8 @@ export interface PointEncodingInterface {
     };
     fill?: any;
     shape?: any;
-    x?: string | null;
-    y?: string | null;
+    x?: string | null | undefined;
+    y?: string | null | undefined;
     strokeOpacity?: {
         [value: string]: number
     };
@@ -39,10 +39,10 @@ export interface PointEncodingBaseInterface {
     fill?: any;
     shape?: any;
     x?: {
-        field: string | null
+        field: string | null | undefined
     };
     y?: {
-        field: string | null
+        field: string | null | undefined
     };
     strokeOpacity?: {
         [value: string]: number

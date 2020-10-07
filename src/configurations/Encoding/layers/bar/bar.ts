@@ -1,86 +1,74 @@
-import { BarBaseEncoding } from './base';
-import { BarEncodingInterface } from './types';
-import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
+import { BarEncodingInterface, BarEncodingBaseInterface } from './types';
 
 class BarLayerEncoding {
-  _color: BarEncodingInterface['color'];
+  private _config : BarEncodingBaseInterface;
 
-  _x: BarEncodingInterface['x'];
-
-  _y: BarEncodingInterface['y'];
-
-  _x0: BarEncodingInterface['x0'];
-
-  _y0: BarEncodingInterface['y0'];
-
-  _stroke: BarEncodingInterface['stroke'];
-
-  _strokeWidth: BarEncodingInterface['strokeWidth']
-
-  _strokePosition: BarEncodingInterface['strokePosition'];
-
-  constructor({
-    color,
-    x,
-    y,
-    x0,
-    y0
-  }: BarEncodingInterface) {
-    this._color = color;
-    this._x = x;
-    this._y = y;
-    this._x0 = x0;
-    this._y0 = y0;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): BarLayerEncoding {
-    return new BarLayerEncoding({ color: {} });
+    return new BarLayerEncoding();
   }
 
   color(color: BarEncodingInterface['color']): BarLayerEncoding {
-    this._color = color;
+    this._config.color = color;
     return this;
   }
 
   x(x: BarEncodingInterface['x']): BarLayerEncoding {
-    this._x = x;
+    if (x !== undefined) {
+      this._config.x = {
+        field: x
+      };
+    }
     return this;
   }
 
   y(y: BarEncodingInterface['y']): BarLayerEncoding {
-    this._y = y;
+    if (y !== undefined) {
+      this._config.y = {
+        field: y
+      };
+    }
     return this;
   }
 
   x0(x0: BarEncodingInterface['x0']): BarLayerEncoding {
-    this._x0 = x0;
+    if (x0 !== undefined) {
+      this._config.x0 ={
+        field: x0
+      };
+    }
     return this;
   }
 
   y0(y0: BarEncodingInterface['y0']): BarLayerEncoding {
-    this._y0 = y0;
+    if (y0 !== undefined) {
+      this._config.y0 ={
+        field: y0
+      };
+    }
     return this;
   }
 
   stroke(stroke: BarEncodingInterface['stroke']): BarLayerEncoding {
-    this._stroke = stroke;
+    this._config.stroke = stroke;
     return this;
   }
 
   strokeWidth(strokeWidth: BarEncodingInterface['strokeWidth']): BarLayerEncoding {
-    this._strokeWidth = strokeWidth;
+    this._config.strokeWidth = strokeWidth;
     return this;
   }
 
   strokePosition(strokePosition: BarEncodingInterface['strokePosition']): BarLayerEncoding {
-    this._strokePosition = strokePosition;
+    this._config.strokePosition = strokePosition;
     return this;
   }
 
-  create(value?: BarEncodingInterface): any {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new BarBaseEncoding(this));
+  create(options: BarEncodingBaseInterface = {}): BarEncodingBaseInterface {
+    return { ...this._config ,...options};
   }
 }
 

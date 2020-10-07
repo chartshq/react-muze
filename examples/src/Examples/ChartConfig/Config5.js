@@ -18,7 +18,7 @@ async function createDataModel() {
     return new DataModelClass(formattedData);
 }
 
-const axis = Axes.config().show(false).create();
+const axis = Axes.LinearAxis.config().show(false).create();
 
 class AxisLabel extends React.Component {
     constructor(props) {

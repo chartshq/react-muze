@@ -18,7 +18,7 @@ function kFormatter(num) {
     return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num);
 }
 
-const axis = Axes.config().name('Axes').create();
+const axis = Axes.LinearAxis.config().name('Axes').create();
 const title = Headers.config().content('Health Index of each country over years').create();
 
 class Crosstab extends React.Component {

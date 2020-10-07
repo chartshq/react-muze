@@ -52,7 +52,7 @@ class DarkThemeWithGrid extends React.Component {
       .create();
     const arcEncoding = Encoding.Arc.config().angle("Total").create();
     const border = Border.config().style("transparent").create();
-    const radius = Axes.Radius.config().range(r => [r[0], r[1] - 10]).create();
+    const radius = Axes.RadialAxis.config().range(r => [r[0], r[1] - 10]).create();
 
     return (
       <Muze data={dm}>
@@ -64,7 +64,7 @@ class DarkThemeWithGrid extends React.Component {
           columns={[]}
           color={color}
           border={border}
-          axesRadius={radius}
+          radiusAxis={radius}
         >
           <Layer mark="arc" encoding={arcEncoding} />
         </Canvas>

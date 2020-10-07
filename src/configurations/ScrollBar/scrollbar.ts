@@ -1,52 +1,42 @@
-import { ScrollBarInterface } from './types';
-import { ScrollBarBase } from './base';
-import { SCROLL_VERTICAL, SCROLL_HORIZONTAL } from './constants';
-import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
+import { ScrollBarInterface, ScrollBarConfigInterface } from './types';
 
 class ScrollBar {
-  _verticalAlign?: ScrollBarInterface['verticalAlign'];
+  private _config : ScrollBarConfigInterface;
 
-  _horizontalAlign?: ScrollBarInterface['horizontalAlign'];
-
-  _thickness?: ScrollBarInterface['thickness'];
-
-  _speed?: ScrollBarInterface['speed'];
-
-  constructor({ verticalAlign = SCROLL_VERTICAL.RIGHT, horizontalAlign = SCROLL_HORIZONTAL.BOTTOM, thickness = 10, speed = 2 }: ScrollBarInterface) {
-    this._verticalAlign = verticalAlign;
-    this._horizontalAlign = horizontalAlign;
-    this._thickness = thickness;
-    this._speed = speed;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): ScrollBar {
-    return new ScrollBar({});
+    return new ScrollBar();
   }
 
   verticalAlign(verticalAlign: ScrollBarInterface['verticalAlign']): ScrollBar {
-    this._verticalAlign = verticalAlign;
+    this._config.vertical = {
+      align: verticalAlign
+    };
     return this;
   }
 
   horizontalAlign(horizontalAlign: ScrollBarInterface['horizontalAlign']): ScrollBar {
-    this._horizontalAlign = horizontalAlign;
+    this._config.horizontal = {
+      align: horizontalAlign
+    };
     return this;
   }
 
   thickness(scrollThickness: ScrollBarInterface['thickness']): ScrollBar {
-    this._thickness = scrollThickness;
+    this._config.thickness = scrollThickness;
     return this;
   }
 
   speed(speed: ScrollBarInterface['speed']): ScrollBar {
-    this._speed = speed;
+    this._config.speed = speed;
     return this;
   }
 
-  create(value?: ScrollBarInterface): any {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new ScrollBarBase(this));
+  create(options: ScrollBarInterface = {}): ScrollBarInterface {
+    return { ...this._config ,...options};
   }
 }
 

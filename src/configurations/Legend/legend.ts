@@ -1,110 +1,68 @@
 import { LegendInterface } from './types';
-import { LegendBase } from './base';
-import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
 
 class Legend {
-  _show: LegendInterface['show'];
+  private _config : LegendInterface;
 
-  _position?: LegendInterface['position'];
-
-  _title?: LegendInterface['title'];
-
-  _border?: LegendInterface['border'];
-
-  _borderColor?: LegendInterface['borderColor'];
-
-  _padding?: LegendInterface['padding'];
-
-  _item?: LegendInterface['item'];
-
-  _marker?: LegendInterface['marker'];
-
-  _textWidth?: LegendInterface['textWidth'];
-
-  _textFormatter?: LegendInterface['textFormatter'];
-
-  constructor({
-    show,
-    position,
-    title,
-    border,
-    borderColor,
-    padding,
-    item,
-    marker,
-    textWidth,
-    textFormatter,
-  }: LegendInterface) {
-    this._show = show;
-    this._position = position;
-    this._title = title;
-    this._border = border;
-    this._borderColor = borderColor;
-    this._padding = padding;
-    this._item = item;
-    this._marker = marker;
-    this._textWidth = textWidth;
-    this._textFormatter = textFormatter;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): Legend {
-    return new Legend({ show: true });
+    return new Legend();
   }
 
   position(position: LegendInterface['position']): Legend {
-    this._position = position;
+    this._config.position = position;
     return this;
   }
 
   show(show: LegendInterface['show']): Legend {
-    this._show = show;
+    this._config.show = show;
     return this;
   }
 
   title(title: LegendInterface['title']): Legend {
-    this._title = title;
+    this._config.title = title;
     return this;
   }
 
   border(border: LegendInterface['border']): Legend {
-    this._border = border;
+    this._config.border = border;
     return this;
   }
 
   borderColor(borderColor: LegendInterface['borderColor']): Legend {
-    this._borderColor = borderColor;
+    this._config.borderColor = borderColor;
     return this;
   }
 
   padding(padding: LegendInterface['padding']): Legend {
-    this._padding = padding;
+    this._config.padding = padding;
     return this;
   }
 
   textWidth(textWidth: LegendInterface['textWidth']): Legend {
-    this._textWidth = textWidth;
+    this._config.textWidth = textWidth;
     return this;
   }
 
   textFormatter(textFormatter: LegendInterface['textFormatter']): Legend {
-    this._textFormatter = textFormatter;
+    this._config.textFormatter = textFormatter;
     return this;
   }
 
   item(legendItem: LegendInterface['item']): Legend {
-    this._item = legendItem;
+    this._config.item = legendItem;
     return this;
   }
 
   marker(marker: LegendInterface['marker']): Legend {
-    this._marker = marker;
+    this._config.marker = marker;
     return this;
   }
 
-  create(value?: LegendInterface): any {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new LegendBase(this));
+  create(options: LegendInterface = {}): LegendInterface {
+    return { ...this._config ,...options};
   }
 }
 

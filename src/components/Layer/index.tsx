@@ -1,31 +1,31 @@
 import React from "react";
 import muze from "@chartshq/muze";
+import { v4 as uuidv4 } from "uuid";
 import { Context } from "../../utils/context/canvas-context";
-import "./style.scss";
-import { LayerProps } from "./interfaces";
+import { LayerProps, LayerState } from "./interfaces";
 
-class Layer extends React.Component<LayerProps> {
+class Layer extends React.Component<LayerProps, LayerState> {
   static Operators = {
     compose: muze.layerFactory.composeLayers,
   };
 
+  id: string;
+
   constructor(props: any) {
     super(props);
-    this.state = {
-      layerConfig: [],
-    };
+    this.id = uuidv4();
   }
 
-  componentDidMount() {
-    const { setLayerConfig, layerConfig } = this.context;
-    const config = Object.keys(this.props).reduce(
+  componentWillUnmount() {
+    const { setLayerConfig } = this.context;
+
+    setLayerConfig(null, this.id);
+  }
+
+  updateLayerConfig() {
+    return Object.keys(this.props).reduce(
       (acc: any, prop: string, index: number) => {
         if ((this.props as any)[prop] !== undefined) {
-          if (prop === "transitionDuration") {
-            acc.transition = {
-              duration: this.props[prop],
-            };
-          }
           if (prop === "transformType") {
             acc.transform = {
               type: this.props[prop],
@@ -42,8 +42,20 @@ class Layer extends React.Component<LayerProps> {
       },
       {}
     );
+  }
 
-    setLayerConfig(config);
+  componentDidMount() {
+    const { setLayerConfig } = this.context;
+    const config = this.updateLayerConfig();
+
+    setLayerConfig(config, this.id);
+  }
+
+  componentDidUpdate() {
+    const { setLayerConfig } = this.context;
+    const config = this.updateLayerConfig();
+
+    setLayerConfig(config, this.id);
   }
 
   render(): JSX.Element {

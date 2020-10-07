@@ -4,3 +4,14 @@ export interface GridLinesInterface {
   showVertical?: boolean;
   show?: boolean;
 }
+
+export interface GridLinesConfigInterface {
+  x?: {
+    show: boolean;
+  },
+  y?: {
+    show: boolean;
+  },
+  color?: string,
+  show?: boolean;
+}

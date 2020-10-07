@@ -147,7 +147,7 @@ const encoding = {
     quarter: "quarter",
     thirdQuarter: "thirdQuarter"
 };
-const axis = Axes.config().create({
+const axis = Axes.LinearAxis.config().create({
     showAxisName: true,
     name: "Measure"
 });

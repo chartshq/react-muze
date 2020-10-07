@@ -76,13 +76,9 @@ class AverageLine extends SurrogateSideEffect {
     }
 }
 
-Muze.Operators.registerSideEffects([AverageLine]); //array
+Muze.Operators.registerSideEffects([AverageLine]);
 
-const config = SideEffects.config().for(['averageLine'])
-    .on(['select', 'brush'])
-    .create();
-
-let side = SideEffects.config().create({
+let config = SideEffects.config().create({
     for: ['averageLine'],
     on: ['select', 'brush']
 });

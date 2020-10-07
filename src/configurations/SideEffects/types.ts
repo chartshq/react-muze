@@ -1,7 +1,11 @@
-type StringOrMissing = string | null | undefined;
-
 export interface SideEffectsInterface {
-  _for?: StringOrMissing;
-  _on?: StringOrMissing;
-  _dissociateFrom?: StringOrMissing;
+  for?: string[];
+  on?: string[];
+  dissociateFrom?: string[];
+}
+
+export interface SideEffectsConfigInterface {
+  for?: SideEffectsInterface['for'];
+  on?: SideEffectsInterface['on'];
+  dissociateSideEffect?: SideEffectsInterface['dissociateFrom'];
 }

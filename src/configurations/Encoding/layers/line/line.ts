@@ -1,74 +1,56 @@
-import { LineBaseEncoding } from './base';
-import { LineEncodingInterface } from './types';
-import { inputSanitizer, removeUndefinedValues } from '../../../../utils/input-sanitizer';
+import { LineEncodingInterface, LineEncodingBaseInterface } from './types';
 
 class LineLayerEncoding {
-  _color: LineEncodingInterface['color'];
+  private _config : LineEncodingBaseInterface;
 
-  _x: LineEncodingInterface['x'];
-
-  _y: LineEncodingInterface['y'];
-
-  _strokeOpacity: LineEncodingInterface['strokeOpacity'];
-
-  _fillOpacity: LineEncodingInterface['fillOpacity']
-
-  _strokeWidth: LineEncodingInterface['strokeWidth'];
-
-  constructor({
-    color,
-    x,
-    y,
-    strokeOpacity,
-    fillOpacity,
-    strokeWidth
-  }: LineEncodingInterface) {
-    this._color = color;
-    this._x = x;
-    this._y = y;
-    this._strokeOpacity = strokeOpacity;
-    this._fillOpacity = fillOpacity;
-    this._strokeWidth = strokeWidth;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): LineLayerEncoding {
-    return new LineLayerEncoding({ color: {} });
+    return new LineLayerEncoding();
   }
 
   color(color: LineEncodingInterface['color']): LineLayerEncoding {
-    this._color = color;
+    this._config.color = color;
     return this;
   }
 
   x(x: LineEncodingInterface['x']): LineLayerEncoding {
-    this._x = x;
+    if (x) {
+      this._config.x = {
+        field: x
+      };
+    }
     return this;
   }
 
   y(y: LineEncodingInterface['y']): LineLayerEncoding {
-    this._y = y;
+    if (y) {
+      this._config.y = {
+        field: y
+      };
+    }
     return this;
   }
 
   strokeOpacity(strokeOpacity: LineEncodingInterface['strokeOpacity']): LineLayerEncoding {
-    this._strokeOpacity = strokeOpacity;
+    this._config.strokeOpacity = strokeOpacity;
     return this;
   }
 
   fillOpacity(fillOpacity: LineEncodingInterface['fillOpacity']): LineLayerEncoding {
-    this._fillOpacity = fillOpacity;
+    this._config.fillOpacity = fillOpacity;
     return this;
   }
 
   strokeWidth(strokeWidth: LineEncodingInterface['strokeWidth']): LineLayerEncoding {
-    this._strokeWidth = strokeWidth;
+    this._config.strokeWidth = strokeWidth;
     return this;
   }
 
-  create(value?: LineEncodingInterface): any {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new LineBaseEncoding(this));
+  create(options: LineEncodingBaseInterface = {}): LineEncodingBaseInterface {
+    return { ...this._config ,...options};
   }
 }
 

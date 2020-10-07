@@ -3,7 +3,7 @@ import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
 import { Encoding, Axes, Legend, Border } from "@chartshq/react-muze/configurations";
 
 const numberFormat = new Intl.NumberFormat();
-const axis = Axes.config().tickFormat((value) => numberFormat.format(value)).create();
+const axis = Axes.LinearAxis.config().tickFormat((value) => numberFormat.format(value)).create();
 const leg = Legend.config().show(false).create();
 const border = Border.config().create({
     showValueBorders: {

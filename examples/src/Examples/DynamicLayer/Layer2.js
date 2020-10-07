@@ -11,24 +11,12 @@ async function createDataModel() {
     return new DataModelClass(formattedData);
 }
 
-const operationFn = (dm) => {
-    const aa = dm.calculateVariable(
-        {
-            name: "CountVehicle",
-            type: "measure",
-            defAggFn: "count",
-            numberFormat: val => parseInt(val, 10)
-        },
-        ["Name"], () => 1
-    );
-    return aa;
-}
-
-class Bar extends React.Component {
+export default class InteractiveLayers extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             carsDm: null,
+            marks: 'line'
         };
     }
 
@@ -40,20 +28,24 @@ class Bar extends React.Component {
 
     render() {
         const { carsDm } = this.state;
+        const marks = this.state.marks;
 
         return (
-            <Muze data={carsDm}>
-                <Canvas
-                    rows={["CountVehicle"]}
-                    columns={["Cylinders"]}
-                    color="Origin"
-                    operation={operationFn}
+            <div>
+                <button
+                    onClick={() => this.setState(() => ({
+                        marks: 'area'
+                    }))}
                 >
-                    <Layer mark="bar" transformType="stack" />
-                </Canvas>
-            </Muze>
+                    Change layers
+                </button>
+
+                <Muze data={carsDm}>
+                    <Canvas columns={["Year"]} rows={["Horsepower"]}>
+                        <Layer mark={marks} />
+                    </Canvas>
+                </Muze>
+            </div>
         );
     }
 }
-
-export default Bar;

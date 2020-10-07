@@ -1,9 +1,9 @@
 export interface BarEncodingInterface {
     color?: any;
-    x?: string | null;
-    y?: string | null;
-    x0?: string | null;
-    y0?: string | null;
+    x?: string;
+    y?: string;
+    x0?: string;
+    y0?: string;
     stroke?: {
         [value: string]: string
     };

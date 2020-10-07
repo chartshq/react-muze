@@ -36,7 +36,7 @@ async function createDataModel() {
     return new DataModelClass(formattedData);
 }
 
-const axis = Axes.config().nice(false).create();
+const axis = Axes.LinearAxis.config().nice(false).create();
 
 class Large extends React.Component {
     constructor(props) {

@@ -70,7 +70,7 @@ class Scatter extends React.Component {
         const text = Encoding.Text.config().text('displayWord').color({
             value: () => '#000'
         }).create();
-        const hideAxis = Axes.config().show(false).create();
+        const hideAxis = Axes.LinearAxis.config().show(false).create();
         const title = Headers.config().content('Frequency of usage of words by males and females')
             .align(ALIGNMENT.CENTER).create();
         const subtitle = Headers.config().content('An example of a Bubble Plot')

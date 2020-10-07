@@ -27,7 +27,7 @@ async function createDataModel() {
 
 const title = Headers.config().content('MSFT Stocks from 13/3/1986 TO 8/1/2020').create();
 const subtitle = Headers.config().content('A line chart with 10,000 data points').create();
-const axis = Axes.config().tickFormat(val => `$${val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`).create();
+const axis = Axes.LinearAxis.config().tickFormat(val => `$${val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`).create();
 
 class Large extends React.Component {
     constructor(props) {

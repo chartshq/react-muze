@@ -37,7 +37,7 @@ async function createDataModel() {
     return new DataModelClass(formattedData);
 }
 
-const axis = Axes.config().tickFormat(val => `${val}%`).create();
+const axis = Axes.LinearAxis.config().tickFormat(val => `${val}%`).create();
 
 class Large extends React.Component {
     constructor(props) {

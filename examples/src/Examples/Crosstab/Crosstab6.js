@@ -49,7 +49,7 @@ function operationFn(dm) {
     return dm1.sort([["Binned_Year"], ["Reason for Vacancy"]]);
 }
 
-const yaxis = Axes.config().show(false).padding(0.1).create();
+const yaxis = Axes.LinearAxis.config().show(false).padding(0.1).create();
 const title = Headers.config().content('Politicians used to die in office — now they just resign').create();
 const subtitle = Headers.config().content("Uses data operators with layout variations to achieve tabular view").create();
 const legend = Legend.config().show(false).create();

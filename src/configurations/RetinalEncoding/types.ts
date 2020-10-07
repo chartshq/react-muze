@@ -1,9 +1,11 @@
-export type stringOrNull = string | null;
-export type stringArrOrNull = string[] | null;
-export type numberArrOrNull = number[] | null;
-
 export interface FieldRangeInterface {
-  field: stringOrNull;
+  field?: string;
   range?: string[] | number[];
   isStep?: boolean;
+}
+
+export interface FieldRangeConfigInterface {
+  field?: string | null;
+  range?: string[] | number[];
+  step?: boolean;
 }

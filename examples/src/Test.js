@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Muze, { Canvas, Layer, DataModel } from '@chartshq/react-muze/components';
+import Muze, { Canvas, Layer } from '@chartshq/react-muze/components';
 import {
     Axes,
     Legend,
@@ -15,15 +15,12 @@ import {
     ScrollBar,
     SCROLL_VERTICAL,
     SCROLL_HORIZONTAL,
-    html,
     Encoding,
-    Tooltip,
-    SpawnableSideEffect,
-    SideEffects,
-    SurrogateSideEffect,
-    Behaviours,
-    VolatileBehaviour,
+    Tooltip
 } from '@chartshq/react-muze/configurations';
+
+const { DataModel } = Muze;
+const { html } = Muze.Operators;
 
 const createDataModel = async () => {
     const data = await fetch(
@@ -128,31 +125,31 @@ const selectionFn = (datamodel) => {
     );
 };
 
-class AverageLine extends SurrogateSideEffect {
-    static formalName() {
-        return 'averageLine';
-    }
+// class AverageLine extends SurrogateSideEffect {
+//     static formalName() {
+//         return 'averageLine';
+//     }
 
-    apply(selectionSet) {
-        const model = selectionSet.mergedEnter.model;
-        if (model) {
-            const groupedModel = model.groupBy([]);
-            this.setLayerData(groupedModel, 'averageLine');
-        } else {
-            this.resetLayerData('averageLine');
-        }
-    }
+//     apply(selectionSet) {
+//         const model = selectionSet.mergedEnter.model;
+//         if (model) {
+//             const groupedModel = model.groupBy([]);
+//             this.setLayerData(groupedModel, 'averageLine');
+//         } else {
+//             this.resetLayerData('averageLine');
+//         }
+//     }
 
-    static target() {
-        return 'visual-unit';
-    }
-}
+//     static target() {
+//         return 'visual-unit';
+//     }
+// }
 
-class SingleSelect extends VolatileBehaviour {
-    static formalName() {
-        return 'singleSelect';
-    }
-}
+// class SingleSelect extends VolatileBehaviour {
+//     static formalName() {
+//         return 'singleSelect';
+//     }
+// }
 
 class Test extends React.Component {
     constructor(props) {
@@ -229,30 +226,30 @@ class Test extends React.Component {
             align: ALIGNMENT.RIGHT,
         });
 
-        SideEffects.register(AverageLine);
-        Behaviours.register(SingleSelect);
+        // SideEffects.register(AverageLine);
+        // Behaviours.register(SingleSelect);
 
-        //Change here
-        const sideEffectNew = SideEffects.config().create({
-            for: ['averageLine'],
-            on: ['select'],
-            dissociateFrom: ['tooltip', 'highlight'],
-        });
-        const sideEffectNew1 = SideEffects.config().create({
-            for: ['averageLine'],
-            on: ['brush'],
-            dissociateFrom: ['tooltip', 'highlight'],
-        });
-        const sideEffectNew2 = SideEffects.config().create({
-            for: ['highlighter'],
-            on: ['singleSelect'],
-            dissociateFrom: ['tooltip', 'highlight'],
-        });
+        // //Change here
+        // const sideEffectNew = SideEffects.config().create({
+        //     for: ['averageLine'],
+        //     on: ['select'],
+        //     dissociateFrom: ['tooltip', 'highlight'],
+        // });
+        // const sideEffectNew1 = SideEffects.config().create({
+        //     for: ['averageLine'],
+        //     on: ['brush'],
+        //     dissociateFrom: ['tooltip', 'highlight'],
+        // });
+        // const sideEffectNew2 = SideEffects.config().create({
+        //     for: ['highlighter'],
+        //     on: ['singleSelect'],
+        //     dissociateFrom: ['tooltip', 'highlight'],
+        // });
 
-        const behaviourNew = Behaviours.config().create({
-            for: [['singleSelect']],
-            on: ['click'],
-        });
+        // const behaviourNew = Behaviours.config().create({
+        //     for: [['singleSelect']],
+        //     on: ['click'],
+        // });
 
         // const yAxis = Axes.config()
         //     .name('Revenue in millions')
@@ -274,7 +271,7 @@ class Test extends React.Component {
         //     tickFormat: (val) => `#${val}`,
         // }
         // const xAxis = Axes.config().showAxisName(true).tickFormat((val) => `$${val}`).name('asdashdahsdh ajsdhsa').create();
-        const xAxis = Axes.config().create(
+        const xAxis = Axes.LinearAxis.config().create(
             {
                 name: 'something canvas',
                 showAxisName: true,
@@ -317,7 +314,7 @@ class Test extends React.Component {
         //     showVertical: false,
         //     showHorizontal: true
         // });
-        const scrollbar = ScrollBar.config().horizontalAlign(SCROLL_HORIZONTAL.TOP).create();
+        const scrollbar = ScrollBar.config().horizontalAlign(SCROLL_HORIZONTAL.BOTTOM).verticalAlign(SCROLL_VERTICAL.RIGHT).create();
         const encoding = {
             color: {
                 value: () => 'red',

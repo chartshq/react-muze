@@ -30,7 +30,7 @@ async function createDataModel() {
 const title = Headers.config().content('Heatmap').position(POSITION.TOP).align(ALIGNMENT.RIGHT).create();
 const subtitle = Headers.config().content('Sales per month for each sales person').position(POSITION.TOP).align(ALIGNMENT.RIGHT).create();
 const color = Color.config().field('Sales').step(true).range(["#BBF6F0", "#85ECE1", "#50C0B5", "#12877B", "#005F56"]).create();
-const axis = Axes.config().padding(0).create();
+const axis = Axes.LinearAxis.config().padding(0).create();
 const textEncoding = Encoding.Text.config().color({
     value: () => "#fff"
 }).text({

@@ -23,16 +23,16 @@ export interface TickEncodingInterface {
 export interface TickEncodingBaseInterface {
     color?: any;
     x?: {
-        field: string | null
+        field: string | null | undefined
     };
     y?: {
-        field: string | null
+        field: string | null | undefined
     };
     x0?: {
-        field: string | null
+        field: string | null | undefined
     };
     y0?: {
-        field: string | null
+        field: string | null | undefined
     };
     radius?:  {
         value: Function

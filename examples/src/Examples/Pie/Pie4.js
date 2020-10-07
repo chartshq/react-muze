@@ -1,6 +1,6 @@
 import * as React from "react";
 import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
-import { Encoding, Axes } from "@chartshq/react-muze/configurations";
+import { Encoding } from "@chartshq/react-muze/configurations";
 
 async function createDataModel() {
     const data = await fetch("/data/cars.json")

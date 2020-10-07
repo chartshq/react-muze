@@ -90,9 +90,6 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       {}
     );
 
-    console.log("registerPhysicalBehaviouralMap", physicalBehaviouralMap);
-    console.log("mapSideEffects", sideEffectsMap);
-
     const actionModel = muze.ActionModel.for(...canvases)
       .enableCrossInteractivity()
       .mapSideEffects(sideEffectsMap)
@@ -118,7 +115,6 @@ export default class Muze extends React.Component<MuzeProps, MuzeState> {
       actionModel.dissociateSideEffect(sideEffects.dissociateSideEffect);
     }
     if (behaviours.dissociateBehaviour) {
-      console.log("dissociateBehaviour", behaviours.dissociateBehaviour);
       actionModel.dissociateBehaviour(behaviours.dissociateBehaviour);
     }
   }

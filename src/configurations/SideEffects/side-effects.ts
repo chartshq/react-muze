@@ -1,14 +1,8 @@
-import { SideEffectsInterface } from './types';
-import { SideEffectsBase } from './base';
-import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
+import { SideEffectsInterface, SideEffectsConfigInterface } from './types';
 import muze from '@chartshq/muze';
 
 class SideEffects {
-  _for: SideEffectsInterface['_for'];
-
-  _on: SideEffectsInterface['_on'];
-
-  _dissociateFrom: SideEffectsInterface['_dissociateFrom'];
+  private _config : SideEffectsConfigInterface;
 
   static GenericSideEffect = muze.SideEffects.standards.GenericSideEffect;
   static SpawnableSideEffect = muze.SideEffects.standards.SpawnableSideEffect;
@@ -25,39 +19,31 @@ class SideEffects {
   static SelectionBox = muze.SideEffects.sideEffects.SelectionBox;
   static Tooltip = muze.SideEffects.sideEffects.Tooltip;
 
-  constructor({
-    _for,
-    _on,
-    _dissociateFrom
-  }: SideEffectsInterface) {
-    this._for = _for;
-    this._on = _on;
-    this._dissociateFrom = _dissociateFrom;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): SideEffects {
-    return new SideEffects({});
+    return new SideEffects();
   }
 
-  for(_for: SideEffectsInterface['_for']): SideEffects {
-    this._for = _for;
+  for(_for: SideEffectsInterface['for']): SideEffects {
+    this._config.for = _for;
     return this;
   }
 
-  on(_on: SideEffectsInterface['_on']): SideEffects {
-    this._on = _on;
+  on(_on: SideEffectsInterface['on']): SideEffects {
+    this._config.on = _on;
     return this;
   }
 
-  dissociateFrom(_dissociateFrom: SideEffectsInterface['_dissociateFrom']): SideEffects {
-    this._dissociateFrom = _dissociateFrom;
+  dissociateFrom(_dissociateFrom: SideEffectsInterface['dissociateFrom']): SideEffects {
+    this._config.dissociateSideEffect = _dissociateFrom;
     return this;
   }
 
-  create(value?: SideEffectsInterface): any {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new SideEffectsBase(this));
+  create(options: SideEffectsConfigInterface = {}): SideEffectsConfigInterface {
+    return { ...this._config ,...options};
   }
 }
 

@@ -1,51 +1,42 @@
-import { GridLinesInterface } from './types';
-import { GridLinesBase } from './base';
-import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
+import { GridLinesInterface, GridLinesConfigInterface } from './types';
 
 class GridLines {
-  _color?: GridLinesInterface['color'];
+  private _config : GridLinesConfigInterface;
 
-  _showHorizontal?: GridLinesInterface['showHorizontal'];
-
-  _showVertical?: GridLinesInterface['showVertical'];
-
-  _show?: GridLinesInterface['show'];
-
-  constructor({ color, showHorizontal = true, showVertical = true, show = true }: GridLinesInterface) {
-    this._color = color;
-    this._showHorizontal = showHorizontal;
-    this._showVertical = showVertical;
-    this._show = show;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): GridLines {
-    return new GridLines({});
+    return new GridLines();
   }
 
-  color(color: GridLinesInterface['color']): GridLines {
-    this._color = color;
+  showHorizontal(showHorizontal: boolean): GridLines {
+    this._config.x = {
+      show: showHorizontal
+    };
     return this;
   }
 
-  showHorizontal(showHorizontal: GridLinesInterface['showHorizontal']): GridLines {
-    this._showHorizontal = showHorizontal;
-    return this;
-  }
-
-  showVertical(showVertical: GridLinesInterface['showVertical']): GridLines {
-    this._showVertical = showVertical;
+  showVertical(showVertical: boolean): GridLines {
+    this._config.y = {
+      show: showVertical
+    };
     return this;
   }
 
   show(show: GridLinesInterface['show']): GridLines {
-    this._show = show;
+    this._config.show = show;
     return this;
   }
 
-  create(value?: GridLinesInterface) {
-    inputSanitizer(value, this);
+  color(color: GridLinesInterface['color']): GridLines {
+    this._config.color = color;
+    return this;
+  }
 
-    return removeUndefinedValues(new GridLinesBase(this));
+  create(options: GridLinesInterface = {}): GridLinesConfigInterface {
+    return { ...this._config ,...options};
   }
 }
 

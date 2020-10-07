@@ -34,7 +34,7 @@ function numberFormat(num) {
     return num;
 }
 
-const axis = Axes.config().tickFormat(numberFormat).numberOfTicks(6).create();
+const axis = Axes.LinearAxis.config().tickFormat(numberFormat).numberOfTicks(6).create();
 
 class AxisLabel extends React.Component {
     constructor(props) {

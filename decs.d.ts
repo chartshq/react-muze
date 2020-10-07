@@ -24,3 +24,5 @@ declare namespace muze {
     html: Function;
   }
 }
+
+declare module 'uuid';

@@ -1,19 +1,20 @@
-type StringOrMissing = string | null | undefined;
-type NumberOrMissing = number | null | undefined;
-type BoolOrMissing = boolean | null | undefined;
-
-export interface AxesInterface {
-  name?: StringOrMissing;
-  show?: BoolOrMissing;
-  showAxisName?: BoolOrMissing;
-  axisNamePadding?: NumberOrMissing;
-  padding?: NumberOrMissing;
-  showInnerTicks?: BoolOrMissing;
-  numberOfTicks?: NumberOrMissing;
+export interface LinearAxisOptions{
+  name?: string;
+  show?: boolean;
+  showAxisName?: boolean;
+  axisNamePadding?: number;
+  padding?: number;
+  showInnerTicks?: boolean;
+  numberOfTicks?: number;
   tickFormat?: Function;
   labels?: {
-    rotation: NumberOrMissing;
+    rotation: number;
   };
   interpolator?: string;
   nice?: boolean;
+}
+
+export interface RadialAxisOptions{
+  range?: Function;
+  domain?: number[];
 }

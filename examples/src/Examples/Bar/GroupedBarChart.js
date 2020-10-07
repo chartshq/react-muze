@@ -2,7 +2,7 @@ import * as React from "react";
 import Muze, { Canvas, Layer } from "@chartshq/react-muze/components";
 import { Axes } from "@chartshq/react-muze/configurations";
 
-const axis = Axes.config()
+const axis = Axes.LinearAxis.config()
     .tickFormat((val) => numberFormatter(val))
     .numberOfTicks(8)
     .create();
@@ -73,7 +73,7 @@ class Bar extends React.Component {
                     columns={["month"]}
                     rows={["value"]}
                     color="state"
-                    yAxes={axis}
+                    yAxis={axis}
                     title="Coronavirus tests done by states"
                     subtitle='From April - August'
                     sort={{

@@ -1,35 +1,32 @@
-import { GridBandsInterface } from './types';
-import { GridBandsBase } from './base';
-import { inputSanitizer, removeUndefinedValues } from '../../utils/input-sanitizer';
+import { GridBandsInterface, GridBandsConfigInterface } from './types';
 
 class GridBands {
-  _showHorizontal?: GridBandsInterface['showHorizontal'];
+  private _config : GridBandsConfigInterface;
 
-  _showVertical?: GridBandsInterface['showVertical'];
-
-  constructor({ showHorizontal = false, showVertical = false }: GridBandsInterface) {
-    this._showHorizontal = showHorizontal;
-    this._showVertical = showVertical;
+  private constructor() {
+    this._config = {};
   }
 
   static config(): GridBands {
-    return new GridBands({});
+    return new GridBands();
   }
 
-  showHorizontal(showHorizontal: GridBandsInterface['showHorizontal']): GridBands {
-    this._showHorizontal = showHorizontal;
+  showHorizontal(showHorizontal: boolean): GridBands {
+    this._config.x = {
+      show: showHorizontal
+    };
     return this;
   }
 
-  showVertical(showVertical: GridBandsInterface['showVertical']): GridBands {
-    this._showVertical = showVertical;
+  showVertical(showVertical: boolean): GridBands {
+    this._config.y = {
+      show: showVertical
+    };
     return this;
   }
 
-  create(value?: GridBandsInterface): any {
-    inputSanitizer(value, this);
-
-    return removeUndefinedValues(new GridBandsBase(this));
+  create(options: GridBandsInterface = {}): GridBandsConfigInterface {
+    return { ...this._config ,...options};
   }
 }
 
