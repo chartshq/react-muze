@@ -2,11 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
-import ReferenceLine from "./Examples/Composability/ReferenceLine";
-import RangeArea from "./Examples/Composability/RangeArea";
-import BoxPlot from "./Examples/Composability/BoxPlot";
-import DotPlotTickChart from "./Examples/Composability/DotPlotTickChart";
-
 import DblClick from './Examples/CrossInteractive/PhysicalAction/index';
 
 ReactDOM.render(

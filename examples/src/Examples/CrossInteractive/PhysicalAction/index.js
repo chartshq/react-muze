@@ -25,6 +25,9 @@ const dblClickAction = firebolt => targetElement => {
             data,
             event
         });
+        if (payload.target) {
+            alert(`${payload.target[0]} ${payload.target[1]} clicked`)
+        }
         firebolt.triggerPhysicalAction('dblClick', payload);
     });
 };
@@ -32,41 +35,6 @@ const dblClickAction = firebolt => targetElement => {
 Muze.Operators.registerPhysicalActions({
     dblClick: dblClickAction
 });
-
-// class DataGrid extends SpawnableSideEffect {
-//     constructor(...params) {
-//         super(...params);
-//         if (this.firebolt.target() === 'visual-unit') {
-//             this.disable();
-//         }
-//     }
-
-//     static formalName() {
-//         return "data-grid";
-//     }
-
-//     apply(selectionSet) {
-//         debugger;
-//         // if (!selectionSet.mergedEnter.model) {
-//         //     removeDataGrid();
-//         //     return this;
-//         // }
-
-//         // const model = selectionSet.mergedEnter.model;
-//         // const selectDm = canvas.data().select({
-//         //     field: canvas.columns()[0],
-//         //     value: selectionSet.mergedEnter.model.getField(canvas.columns()[0]).data()[0],
-//         //     operator: 'eq'
-//         // });
-//         // const { data, schema } = selectDm.getData({ excludeFields: ['__id__'] });
-//         // // Format the data
-//         // formatData(data);
-//         // selectDm.dispose();
-//         // showDataGrid({ data, schema }, canvas);
-//     }
-// }
-
-// Muze.Operators.registerSideEffects([DataGrid]);
 
 const beh = Behaviours.config()
     .for(['select'])
