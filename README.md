@@ -1,6 +1,6 @@
 ## React Wrapper for muze
 
-Official Muze wrapper for React.
+React-Muze is a react wrapper over the core muze library which provides react bindings for muze making it easy to create charts for the react ecosystem.
 
 ## Getting Started
 
@@ -13,6 +13,8 @@ Get muze and react-muze package from NPM in your React app:
 ```bash
 npm install @chartshq/muze
 ```
+
+//
 
 ```bash
 npm install @chartshq/react-muze

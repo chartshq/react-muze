@@ -1,16 +1,12 @@
 {
   "name": "@chartshq/react-muze",
-  "private": true,
   "version": "1.0.0",
-  "description": "React wrapper for muze library",
-  "main": ".",
+  "description": "React-Muze is a ReactJs wrapper over the core MuzeJs library which provides ReactJs bindings for MuzeJs making it easy to create charts for the ReactJs ecosystem.",
   "author": "Charts.com <eng@charts.com> (https://charts.com/)",
   "scripts": {
-    "build": "webpack",
-    "build:watch": "webpack --watch",
-    "watch-build": "webpack --watch",
-    "prepublish": "rm -rf ./dist && yarn build",
-    "setup": "yarn run prepublish && cd dist; yarn unlink; yarn link; cd .."
+    "build": "rm -rf ./build && NODE_ENV=production webpack",
+    "watch-build": "NODE_ENV=development webpack --watch",
+    "prepublish": "rm -rf ./dist && yarn build"
   },
   "contributors": [
     {
@@ -35,7 +31,8 @@
   ],
   "peerDependencies": {
     "@chartshq/muze": "^2.0.0",
-    "react": "^16.13.1"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@chartshq/muze": "^2.0.0",

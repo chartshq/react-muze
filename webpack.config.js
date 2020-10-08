@@ -1,6 +1,8 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
+const mode = process.env.NODE_ENV || "production";
+
 module.exports = {
   entry: {
     configurations: "./src/configurations/index.ts",
@@ -8,7 +10,7 @@ module.exports = {
     constants: "./src/constants/index.ts",
   },
   target: "web",
-  mode: "development",
+  mode,
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name]/index.js",
@@ -60,8 +62,8 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: path.resolve(".", "package.json"),
-        to: ".",
+        from: path.resolve(__dirname, "package.json"),
+        to: path.resolve(__dirname, "dist/package.json"),
       },
     ]),
   ],
