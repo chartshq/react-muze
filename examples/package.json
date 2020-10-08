@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@chartshq/muze": "^2.0.0",
+    "@chartshq/react-muze": "file:../dist",
     "@types/jest": "file:../node_modules/@types/jest",
     "@types/node": "file:../node_modules/@types/node",
     "@types/react": "file:../node_modules/@types/react",
