@@ -1,0 +1,25 @@
+/* Light theme */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.school-muze-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #cecccc;
+}
+
+.school-muze-chart div {
+  background: #eee;
+}
+
+.school-muze-chart .muze-legend-item-info {
+  color: red;
+}
+
+.school-muze-chart-title {
+  color: #5F5F5F;
+}

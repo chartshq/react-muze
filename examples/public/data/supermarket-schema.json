@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Branch",
+    "type": "dimension",
+    "subtype": "categorical"
+  },
+  {
+    "name": "City",
+    "type": "dimension",
+    "subtype": "categorical"
+  },
+  {
+    "name": "Gender",
+    "type": "dimension",
+    "subtype": "categorical"
+  },
+  {
+    "name": "Product line",
+    "type": "dimension",
+    "subtype": "categorical"
+  },
+  {
+    "name": "Tax 5%",
+    "type": "measure",
+    "subtype": "continuous",
+    "prefix": "",
+    "suffix": ""
+  },
+  {
+    "name": "Total",
+    "type": "measure",
+    "subtype": "continuous",
+    "prefix": "",
+    "suffix": ""
+  },
+  {
+    "name": "Date",
+    "type": "dimension",
+    "subtype": "temporal",
+    "format": "%Y-%m-%d"
+  },
+  {
+    "name": "Time",
+    "type": "dimension",
+    "subtype": "temporal",
+    "format": "%Y-%m-%d"
+  },
+  {
+    "name": "Payment",
+    "type": "dimension",
+    "subtype": "categorical"
+  }
+]

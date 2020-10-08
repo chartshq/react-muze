@@ -1,0 +1,48 @@
+[
+    {
+        "name": "id",
+        "type": "measure",
+        "subtype": "continuous"
+    },
+    {
+        "name": "utc_created",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "utc_updated",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "country",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "country_code",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "indicator_code",
+        "type": "measure",
+        "subtype": "continuous"
+    },
+    {
+        "name": "indicator",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "value",
+        "type": "measure",
+        "subtype": "continuous"
+    },
+    {
+        "name": "year",
+        "type": "dimension",
+        "subtype": "temporal",
+        "format": "%Y"
+    }
+]
