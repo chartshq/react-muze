@@ -1,5 +1,7 @@
 export interface BarEncodingInterface {
-    color?: any;
+    color?: {
+        value: Function
+    };
     x?: string;
     y?: string;
     x0?: string;
@@ -16,7 +18,9 @@ export interface BarEncodingInterface {
 }
 
 export interface BarEncodingBaseInterface {
-    color?: any;
+    color?: {
+        value: Function
+    };
     x?: {
         field: string | null
     };

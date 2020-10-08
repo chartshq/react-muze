@@ -1,5 +1,7 @@
 export interface LineEncodingInterface {
-    color?: any;
+    color?: {
+        value: Function
+    };
     x?: string | null;
     y?: string | null;
     strokeOpacity?: {
@@ -14,7 +16,9 @@ export interface LineEncodingInterface {
 }
 
 export interface LineEncodingBaseInterface {
-    color?: any;
+    color?: {
+        value: Function
+    };
     x?: {
         field: string | null
     };

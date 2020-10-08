@@ -1,7 +1,9 @@
 export interface TextEncodingInterface {
     x?: string | null;
     y?: string | null;
-    color?: any;
+    color?: {
+        value: Function
+    };
     size?: any;
     radius?: any;
     angle?: string;

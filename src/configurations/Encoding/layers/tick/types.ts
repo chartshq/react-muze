@@ -1,5 +1,7 @@
 export interface TickEncodingInterface {
-    color?: any;
+    color?: {
+        value: Function
+    };
     x?: string | null;
     y?: string | null;
     x0?: string | null;
@@ -21,7 +23,9 @@ export interface TickEncodingInterface {
 }
 
 export interface TickEncodingBaseInterface {
-    color?: any;
+    color?: {
+        value: Function
+    };
     x?: {
         field: string | null | undefined
     };

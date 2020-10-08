@@ -1,5 +1,7 @@
 export interface AreaEncodingInterface {
-    color?: any;
+    color?: {
+        value: Function
+    };
     x?: string;
     y?: string;
     y0?: string;
@@ -12,7 +14,9 @@ export interface AreaEncodingInterface {
 }
 
 export interface AreaEncodingConfigInterface {
-    color?: any;
+    color?: {
+        value: Function
+    };
     x?: {
         field: string
     };

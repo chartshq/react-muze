@@ -11,6 +11,7 @@ import { GridLinesInterface } from "../../configurations/GridLines/types";
 import { FieldRangeInterface } from "../../configurations/RetinalEncoding/types";
 import { HeadersConfig } from "../../configurations/Headers/types";
 import { MuzeConstants } from "../../constants";
+import { LayerProps } from "../Layer/interfaces";
 
 // Interface for color,shape and size encoding
 export interface RetinalEncoding {
@@ -34,8 +35,8 @@ interface ChartProps extends RetinalEncoding, RetinalEncodingLegend {
   width?: number;
   height?: number;
   operation?: Function;
-  title?: string | HeadersConfig | undefined;
-  subtitle?: string | HeadersConfig | undefined;
+  title?: string | HeadersConfig;
+  subtitle?: string | HeadersConfig;
   xAxis?: LinearAxisOptions;
   yAxis?: LinearAxisOptions;
   gridLines?: GridLinesInterface;
@@ -58,8 +59,6 @@ interface ChartProps extends RetinalEncoding, RetinalEncodingLegend {
 
 // Input by ReactMuze Consumer
 export interface CanvasProps extends ChartProps {
-  title?: string | HeadersConfig | undefined;
-  subtitle?: string | HeadersConfig | undefined;
   colorScheme?: string[];
   sideEffects?: any;
   autoGroupBy?: boolean;
@@ -71,9 +70,9 @@ export interface CanvasProps extends ChartProps {
 
 // Actual input to muze
 export interface SanitizedCanvasProps extends ChartProps {
+  title?: HeadersConfig;
+  subtitle?: HeadersConfig;
   data: muze.DataModel;
-  title?: HeadersConfig | undefined;
-  subtitle?: HeadersConfig | undefined;
   legend?: LegendInterface;
   canvasSideEffects: any;
   autoGroupBy?: {
@@ -91,5 +90,7 @@ export interface SanitizedCanvasProps extends ChartProps {
 
 export interface CanvasState {
   canvas: muze.Canvas;
-  layerConfig: any;
+  layerConfig: {
+    [id: string]: LayerProps
+  }
 }

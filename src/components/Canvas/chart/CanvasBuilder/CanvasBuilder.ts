@@ -1,5 +1,4 @@
 import { CanvasBuilderInterface } from './types';
-import { MuzeConstants } from '../../../../constants';
 
 class CanvasBuilder {
   private _config: CanvasBuilderInterface;
@@ -78,11 +77,6 @@ class CanvasBuilder {
     return this;
   }
 
-  legend(legend: CanvasBuilderInterface["legend"]): CanvasBuilder {
-    this._config.legend = legend;
-    return this;
-  }
-
   mount(mount: CanvasBuilderInterface["mount"]): CanvasBuilder {
     this._config.mount = mount;
     return this;
@@ -113,7 +107,6 @@ class CanvasBuilder {
       title,
       subtitle,
       config,
-      legend,
       mount,
       layers,
       transform,
@@ -130,10 +123,9 @@ class CanvasBuilder {
         .size(size)
         .shape(shape)
         .detail(detail)
-        .title(title ? title.content : undefined, { ...title })
-        .subtitle(subtitle ? subtitle.content : undefined, { ...subtitle })
+        .title(title && title.content, { ...title })
+        .subtitle(subtitle && subtitle.content, { ...subtitle })
         .config(config)
-        .legend(legend)
         .layers(layers)
         .transform(transform)
         .mount(mount);
