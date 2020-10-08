@@ -1,56 +1,72 @@
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    configurations: './src/configurations/index.ts',
-    components: './src/components/index.ts',
-    constants: './src/constants/index.ts',
+    configurations: "./src/configurations/index.ts",
+    components: "./src/components/index.ts",
+    constants: "./src/constants/index.ts",
   },
-  target: 'web',
-  mode: 'development',
+  target: "web",
+  mode: "development",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name]/index.js',
-    libraryTarget: 'umd',
-    library: '@chartshq/react-muze/[name]',
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name]/index.js",
+    libraryTarget: "umd",
+    library: "@chartshq/react-muze/[name]",
     umdNamedDefine: true,
   },
   externals: {
-    "react": { root: 'React', amd: 'react', commonjs2: 'react', commonjs: 'react' },
-    "react-dom": { root: 'reactDOM', amd: 'reactDOM', commonjs2: 'reactDOM', commonjs: 'reactDOM' },
+    "@chartshq/muze": {
+      root: "muze",
+      amd: "@chartshq/muze",
+      commonjs2: "@chartshq/muze",
+      commonjs: "@chartshq/muze",
+    },
+    react: {
+      root: "React",
+      amd: "react",
+      commonjs2: "react",
+      commonjs: "react",
+    },
+    "react-dom": {
+      root: "reactDOM",
+      amd: "reactDOM",
+      commonjs2: "reactDOM",
+      commonjs: "reactDOM",
+    },
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
   },
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        loader: 'ts-loader',
+        loader: "ts-loader",
         exclude: /node_modules/,
       },
       {
-        enforce: 'pre',
+        enforce: "pre",
         test: /\.js$/,
-        loader: 'source-map-loader',
+        loader: "source-map-loader",
       },
       {
         test: /\.(s*)css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }],
       },
     ],
   },
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: path.resolve('.', 'package.json'),
-        to: '.',
+        from: path.resolve(".", "package.json"),
+        to: ".",
       },
     ]),
   ],
   devServer: {
     inline: true,
-    contentBase: './',
+    contentBase: "./",
   },
 };
