@@ -1,6 +1,8 @@
+# React-Muze
+
 **React-Muze** is a React wrapper over the core [Muze](https://github.com/chartshq/muze) library. It provides React bindings for **Muze** and makes it easier to create charts using Muze for your React applications.
 
-## What is Muze?
+### What is Muze?
 Muze is a free library for creating exploratory data visualizations in browser that is powered by WebAssembly. It is ideal for use in visual analytics dashboards & applications to create highly performant, interactive, multi-dimensional, and composable visualizations with Grammar of Graphics approach. To learn more about muze check out: [https://muzejs.org/docs](https://muzejs.org/docs)
 
 # Installation & Usage
