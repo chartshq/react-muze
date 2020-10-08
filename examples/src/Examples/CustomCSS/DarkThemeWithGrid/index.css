@@ -1,0 +1,33 @@
+/* Light theme */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.dark-theme-chart {
+  width: 800px;
+  height: 350px;
+  width: 65%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3C3C3E;
+}
+
+.dark-theme-chart div {
+  background: #3C3C3E;
+}
+
+.dark-theme-chart .muze-legend-item-info {
+  color: #fff;
+}
+
+.dark-theme-chart .muze-legend-title-text {
+  color: #fff;
+}
+
+.dark-theme-title {
+  color: #fff;
+}

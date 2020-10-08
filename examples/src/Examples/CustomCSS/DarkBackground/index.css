@@ -1,0 +1,30 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.dark-background-chart {
+  width: 800px;
+  height: 350px;
+  width: 65%;
+  height: 80%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #262A33;
+}
+
+.dark-background-chart .muze-legend-item-info {
+  color: #999ca5;
+}
+
+.dark-background-chart .muze-legend-title-text {
+  color: #999ca5;
+}
+
+.muze-text-cell {
+  color: #999ca5;
+  text-align: center;
+}

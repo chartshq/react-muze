@@ -1,0 +1,63 @@
+[
+    {
+        "name": "Project Name",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Project Address",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Zip Code",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Rating",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Building Use",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Program",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Rating Version",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Voluntary Participation",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Fiscal Year Reported",
+        "type": "dimension",
+        "subtype": "temporal",
+        "format": "%Y-%m-%d"
+    },
+    {
+        "name": "Residential Units (qty)",
+        "type": "measure",
+        "subtype": "continuous"
+    },
+    {
+        "name": "Project (sq.ft.)",
+        "type": "measure",
+        "subtype": "continuous"
+    },
+    {
+        "name": "Stories Above Grade",
+        "type": "measure",
+        "subtype": "continuous"
+    }
+]
