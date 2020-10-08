@@ -5,8 +5,7 @@
   "author": "Charts.com <eng@charts.com> (https://charts.com/)",
   "scripts": {
     "build": "rm -rf ./build && NODE_ENV=production webpack",
-    "watch-build": "NODE_ENV=development webpack --watch",
-    "prepublish": "rm -rf ./dist && yarn build"
+    "watch-build": "NODE_ENV=development webpack --watch"
   },
   "contributors": [
     {
