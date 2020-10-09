@@ -1,0 +1,27 @@
+[
+  {
+    "name": "State_UT",
+    "type": "dimension",
+    "subtype": "categorical"
+  },
+  {
+    "name": "Year",
+    "type": "dimension",
+    "subtype": "temporal",
+    "format": "%Y-%m-%d"
+  },
+  {
+    "name": "Primary_Total",
+    "type": "measure",
+    "subtype": "continuous",
+    "defAggFn": "avg",
+    "displayName": "Primary"
+  },
+  {
+    "name": "Higher_Secondary_Total",
+    "type": "measure",
+    "subtype": "continuous",
+    "defAggFn": "avg",
+    "displayName": "Secondary"
+  }
+]

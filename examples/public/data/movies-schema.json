@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Title",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Genre",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Director",
+        "type": "dimension",
+        "subtype": "categorical"
+    },
+    {
+        "name": "Year",
+        "type": "dimension",
+        "subtype": "temporal",
+        "format": "%Y-%m-%d"
+    },
+    {
+        "name": "Runtime (Minutes)",
+        "type": "measure",
+        "subtype": "continuous",
+        "defAggFn": "avg"
+    },
+    {
+        "name": "Rating",
+        "type": "measure",
+        "subtype": "continuous",
+        "defAggFn": "avg"
+    },
+    {
+        "name": "Votes",
+        "type": "measure",
+        "subtype": "continuous",
+        "defAggFn": "sum"
+    },
+    {
+        "name": "Revenue (Millions)",
+        "type": "measure",
+        "subtype": "continuous",
+        "defAggFn": "sum"
+    }
+]

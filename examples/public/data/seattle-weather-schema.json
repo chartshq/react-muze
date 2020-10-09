@@ -1,0 +1,21 @@
+[
+{
+"name": "Date",
+"type": "dimension",
+"subtype": "temporal",
+"format": "%Y/%m/%d"
+},
+{
+"name": "Precipitation",
+"type": "measure",
+"defAggFn": "avg"
+},
+{
+"name": "wind",
+"type": "measure"
+},
+{
+"name": "weather",
+"type": "dimension"
+}
+]

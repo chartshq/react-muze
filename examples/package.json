@@ -1,0 +1,35 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@chartshq/muze": "^2.0.0",
+    "@chartshq/react-muze": "file:../dist",
+    "@types/jest": "file:../node_modules/@types/jest",
+    "@types/node": "file:../node_modules/@types/node",
+    "@types/react": "file:../node_modules/@types/react",
+    "@types/react-dom": "file:../node_modules/@types/react-dom",
+    "react": "file:../node_modules/react",
+    "react-dom": "file:../node_modules/react-dom",
+    "react-app-rewired": "file:../node_modules/react-app-rewired"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
