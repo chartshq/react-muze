@@ -65,13 +65,13 @@ module.exports = function override(config, env) {
 }
 ```
 
-And finally, add the following scripts inside your `package.json` and you are ready to go
+And finally, replace old start and build commands in your `package.json` with the following ones, and you are ready to go
 
 ```json
 {
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-app-rewired build"
   }
 }
 ```

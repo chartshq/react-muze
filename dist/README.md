@@ -2,12 +2,16 @@
   <br />
   <br />
   <a href="https://github.com/chartshq/react-muze">
-    <img src="https://github.com/chartshq/react-muze/raw/feature/npm-prerelease-patch/logo.png" alt="react-muze" title="react-muze" />
+    <img src="https://github.com/chartshq/react-muze/raw/master/logo.png" alt="react-muze" title="react-muze" />
   </a>
 </h3>
 <br />
 <br />
 <br />
+
+[![License](https://img.shields.io/github/license/chartshq/react-muze.svg)](https://github.com/chartshq/react-muze/blob/master/LICENSE)
+[![NPM version](https://img.shields.io/npm/v/@chartshq/react-muze.svg)](https://www.npmjs.com/package/@chartshq/react-muze)
+[![Contributors](https://img.shields.io/github/contributors/chartshq/react-muze.svg)](https://github.com/chartshq/react-muze/graphs/contributors)
 
 # React-Muze
 
@@ -61,13 +65,13 @@ module.exports = function override(config, env) {
 }
 ```
 
-And finally, add the following scripts inside your `package.json` and you are ready to go
+And finally, replace old start and build commands in your `package.json` with the following ones, and you are ready to go
 
 ```json
 {
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-app-rewired build"
   }
 }
 ```

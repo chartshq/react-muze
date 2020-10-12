@@ -1,8 +1,8 @@
 {
   "name": "@chartshq/react-muze",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React-Muze is a ReactJs wrapper over the core MuzeJs library which provides ReactJs bindings for MuzeJs making it easy to create charts for the ReactJs ecosystem.",
-  "homepage": "https://muzejs.org/",
+  "homepage": "https://muzejs.org/docs/wa/latest/muze/integrations/react-muze/introduction",
   "repository": "https://github.com/chartshq/react-muze",
   "author": "Charts.com <eng@charts.com> (https://charts.com/)",
   "scripts": {
@@ -50,6 +50,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
+  "dependencies": {
+    "uuid": "^8.3.1"
+  },
   "devDependencies": {
     "@chartshq/muze": "^2.0.0",
     "@types/d3-dsv": "^1.0.36",
@@ -81,8 +84,5 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
-  },
-  "dependencies": {
-    "uuid": "^8.3.1"
   }
 }
