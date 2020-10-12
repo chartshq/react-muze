@@ -1,5 +1,4 @@
 const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const mode = process.env.NODE_ENV || "production";
 
@@ -59,14 +58,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, "package.json"),
-        to: path.resolve(__dirname, "dist/package.json"),
-      },
-    ]),
-  ],
+  plugins: [],
   devServer: {
     inline: true,
     contentBase: "./",
