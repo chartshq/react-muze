@@ -40,7 +40,10 @@
     "svg",
     "vector",
     "graphics",
-    "renderer"
+    "renderer",
+    "javascript-charts",
+    "charts",
+    "grammar-of-graphics"
   ],
   "peerDependencies": {
     "@chartshq/muze": "^2.0.0",
