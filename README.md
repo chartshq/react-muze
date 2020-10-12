@@ -1,3 +1,14 @@
+<h3 align="center">
+  <br />
+  <br />
+  <a href="https://github.com/chartshq/react-muze">
+    <img src="https://github.com/chartshq/react-muze/raw/master/logo.png" alt="react-muze" title="react-muze" />
+  </a>
+</h3>
+<br />
+<br />
+<br />
+
 # React-Muze
 
 **React-Muze** is a React wrapper over the core [Muze](https://github.com/chartshq/muze) library. It provides React bindings for **Muze** and makes it easier to create charts using Muze for your React applications.
