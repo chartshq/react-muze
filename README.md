@@ -2,7 +2,7 @@
   <br />
   <br />
   <a href="https://github.com/chartshq/react-muze">
-    <img src="https://github.com/chartshq/react-muze/raw/master/logo.png" alt="react-muze" title="react-muze" />
+    <img src="https://github.com/chartshq/react-muze/raw/feature/npm-prerelease-patch/logo.png" alt="react-muze" title="react-muze" />
   </a>
 </h3>
 <br />
