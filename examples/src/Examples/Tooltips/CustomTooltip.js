@@ -29,37 +29,32 @@ class CustomTooltip extends React.Component {
   render() {
     const { carsDm } = this.state;
 
-    const tooltip = Tooltip.config().formatter((dataStore, config, context) => {
-      const colorAxis = context.axes.color[0];
-      const tooltipData = dataStore.getData().data;
+    const tooltip = Tooltip.config()
+      .formatter((dataStore, config, context) => {
+        const colorAxis = context.axes.color[0];
+        const tooltipData = dataStore.getData().data;
 
-      let tooltipContent = "";
-      tooltipData.forEach((dataArray, i) => {
-        const originVal = dataArray[dataStore.getFieldIndex("Origin")];
-        const hpVal = dataArray[dataStore.getFieldIndex("Horsepower")];
-        const cylVal = dataArray[dataStore.getFieldIndex("Cylinders")];
-        const l = colorAxis.getRawColor(cylVal)[2]; // luminance
-        tooltipContent += `
+        let tooltipContent = "";
+        tooltipData.forEach((dataArray, i) => {
+          const originVal = dataArray[dataStore.getFieldIndex("Origin")];
+          const hpVal = dataArray[dataStore.getFieldIndex("Horsepower")];
+          const cylVal = dataArray[dataStore.getFieldIndex("Cylinders")];
+          const l = colorAxis.getRawColor(cylVal)[2]; // luminance
+          tooltipContent += `
 ${i ? "" : `<h3 style="background-color:#EAEAEA">Country: ${originVal}</h3>`}
 <div style="background: ${colorAxis.getColor(
-          cylVal
-        )}; padding: 4px 8px; color: ${l > 0.45 ? "black" : "white"};">
+            cylVal
+          )}; padding: 4px 8px; color: ${l > 0.45 ? "black" : "white"};">
 <u>${cylVal} Cylinders</u> cars with an average power of <b>${hpVal} HP</b>
 </div>
 `;
-        tooltipContent += "<br>";
-      });
-      return Muze.Operators.html`${tooltipContent}`;
-    });
+          tooltipContent += "<br>";
+        });
+        return Muze.Operators.html`${tooltipContent}`;
+      })
+      .create();
 
-    // NOTE: in the demo (react) tooltip is not fragmented
-
-    // the input that is getting passed to muze is (core muze bug)
-    // tooltip: {
-    //   highlightSummary: {
-    //     mode: "fragmented";
-    //   }
-    // }
+    console.log("tooltip", tooltip);
 
     return (
       <Muze data={carsDm}>

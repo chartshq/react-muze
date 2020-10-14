@@ -1,4 +1,4 @@
-import { Tooltip } from "../../configurations/Tooltip";
+import { TooltipInterface } from "../../configurations/Tooltip/types";
 import { Border } from "../../configurations/Border";
 import { LinearAxisOptions, RadialAxisOptions } from "../../configurations/Axes/types";
 import { LegendInterface } from "../../configurations/Legend/types";
@@ -37,7 +37,7 @@ interface ChartProps extends RetinalEncoding, RetinalEncodingLegend {
     className?: string;
     crossInteractive?: boolean;
     sort?: Map<string, MuzeConstants.SORT_ORDER>;
-    tooltips?: Tooltip[];
+    tooltips?: Array<TooltipInterface>;
     border: Border;
     radiusAxis?: RadialAxisOptions;
     propagationBehaviourMap?: {

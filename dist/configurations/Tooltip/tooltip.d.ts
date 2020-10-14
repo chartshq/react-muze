@@ -1,34 +1,20 @@
-import { TooltipInterface, MuzeTooltipInputInterface, TooltipType, TooltipMode } from './types';
+import { TooltipInterface, TooltipType, TooltipMode } from "./types";
 declare class Tooltip {
-    _type: TooltipType;
-    _mode: TooltipMode;
-    _formatter?: Function;
-    _displayFields?: Array<String>;
-    constructor({ type, mode, formatter, displayFields }: TooltipInterface);
+    private _config;
+    private constructor();
     static config(): Tooltip;
-    mode(mode: TooltipMode): Tooltip;
     on(type: TooltipType): Tooltip;
+    mode(mode: TooltipMode): Tooltip;
     formatter(func: Function): Tooltip;
     displayFields(fields: Array<String>): Tooltip;
-    create(values?: TooltipInterface): Tooltip;
-    asMuzeInput(): MuzeTooltipInputInterface;
+    create(options?: TooltipInterface): TooltipInterface;
 }
-export declare function multiTooltipIntoMuze(tooltips: Array<Tooltip> | undefined): {
-    tooltip?: undefined;
-} | {
-    tooltip: {
-        highlightSummary: MuzeTooltipInputInterface;
-        selectionSummary: MuzeTooltipInputInterface;
-    };
-} | {
-    tooltip: {
-        highlightSummary: MuzeTooltipInputInterface;
-        selectionSummary?: undefined;
-    };
-} | {
-    tooltip: {
-        selectionSummary: MuzeTooltipInputInterface | undefined;
-        highlightSummary?: undefined;
-    };
-};
+export declare function resolveMultiTooltips(tooltips: Array<TooltipInterface> | undefined): {
+    mode?: TooltipMode | undefined;
+    formatter?: Function | undefined;
+    displayFields?: String[] | undefined;
+    highlightSummary?: TooltipInterface | undefined;
+    selectionSummary?: TooltipInterface | undefined;
+    _type?: TooltipType | undefined;
+} | null;
 export { Tooltip, TooltipType as TOOLTIP_TYPE, TooltipMode as TOOLTIP_MODE };

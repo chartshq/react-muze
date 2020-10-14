@@ -1,5 +1,5 @@
 import { CanvasBuilder } from "./CanvasBuilder";
-import { multiTooltipIntoMuze } from "../../../configurations/Tooltip";
+import { resolveMultiTooltips } from "../../../configurations/Tooltip";
 import { configSanitizer } from "./helpers";
 import { CanvasProps, CanvasState } from "../../types";
 import { Config } from "./Config";
@@ -68,7 +68,12 @@ export const createChart = (
       scrollBar,
       showHeaders,
       interaction: {
-        ...multiTooltipIntoMuze(tooltips),
+        tooltip: (() => {
+          const x = resolveMultiTooltips(tooltips);
+          console.log("tooltips", x);
+          console.log("x", x);
+          return x ? x : {};
+        })(),
         behaviours: {
           highlight: {
             ...highlight,

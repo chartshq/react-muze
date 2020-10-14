@@ -29,7 +29,10 @@ class FragmentedTooltip extends React.Component {
   render() {
     const { carsDm } = this.state;
 
-    const tooltip = Tooltip.config().on("highlight").mode("fragmented");
+    const tooltip = Tooltip.config()
+      .on("highlight")
+      .mode("fragmented")
+      .create();
 
     return (
       <Muze data={carsDm}>

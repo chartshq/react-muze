@@ -2,11 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
-import BoxPlot from './Examples/Composability/BoxPlot';
+// import BoxPlot from './Examples/Composability/BoxPlot';
+import CustomTooltip from "./Examples/Tooltips/CustomTooltip";
+import Tooltip from "./Examples/Tooltips/Tooltip";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BoxPlot />
+    <CustomTooltip />
+    <Tooltip />
   </React.StrictMode>,
   document.getElementById("root")
 );
