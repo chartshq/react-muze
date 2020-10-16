@@ -4,7 +4,7 @@ class Tooltip {
   private _config: TooltipInterface;
 
   private constructor() {
-    this._config = {};
+    this._config = { _type: TooltipType.HIGHLIGHT };
   }
 
   static config(): Tooltip {
