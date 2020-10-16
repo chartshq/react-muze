@@ -1,2 +1,2 @@
-import { Tooltip, multiTooltipIntoMuze, TOOLTIP_TYPE, TOOLTIP_MODE } from "./tooltip";
-export { Tooltip, multiTooltipIntoMuze, TOOLTIP_TYPE, TOOLTIP_MODE };
+import { Tooltip, resolveMultiTooltips, TOOLTIP_TYPE, TOOLTIP_MODE } from "./tooltip";
+export { Tooltip, resolveMultiTooltips, TOOLTIP_TYPE, TOOLTIP_MODE };

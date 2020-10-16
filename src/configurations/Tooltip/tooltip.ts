@@ -1,113 +1,80 @@
-import { TooltipInterface, MuzeTooltipInputInterface, TooltipType, TooltipMode } from './types';
+import { TooltipInterface, TooltipType, TooltipMode } from "./types";
 
 class Tooltip {
-  _type: TooltipType = TooltipType.HIGHLIGHT;
+  private _config: TooltipInterface;
 
-  _mode: TooltipMode = TooltipMode.CONSOLIDATED;
-
-  _formatter?: Function;
-
-  _displayFields?: Array<String>;
-
-  constructor({ type, mode, formatter, displayFields }: TooltipInterface) {
-    if (mode) this._mode = mode;
-    if (type) this._type = type;
-    this._formatter = formatter;
-    this._displayFields = displayFields;
+  private constructor() {
+    this._config = { _type: TooltipType.HIGHLIGHT };
   }
 
   static config(): Tooltip {
-    return new Tooltip({});
-  }
-
-  mode(mode: TooltipMode): Tooltip {
-    this._mode = mode;
-    return this;
+    return new Tooltip();
   }
 
   on(type: TooltipType): Tooltip {
-    this._type = type;
+    this._config._type = type;
+    return this;
+  }
+
+  mode(mode: TooltipMode): Tooltip {
+    this._config.mode = mode;
     return this;
   }
 
   formatter(func: Function): Tooltip {
-    this._formatter = func;
+    this._config.formatter = func;
     return this;
   }
 
   displayFields(fields: Array<String>): Tooltip {
-    this._displayFields = fields;
+    this._config.displayFields = fields;
     return this;
   }
 
-  create(values?: TooltipInterface): Tooltip {
-    if (!values) {
-      return this;
-    }
-
-    const { type, mode, formatter, displayFields } = values;
-
-    if (mode) this._mode = mode;
-    if (type) this._type = type;
-    this._formatter = formatter;
-    this._displayFields = displayFields;
-    return this;
-  }
-
-  asMuzeInput(): MuzeTooltipInputInterface {
-    return {
-      mode: this._mode,
-      formatter: this._formatter,
-      displayFields: this._displayFields,
-    };
+  create(options: TooltipInterface = {}): TooltipInterface {
+    return { ...this._config, ...options };
   }
 }
 
-export function multiTooltipIntoMuze(tooltips: Array<Tooltip> | undefined) {
+export function resolveMultiTooltips(
+  tooltips: Array<TooltipInterface> | undefined
+) {
   if (!tooltips) {
-    return {};
+    return null;
   }
 
-  let highlightSummary: MuzeTooltipInputInterface | undefined;
-  let selectionSummary: MuzeTooltipInputInterface | undefined;
+  let hiSum: TooltipInterface | undefined; // highlightSummary
+  let selSum: TooltipInterface | undefined; // selectionSummary
 
   tooltips.forEach((tooltip) => {
-    const { mode, formatter, displayFields } = tooltip.asMuzeInput();
     switch (tooltip._type) {
       case TooltipType.HIGHLIGHT:
-        highlightSummary = {};
-        if (mode) highlightSummary.mode = mode;
-        if (formatter) highlightSummary.formatter = formatter;
-        if (displayFields) highlightSummary.displayFields = displayFields;
+        hiSum = tooltip;
+        delete hiSum._type;
         break;
       case TooltipType.SELECT:
-        selectionSummary = tooltip.asMuzeInput();
+        selSum = tooltip;
+        delete selSum._type;
         break;
       default:
         break;
     }
   });
 
-  if (highlightSummary && selectionSummary) {
-    return {
-      tooltip: {
-        highlightSummary,
-        selectionSummary,
-      },
-    };
-  } else if (highlightSummary) {
-    return {
-      tooltip: {
-        highlightSummary,
-      },
-    };
-  } else {
-    return {
-      tooltip: {
-        selectionSummary,
-      },
-    };
-  }
+  return hiSum && selSum
+    ? {
+        highlightSummary: hiSum,
+        selectionSummary: selSum,
+      }
+    : hiSum
+    ? {
+        ...hiSum,
+      }
+    : selSum
+    ? {
+        selectionSummary: selSum,
+      }
+    : null;
 }
 
 export { Tooltip, TooltipType as TOOLTIP_TYPE, TooltipMode as TOOLTIP_MODE };

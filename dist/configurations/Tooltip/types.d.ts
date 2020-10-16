@@ -1,13 +1,10 @@
 export interface TooltipInterface {
-    type?: TooltipType;
     mode?: TooltipMode;
     formatter?: Function;
     displayFields?: Array<String>;
-}
-export interface MuzeTooltipInputInterface {
-    mode?: String;
-    formatter?: Function;
-    displayFields?: Array<String>;
+    highlightSummary?: TooltipInterface;
+    selectionSummary?: TooltipInterface;
+    _type?: TooltipType;
 }
 export declare enum TooltipType {
     HIGHLIGHT = "highlight",
